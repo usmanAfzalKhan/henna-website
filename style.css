@@ -1,0 +1,165 @@
+/* Resetting some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Soft light gray background */
+    color: #333; /* Dark gray text for readability */
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Georgia', serif;
+  }
+  
+  /* Navigation */
+  nav {
+    background-color: #333; /* Dark, professional color */
+  }
+  
+  nav .navbar-brand, nav .nav-link {
+    color: #fff;
+    font-size: 1.1em;
+  }
+  
+  nav .nav-link:hover {
+    color: #ffd700; /* Gold hover effect for elegance */
+  }
+  
+  nav .navbar-toggler-icon {
+    background-color: #fff;
+  }
+  
+  /* Home Section */
+  #home {
+    background-color: #fff; /* Clean white background for the first section */
+    padding: 50px 0;
+  }
+  
+  #home h1 {
+    color: #444; /* Slightly lighter dark gray for the header */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  #home p {
+    color: #555; /* Softer text for better readability */
+    font-size: 1.1em;
+  }
+  
+  /* Services Section */
+  #services {
+    background-color: #f9f9f9; /* Very light gray background for contrast */
+    padding: 50px 0;
+  }
+  
+  #services h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+  }
+  
+  .card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* Card hover effect for modern feel */
+  }
+  
+  .card-title {
+    color: #333;
+    font-size: 1.2em;
+  }
+  
+  .card-text {
+    color: #555;
+  }
+  
+  /* Booking Section */
+  #booking {
+    background-color: #fff; /* White background for forms */
+    padding: 50px 0;
+  }
+  
+  #booking h2 {
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  form label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  form input, form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+  }
+  
+  form button {
+    background-color: #28a745; /* Green button for submission */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  form button:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  /* Contact Section */
+  #contact {
+    background-color: #f9f9f9; /* Light background */
+    padding: 50px 0;
+  }
+  
+  #contact h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #555;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  footer a {
+    color: #ffd700; /* Gold link color */
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  
