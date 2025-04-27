@@ -1,165 +1,203 @@
-/* Resetting some basic styles */
-* {
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;  /* Light grey background */
+    color: #333;  /* Dark text for contrast */
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4; /* Soft light gray background */
-    color: #333; /* Dark gray text for readability */
-  }
-  
-  h1, h2, h3 {
-    font-family: 'Georgia', serif;
-  }
-  
-  /* Navigation */
-  nav {
-    background-color: #333; /* Dark, professional color */
-  }
-  
-  nav .navbar-brand, nav .nav-link {
-    color: #fff;
-    font-size: 1.1em;
-  }
-  
-  nav .nav-link:hover {
-    color: #ffd700; /* Gold hover effect for elegance */
-  }
-  
-  nav .navbar-toggler-icon {
-    background-color: #fff;
-  }
-  
-  /* Home Section */
-  #home {
-    background-color: #fff; /* Clean white background for the first section */
-    padding: 50px 0;
-  }
-  
-  #home h1 {
-    color: #444; /* Slightly lighter dark gray for the header */
-    font-size: 2.5em;
+}
+
+h1, h2, h3 {
+    color: #1a1a1a;  /* Dark color for headers */
     margin-bottom: 20px;
-  }
-  
-  #home p {
-    color: #555; /* Softer text for better readability */
-    font-size: 1.1em;
-  }
-  
-  /* Services Section */
-  #services {
-    background-color: #f9f9f9; /* Very light gray background for contrast */
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff;  /* White background for navbar */
+    border-bottom: 2px solid #ddd;  /* Light grey border at the bottom */
+}
+
+.navbar a.navbar-brand {
+    font-size: 1.5rem;
+    color: #4CAF50;  /* Green color for the brand */
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #333;  /* Dark text for links */
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #4CAF50;  /* Green hover effect */
+}
+
+/* Hero Section */
+.hero {
+    background-color: #e0f7fa;  /* Soft blue background */
     padding: 50px 0;
-  }
-  
-  #services h2 {
     text-align: center;
+    border-bottom: 2px solid #ddd;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
     color: #333;
-    margin-bottom: 40px;
-  }
-  
-  .card {
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px); /* Card hover effect for modern feel */
-  }
-  
-  .card-title {
-    color: #333;
-    font-size: 1.2em;
-  }
-  
-  .card-text {
-    color: #555;
-  }
-  
-  /* Booking Section */
-  #booking {
-    background-color: #fff; /* White background for forms */
-    padding: 50px 0;
-  }
-  
-  #booking h2 {
-    color: #333;
+}
+
+.hero p {
+    font-size: 1.2rem;
     margin-bottom: 30px;
-    text-align: center;
-  }
-  
-  form .form-group {
-    margin-bottom: 20px;
-  }
-  
-  form label {
-    font-weight: bold;
-    color: #333;
-  }
-  
-  form input, form select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1em;
-  }
-  
-  form button {
-    background-color: #28a745; /* Green button for submission */
-    color: white;
+    color: #555;
+}
+
+.hero .btn-primary {
+    background-color: #4CAF50;
     border: none;
     padding: 10px 20px;
-    font-size: 1.1em;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  form button:hover {
-    background-color: #218838; /* Darker green on hover */
-  }
-  
-  /* Contact Section */
-  #contact {
-    background-color: #f9f9f9; /* Light background */
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.hero .btn-primary:hover {
+    background-color: #45a049;  /* Darker green on hover */
+}
+
+/* About Us Section */
+#about {
+    background-color: #ffffff;  /* White background for the about section */
     padding: 50px 0;
-  }
-  
-  #contact h2 {
-    color: #333;
-    margin-bottom: 20px;
     text-align: center;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  ul li {
-    margin: 10px 0;
-    font-size: 1.1em;
+    border-bottom: 2px solid #ddd;
+}
+
+#about a {
+    color: #4CAF50;  /* Green color for links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#about a:hover {
+    text-decoration: underline;
+}
+
+/* Services Section */
+#services {
+    background-color: #f9f9f9;  /* Light grey background */
+    padding: 50px 0;
+    text-align: center;
+}
+
+#services h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    font-size: 1rem;
     color: #555;
-  }
-  
-  /* Footer */
-  footer {
-    background-color: #333;
-    color: #fff;
+}
+
+.card-img-top {
+    border-radius: 10px;
+}
+
+/* Testimonials Section */
+#testimonials {
+    background-color: #ffffff;  /* White background */
+    padding: 50px 0;
+    text-align: center;
+}
+
+blockquote {
+    font-style: italic;
+    color: #555;
+    margin: 20px auto;
+    padding: 20px;
+    border-left: 5px solid #4CAF50;
+    max-width: 800px;
+}
+
+/* CTA Section */
+.cta {
+    background-color: #4CAF50;  /* Green background for CTA */
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.cta p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.cta .btn-light {
+    background-color: #ffffff;
+    color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta .btn-light:hover {
+    background-color: #e0f7fa;  /* Light blue background on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #f1f1f1;  /* Light grey footer */
     padding: 20px;
     text-align: center;
-  }
-  
-  footer a {
-    color: #ffd700; /* Gold link color */
-    text-decoration: none;
-  }
-  
-  footer a:hover {
-    text-decoration: underline;
-  }
-  
+    color: #333;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.875rem;
+}
