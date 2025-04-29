@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact - Mehndi By Simra</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- intl-tel-input CSS for country flags and dial codes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+
+<!-- Navbar (same as index and about us pages) -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="index.html">Henna Studio</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+      <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+      <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Contact Form -->
+<section class="container mt-5 mb-5">
+  <h2 class="text-center">Contact Us</h2>
+  <p>For inquiries, feel free to reach out via Instagram <a href="https://www.instagram.com/mehndibysimra" target="_blank" class="no-underline">@mehndibysimra</a> or complete the form below.</p>
+  <form id="contactForm" action="https://formspree.io/f/xwpovneg" method="POST">
+
+    <div class="form-group">
+      <label for="name">Full Name <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" required>
+      <div class="invalid-feedback">Please enter your full name.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number <span class="text-danger">*</span></label>
+      <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+      <small id="phoneError" class="form-text text-danger" style="display:none;">Please enter a valid phone number.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Type of Event <span class="text-danger">*</span></label>
+      <select class="form-control" id="type" name="type" required>
+        <option value="">Select an option</option>
+        <option value="Bridal">Bridal</option>
+        <option value="Party">Party</option>
+        <option value="Festival">Festival</option>
+      </select>
+      <div class="invalid-feedback">Please select the type of event.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="people">Number of People <span class="text-danger">*</span></label>
+      <input type="number" class="form-control" id="people" name="people" min="1" placeholder="How many people?" required>
+      <div class="invalid-feedback">Please enter the number of people.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Your Message (Optional)</label>
+      <textarea class="form-control" id="message" name="message" rows="4" placeholder="Type any message you want to send..."></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3" id="submitBtn">Send Message</button>
+  </form>
+
+  <div id="formSuccess" class="alert alert-success mt-3" style="display:none;"></div>
+</section>
+
+<!-- Footer (same as index and about us pages) -->
+<footer class="bg-light text-center py-4">
+  <p>&copy; 2025 Mehndi By Simra. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- intl-tel-input JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"></script>
+
+<script>
+$(document).ready(function() {
+
+  var input = document.querySelector("#phone");
+  var iti = window.intlTelInput(input, {
+    initialCountry: "ca", // Default to Canada
+    preferredCountries: ["ca", "us", "gb", "in", "pk", "ae", "au", "de", "fr", "sa", "bd"],
+    separateDialCode: true,
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+  });
+
+  function validatePhone() {
+    var nationalNumber = iti.getNumber(intlTelInputUtils.numberFormat.NATIONAL).replace(/\D/g, '');
+    
+    // Country exception list (countries with more flexible phone number lengths)
+    var countryCode = iti.getSelectedCountryData().dialCode;
+    var maxDigits = 10;
+
+    if (countryCode === '1') { // Canada (Country Code 1)
+      maxDigits = 10; // Canada strictly allows 10 digits
+    } else if (countryCode === '91') { // India (Country Code 91)
+      maxDigits = 10; // India strictly allows 10 digits
+    } else if (countryCode === '44' || countryCode === '92' || countryCode === '971') { // UK, Pakistan, UAE
+      maxDigits = 15; // US, Canada, UK, India, etc. may have more than 10 digits
+    }
+
+    // Enforce maximum digit limit
+    if (nationalNumber.length > maxDigits) {
+      $('#phoneError').show();
+      $('#phone').addClass('is-invalid');
+      return false;
+    } else {
+      $('#phoneError').hide();
+      $('#phone').removeClass('is-invalid');
+      return true;
+    }
+  }
+
+  // Limit to valid digits while typing
+  $('#phone').on('input', function() {
+    var inputVal = $(this).val().replace(/\D/g, ''); // Remove non-numbers
+    var countryCode = iti.getSelectedCountryData().dialCode;
+    var maxDigits = 10;
+
+    if (countryCode === '1') { // Canada (Country Code 1)
+      maxDigits = 10; // Canada strictly allows 10 digits
+    } else if (countryCode === '91') { // India (Country Code 91)
+      maxDigits = 10; // India strictly allows 10 digits
+    } else if (countryCode === '44' || countryCode === '92' || countryCode === '971') { // UK, Pakistan, UAE
+      maxDigits = 15; // Allow 15 digits for US, Canada, UK, India, etc.
+    }
+
+    if (inputVal.length > maxDigits) {
+      inputVal = inputVal.substring(0, maxDigits); // Prevent exceeding max digits
+    }
+    $(this).val(inputVal);
+  });
+
+  $('#contactForm').on('submit', function(e) {
+    e.preventDefault();
+    var isValid = true;
+
+    if (!$('#name').val()) {
+      $('#name').addClass('is-invalid');
+      isValid = false;
+    } else {
+      $('#name').removeClass('is-invalid');
+    }
+
+    if (!$('#type').val()) {
+      $('#type').addClass('is-invalid');
+      isValid = false;
+    } else {
+      $('#type').removeClass('is-invalid');
+    }
+
+    if (!$('#people').val()) {
+      $('#people').addClass('is-invalid');
+      isValid = false;
+    } else {
+      $('#people').removeClass('is-invalid');
+    }
+
+    if (!validatePhone()) {
+      isValid = false;
+    }
+
+    if (!isValid) {
+      return;
+    }
+
+    $.ajax({
+      url: $(this).attr('action'),
+      method: "POST",
+      data: $(this).serialize(),
+      dataType: "json",
+      success: function() {
+        $('#formSuccess').html("Thank you for your inquiry! Your message has been successfully sent to Simra. She will get back to you shortly.").show();
+
+        // Disable all form fields and button
+        $('#contactForm').find('input, select, textarea, button').attr('disabled', true);
+      },
+      error: function() {
+        alert("There was an error sending your message. Please try again later.");
+      }
+    });
+  });
+
+});
+</script>
+
+<!-- Custom Styles for Contact Form -->
+<style>
+  .container {
+    max-width: 800px;
+    margin-top: 50px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-control {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: border 0.3s;
+  }
+
+  .form-control:focus {
+    border-color: #008c4a;
+    box-shadow: 0 0 5px rgba(0, 140, 74, 0.3);
+  }
+
+  .btn-primary {
+    background-color: #008c4a;
+    border-color: #008c4a;
+    font-size: 1rem;
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+  }
+
+  .btn-primary:hover {
+    background-color: #006e36;
+    border-color: #006e36;
+  }
+
+  .invalid-feedback {
+    font-size: 0.875rem;
+  }
+
+  .alert-success {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .instagram-link {
+  text-decoration: none; /* Remove the default underline */
+  color: inherit; /* Inherit color from the parent (default text color) */
+}
+
+.instagram-link:hover {
+  color: #008c4a; /* Change to your desired hover color, e.g., green */
+}
+
+
+</style>
+
+</body>
+</html>
