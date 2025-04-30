@@ -2,52 +2,74 @@
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #f9f9f9;  /* Light grey background */
-    color: #333;  /* Dark text for contrast */
+    color: #333;
     margin: 0;
     padding: 0;
+    background-color: #f9f6f1;
+    background-image: url('pattern.png');
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    animation: backgroundMove 120s linear infinite;
+    overflow-x: hidden;
 }
 
-h1, h2, h3 {
-    color: #1a1a1a;  /* Dark color for headers */
-    margin-bottom: 20px;
+/* Background Animation */
+@keyframes backgroundMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 1000px 1000px;
+    }
 }
 
-p {
-    font-size: 1rem;
-    margin-bottom: 15px;
+/* Fade-in animation for sections */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+/* Applying fadeIn to sections */
+section, .hero, .card, footer {
+    animation: fadeIn 1.5s ease forwards;
+}
+
+/* Hover effects for smooth scaling */
+.card:hover, .btn-primary:hover, .btn-light:hover {
+    transform: scale(1.05);
+    transition: transform 0.4s ease, background-color 0.4s ease;
 }
 
 /* Navbar */
 .navbar {
-    background-color: #ffffff;  /* White background for navbar */
-    border-bottom: 2px solid #ddd;  /* Light grey border at the bottom */
+    background-color: #ffffff;
+    border-bottom: 2px solid #ddd;
 }
 
 .navbar a.navbar-brand {
     font-size: 1.5rem;
-    color: #4CAF50;  /* Green color for the brand */
+    color: #4CAF50;
 }
 
 .navbar-nav .nav-item .nav-link {
-    color: #333;  /* Dark text for links */
+    color: #333;
     padding: 10px 15px;
     transition: color 0.3s ease;
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-    color: #4CAF50;  /* Green hover effect */
+    color: #4CAF50;
 }
 
 /* Hero Section */
 .hero {
-    background-color: #e0f7fa;  /* Soft blue background */
+    background-color: #e0f7fa;
     padding: 50px 0;
     text-align: center;
     border-bottom: 2px solid #ddd;
@@ -72,23 +94,23 @@ p {
     color: white;
     font-size: 1rem;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .hero .btn-primary:hover {
-    background-color: #45a049;  /* Darker green on hover */
+    background-color: #45a049;
 }
 
 /* About Us Section */
 #about {
-    background-color: #ffffff;  /* White background for the about section */
+    background-color: #ffffff;
     padding: 50px 0;
     text-align: center;
     border-bottom: 2px solid #ddd;
 }
 
 #about a {
-    color: #4CAF50;  /* Green color for links */
+    color: #4CAF50;
     text-decoration: none;
     font-weight: bold;
 }
@@ -99,7 +121,7 @@ p {
 
 /* Services Section */
 #services {
-    background-color: #f9f9f9;  /* Light grey background */
+    background-color: #f9f9f9;
     padding: 50px 0;
     text-align: center;
 }
@@ -114,12 +136,8 @@ p {
     border: none;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
     margin-bottom: 30px;
-}
-
-.card:hover {
-    transform: translateY(-5px);
 }
 
 .card-body {
@@ -143,7 +161,7 @@ p {
 
 /* Testimonials Section */
 #testimonials {
-    background-color: #ffffff;  /* White background */
+    background-color: #ffffff;
     padding: 50px 0;
     text-align: center;
 }
@@ -159,7 +177,7 @@ blockquote {
 
 /* CTA Section */
 .cta {
-    background-color: #4CAF50;  /* Green background for CTA */
+    background-color: #4CAF50;
     color: white;
     padding: 50px 0;
     text-align: center;
@@ -182,16 +200,16 @@ blockquote {
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cta .btn-light:hover {
-    background-color: #e0f7fa;  /* Light blue background on hover */
+    background-color: #e0f7fa;
 }
 
 /* Footer */
 footer {
-    background-color: #f1f1f1;  /* Light grey footer */
+    background-color: #f1f1f1;
     padding: 20px;
     text-align: center;
     color: #333;
@@ -201,3 +219,22 @@ footer p {
     margin: 0;
     font-size: 0.875rem;
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .delay-1s {
+    animation-delay: 1s;
+  }
+  
+  .delay-2s {
+    animation-delay: 2s;
+  }
+  
