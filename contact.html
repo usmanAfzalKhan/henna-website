@@ -21,6 +21,10 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #f4f4f4;
       background-color: #0b3d2e;
+      background-image: url('images/background.png');
+      background-size: 300px 300px;
+      background-repeat: repeat;
+      animation: backgroundMove 120s linear infinite;
     }
     nav {
       background-color: transparent;
@@ -28,16 +32,8 @@
       background-size: 300px 300px;
       background-repeat: repeat;
       animation: backgroundMove 120s linear infinite;
-      border-bottom: 3px solid #7b3f00;
+      border-bottom: 3px solid #7b3f00 !important;
       box-shadow: 0 0 10px #7b3f00;
-    }
-    footer {
-      background-image: url('images/background.png');
-      background-size: 300px 300px;
-      background-repeat: repeat;
-      animation: backgroundMove 120s linear infinite;
-      border-top: 3px solid #7b3f00;
-      box-shadow: 0 -1px 10px #7b3f00;
     }
     @media (max-width: 991.98px) {
       .navbar-collapse {
@@ -70,6 +66,24 @@
         color: #ffcc70;
       }
     }
+    form {
+      border: 2px solid #7b3f00;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      background-image: url('images/background.png');
+      animation: backgroundMove 120s linear infinite;
+      background-size: 300px 300px;
+      background-repeat: repeat;
+      color: #f4f4f4;
+    }
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .form-control {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -86,22 +100,23 @@
     <ul class="navbar-nav">
       <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
       <li class="nav-item"><a class="nav-link active" href="aboutUs.html">Portfolio</a></li>
+      <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
     </ul>
   </div>
 </nav>
 
 <section class="container mt-5 mb-5">
-  <h2 class="text-center">Contact Us</h2>
-  <p>For inquiries, feel free to reach out via Instagram <a href="https://www.instagram.com/mehndibysimra" target="_blank" class="no-underline">@mehndibysimra</a> or complete the form below.</p>
+  <h2 class="text-center" style="color: #ffffff;">Contact Us</h2>
+  <p class="text-center text-light">For inquiries, reach out via Instagram <a href="https://www.instagram.com/mehndibysimra" target="_blank" class="no-underline text-warning">@mehndibysimra</a> or complete the form below.</p>
   <form id="contactForm" action="https://formspree.io/f/xwpovneg" method="POST">
     <div class="form-group">
       <label for="name">Full Name <span class="text-danger">*</span></label>
-      <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" required>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" required maxlength="50">
       <div class="invalid-feedback">Please enter your full name.</div>
     </div>
     <div class="form-group">
       <label for="phone">Phone Number <span class="text-danger">*</span></label>
-      <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+      <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone #" required>
       <small id="phoneError" class="form-text text-danger" style="display:none;">Please enter a valid phone number.</small>
     </div>
     <div class="form-group">
@@ -116,19 +131,19 @@
     </div>
     <div class="form-group">
       <label for="people">Number of People <span class="text-danger">*</span></label>
-      <input type="number" class="form-control" id="people" name="people" min="1" placeholder="How many people?" required>
+      <input type="number" class="form-control" id="people" name="people" min="1" placeholder="How many people?" required max="500">
       <div class="invalid-feedback">Please enter the number of people.</div>
     </div>
     <div class="form-group">
       <label for="message">Your Message (Optional)</label>
-      <textarea class="form-control" id="message" name="message" rows="4" placeholder="Type any message you want to send..."></textarea>
+      <textarea class="form-control" id="message" name="message" rows="4" maxlength="500" placeholder="Type any message you want to send..."></textarea>
     </div>
     <button type="submit" class="btn btn-primary mt-3" id="submitBtn">Send Message</button>
   </form>
-  <div id="formSuccess" class="alert alert-success mt-3" style="display:none;"></div>
+  <div id="formSuccess" class="alert alert-success mt-3" style="display:none;">Simra has been notified of your request.</div>
 </section>
 
-<footer class="text-center py-4 text-light">
+<footer class="text-center py-4 text-light" onmouseenter="pauseBackground()" onmouseleave="resumeBackground()">
   <p>&copy; 2025 Mehndi By Simra. All rights reserved.</p>
 </footer>
 
@@ -141,6 +156,53 @@
     const collapse = document.getElementById('navbarNav');
     toggler.addEventListener('click', function () {
       collapse.classList.toggle('show');
+    });
+
+    const phoneInput = document.querySelector("#phone");
+    const iti = window.intlTelInput(phoneInput, {
+      initialCountry: "ca",
+      separateDialCode: true,
+      preferredCountries: ["ca", "us", "gb", "in", "pk", "ae"],
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+    });
+
+    phoneInput.addEventListener('input', () => {
+      const isValid = iti.isValidNumber();
+      const error = document.getElementById("phoneError");
+      if (!isValid) {
+        phoneInput.classList.add("is-invalid");
+        error.style.display = "block";
+      } else {
+        phoneInput.classList.remove("is-invalid");
+        error.style.display = "none";
+      }
+    });
+
+    const form = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          formSuccess.style.display = 'block';
+          const inputs = form.querySelectorAll('input, textarea, select, button');
+          inputs.forEach(input => {
+            input.disabled = true;
+          });
+        } else {
+          alert("There was an issue submitting the form. Please try again later.");
+        }
+      })
+      .catch(() => {
+        alert("There was a connection issue. Please try again later.");
+      });
     });
   });
 </script>
