@@ -12,7 +12,11 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" 
+     style="background-image: url('images/background.png'); 
+            background-size: 300px 300px; 
+            background-repeat: repeat; 
+            animation: backgroundMove 120s linear infinite;">
     <a class="navbar-brand" href="index.html">
         <img src="images/logo.png" alt="Mehndi By Simra Logo" style="height: 125px;">
     </a>
@@ -111,9 +115,15 @@
 </section>
 
 <!-- Footer -->
-<footer class="bg-light text-center py-4">
-    <p>&copy; 2025 Mehndi By Simra. All rights reserved.</p>
+<!-- Footer -->
+<footer class="text-center py-4 text-light pause-animate" 
+        style="background-image: url('images/background.png'); 
+               background-size: 300px 300px; 
+               background-repeat: repeat; 
+               animation: backgroundMove 120s linear infinite;">
+  <p>&copy; 2025 Mehndi By Simra. All rights reserved.</p>
 </footer>
+
 
 <script>
 $(document).ready(function() {

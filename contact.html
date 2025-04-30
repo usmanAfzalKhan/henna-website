@@ -15,6 +15,26 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+  <style>
+    @keyframes backgroundMove {
+      from { background-position: 0 0; }
+      to { background-position: 1000px 1000px; }
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #f4f4f4;
+      background-color: #0b3d2e;
+    }
+    nav {
+      background-color: transparent;
+      background-image: url('images/background.png');
+      background-size: 300px 300px;
+      background-repeat: repeat;
+      animation: backgroundMove 120s linear infinite;
+    }
+  </style>
+
 </head>
 <body>
 

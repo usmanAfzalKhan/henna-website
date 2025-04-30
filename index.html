@@ -6,73 +6,116 @@
   <title>Home - Mehndi By Simra</title>
   <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    @keyframes backgroundMove {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 1000px 1000px;
+      }
+    }
+
+    @keyframes heroFade {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heroPulse {
+      0%, 100% {
+        filter: brightness(1);
+      }
+      50% {
+        filter: brightness(1.25);
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #f4f4f4;
+    }
+
+    .background-wrapper {
+      background-color: #0b3d2e;
+      background-image: url('images/background.png');
+      background-repeat: repeat;
+      background-size: 300px 300px;
+      animation: backgroundMove 120s linear infinite;
+      animation-play-state: running;
+    }
+
+    .background-wrapper.paused {
+      animation-play-state: paused !important;
+    }
+
+    .hero {
+      background-image: url('images/hero.png');
+      background-size: cover;
+      background-position: center;
+      height: 65vh;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      animation:
+        heroFade 1.5s ease-in-out forwards,
+        heroPulse 6s ease-in-out infinite;
+    }
+  </style>
 </head>
 
-<body style="
-  background-color: #0b3d2e;
-  background-image: url('images/background.png');
-  background-repeat: repeat;
-  background-size: 300px 300px;
-  animation: backgroundMove 120s linear infinite;
-  color: #f4f4f4;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-">
+<body>
+  <div id="main-wrapper" class="background-wrapper">
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light" style="
-  background-color: #0b3d2e;
-  background-image: url('images/deep-green-cultural-pattern.png');
-  background-repeat: repeat;
-  background-size: 300px 300px;
-">
-  <a class="navbar-brand" href="index.html">
-    <img src="images/logo.png" alt="Mehndi By Simra Logo" style="height: 125px;">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link text-light" href="aboutUs.html">Portfolio</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="contact.html">Contact</a>
-      </li>
-    </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light" onmouseenter="pauseBackground()" onmouseleave="resumeBackground()">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.png" alt="Mehndi By Simra Logo" style="height: 125px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-light" href="aboutUs.html">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero"></section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="container mt-5" onmouseenter="pauseBackground()" onmouseleave="resumeBackground()">
+      <h2>Introduction</h2>
+      <p>Welcome to Mehndi By Simra, your trusted mehndi artist for every occasion. Whether it's a wedding, a festival, or a party, we offer stunning henna designs that will make your event truly special. Our artist, Simra, has been creating intricate designs for over a decade, blending traditional and modern styles for a unique experience.</p>
+      <p>At Mehndi By Simra, we prioritize quality and customer satisfaction, ensuring that every design is perfect and that you feel comfortable and pampered throughout the process.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 text-light" onmouseenter="pauseBackground()" onmouseleave="resumeBackground()">
+      <p>&copy; 2025 Mehndi By Simra. All rights reserved.</p>
+    </footer>
+
   </div>
-</nav>
 
-<!-- Hero Section -->
-<section class="hero" 
-  style="background-image: url('images/hero.png'); 
-         background-size: cover; 
-         background-position: center; 
-         height: 65vh; 
-         width: 100%; 
-         margin: 0; 
-         padding: 0;">
-</section>
+  <script>
+    function pauseBackground() {
+      document.getElementById('main-wrapper').classList.add('paused');
+    }
 
-<!-- Introduction Section -->
-<section id="intro" class="container mt-5">
-  <h2>Introduction</h2>
-  <p>Welcome to Mehndi By Simra, your trusted mehndi artist for every occasion. Whether it's a wedding, a festival, or a party, we offer stunning henna designs that will make your event truly special. Our artist, Simra, has been creating intricate designs for over a decade, blending traditional and modern styles for a unique experience.</p>
-  <p>At Mehndi By Simra, we prioritize quality and customer satisfaction, ensuring that every design is perfect and that you feel comfortable and pampered throughout the process.</p>
-</section>
+    function resumeBackground() {
+      document.getElementById('main-wrapper').classList.remove('paused');
+    }
+  </script>
 
-<!-- Footer -->
-<footer class="text-center py-4" style="
-  background-color: #0b3d2e;
-  background-image: url('images/deep-green-cultural-pattern.png');
-  background-repeat: repeat;
-  background-size: 300px 300px;
-  color: #f4f4f4;
-">
-  <p>&copy; 2025 Mehndi By Simra. All rights reserved.</p>
-</footer>
-
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
