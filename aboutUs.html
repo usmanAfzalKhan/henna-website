@@ -12,24 +12,64 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light" 
-     style="background-image: url('images/background.png'); 
-            background-size: 300px 300px; 
-            background-repeat: repeat; 
-            animation: backgroundMove 120s linear infinite;">
+<style>
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 250px;
+        height: 100vh;
+        background-color: rgba(11, 61, 46, 0.97);
+        border-left: 2px solid #7b3f00;
+        padding-top: 80px;
+        transition: right 0.3s ease-in-out;
+        z-index: 1050;
+      }
+  
+      .navbar-collapse.show {
+        right: 0;
+      }
+  
+      .navbar-close {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+        color: #fff;
+        cursor: pointer;
+        z-index: 1060;
+        background: none;
+        border: none;
+      }
+  
+      .navbar-close:hover {
+        color: #ffcc70;
+      }
+    }
+  </style>
+  
+  <nav class="navbar navbar-expand-lg navbar-light" 
+       style="background-image: url('images/background.png'); 
+              background-size: 300px 300px; 
+              background-repeat: repeat; 
+              animation: backgroundMove 120s linear infinite; 
+              border-bottom: 3px solid #7b3f00;">
     <a class="navbar-brand" href="index.html">
-        <img src="images/logo.png" alt="Mehndi By Simra Logo" style="height: 125px;">
+      <img src="images/logo.png" alt="Mehndi By Simra Logo" style="height: 125px;">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <button class="navbar-close d-lg-none" onclick="document.getElementById('navbarNav').classList.remove('show')">&times;</button>
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item"><a class="nav-link text-light" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-light" href="contact.html">Contact</a></li>
       </ul>
     </div>
-</nav>
+  </nav>
+  
 
 <!-- About Section -->
 <section id="about" class="container mt-5">

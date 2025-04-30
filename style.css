@@ -315,12 +315,38 @@ section, .hero, .card, footer {
 
 /* Hero Section */
 .hero {
-    background-color: #e0f7fa;
-    padding: 50px 0;
-    text-align: center;
-    border-bottom: 2px solid #ddd;
-    color: #333;
+    background-image: url('images/hero.png');
+    background-size: cover;
+    background-position: center;
+    height: 65vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-top: 4px solid #7b3f00;
+    border-bottom: 4px solid #7b3f00;
+    animation:
+      heroFade 1.5s ease-in-out forwards,
+      heroPulse 6s ease-in-out infinite;
 }
+
+@media (max-width: 768px) {
+    .hero {
+      height: 40vh;
+      background-size: cover;
+      background-position: top center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero {
+      height: 30vh !important;
+      background-size: cover;
+      background-position: top center;
+      background-repeat: no-repeat;
+    }
+  }
+  
+  
 
 .hero h1 {
     font-size: 2.5rem;
@@ -485,3 +511,4 @@ footer p {
 .delay-2s {
     animation-delay: 2s;
 }
+
