@@ -1,63 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Mehndi By Simra</title>
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-
-<!-- Navbar -->
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Mehndi By Simra</title>
+  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    @keyframes backgroundMove {
+      from { background-position: 0 0; }
+      to { background-position: 1000px 1000px; }
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #f4f4f4;
+    }
+    .background-wrapper {
+      background-color: #0b3d2e;
+      background-image: url('images/background.png');
+      background-size: 300px 300px;
+      background-repeat: repeat;
+      animation: backgroundMove 120s linear infinite;
+    }
+    .background-wrapper.paused {
+      animation-play-state: paused !important;
+    }
+    nav.paused {
+      animation-play-state: paused !important;
+    }
+    .intro-wrapper {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      padding: 40px;
+      margin-bottom: 30px;
+    }
+    .navbar {
+      border-bottom: 3px solid #7b3f00;
+    }
+    .card { background: transparent; border: none; }
+    .card-body {
+      background: transparent;
+      color: #f4f4f4;
+      text-align: center;
+      margin-bottom: 0 !important;
+      padding-bottom: 0.5rem;
+    }
+    footer { color: #f4f4f4; }
+    #reviews .card {
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease;
+    }
+    #reviews .card:hover {
+      transform: scale(1.03);
+    }
+    .modal-content {
+      background-color: rgba(0, 0, 0, 0.6) !important;
+      border: none;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    .modal-header {
+      border-bottom: none;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.5rem 1rem;
+    }
+    .modal-header .close {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      opacity: 1;
+      line-height: 1;
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+    .modal-header .close:hover {
+      color: #ffcc70;
+    }
     @media (max-width: 991.98px) {
       .navbar-collapse {
         position: fixed;
-        top: 0;
-        right: -250px;
-        width: 250px;
-        height: 100vh;
+        top: 0; right: -250px; width: 250px; height: 100vh;
         background-color: rgba(11, 61, 46, 0.97);
         border-left: 2px solid #7b3f00;
         padding-top: 80px;
         transition: right 0.3s ease-in-out;
         z-index: 1050;
       }
-  
-      .navbar-collapse.show {
-        right: 0;
-      }
-  
+      .navbar-collapse.show { right: 0; }
       .navbar-close {
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        font-size: 30px;
-        color: #fff;
-        cursor: pointer;
-        z-index: 1060;
-        background: none;
-        border: none;
+        position: absolute; top: 15px; right: 20px; font-size: 30px;
+        color: #fff; cursor: pointer; z-index: 1060; background: none; border: none;
       }
-  
-      .navbar-close:hover {
-        color: #ffcc70;
-      }
+      .navbar-close:hover { color: #ffcc70; }
     }
   </style>
-  
-  <nav class="navbar navbar-expand-lg navbar-light" 
-       style="background-image: url('images/background.png'); 
-              background-size: 300px 300px; 
-              background-repeat: repeat; 
-              animation: backgroundMove 120s linear infinite; 
-              border-bottom: 3px solid #7b3f00;">
-    <a class="navbar-brand" href="index.html">
-      <img src="images/logo.png" alt="Mehndi By Simra Logo" style="height: 125px;">
-    </a>
+</head>
+<body>
+<div class="background-wrapper" id="main-wrapper">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light"
+       onmouseenter="pauseBackground(); this.classList.add('paused')"
+       onmouseleave="resumeBackground(); this.classList.remove('paused')"
+       style="background-image: url('images/background.png'); background-size: 300px 300px; background-repeat: repeat; animation: backgroundMove 120s linear infinite;">
+    <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="Logo" style="height: 125px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -65,211 +119,198 @@
       <button class="navbar-close d-lg-none" onclick="document.getElementById('navbarNav').classList.remove('show')">&times;</button>
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link text-light" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link text-light" href="contact.html">Contact</a></li>
         <li class="nav-item"><a class="nav-link text-light" href="faq.html">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link text-light" href="contact.html">Contact</a></li>
       </ul>
     </div>
   </nav>
+
+  <!-- About Section -->
+  <section id="about" class="container mt-5">
+    <div class="intro-wrapper">
+      <h2>Portfolio</h2>
+      <p>Welcome to Mehndi By Simra! We specialize in intricate and beautiful mehndi designs for weddings, parties, and festivals.</p>
+      <p>We believe in exceptional service and quality henna art for every client.</p>
+    </div>
+
+    <div class="intro-wrapper">
+      <h3>Simra's Work</h3>
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="images/bridal1.jpeg" class="card-img-top" alt="Bridal" data-toggle="modal" data-target="#lightboxModal" data-section="bridal">
+            <div class="card-body"><p class="card-text">Bridal Mehndi Designs</p></div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="images/party3.jpeg" class="card-img-top" alt="Party" data-toggle="modal" data-target="#lightboxModal" data-section="party">
+            <div class="card-body"><p class="card-text">Party Mehndi Designs</p></div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="images/festive1.jpeg" class="card-img-top" alt="Festive" data-toggle="modal" data-target="#lightboxModal" data-section="festive">
+            <div class="card-body"><p class="card-text">Festive Mehndi Designs</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="container mt-5">
+    <div class="intro-wrapper">
+      <h2 class="text-center mb-4">What Our Clients Say</h2>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card text-light p-3 h-100">
+            <p class="card-text">"Simra did my bridal mehndi and it turned out STUNNING 😍 Everyone was complimenting me all night! It was exactly how I imagined."</p>
+            <p class="text-light font-weight-bold mb-0">- Ayesha Khan</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card text-light p-3 h-100">
+            <p class="card-text">"I booked Simra for my sister’s dholki and she was so sweet and professional. Designs were elegant and detailed. Highly recommend!"</p>
+            <p class="text-light font-weight-bold mb-0">- Sana Rauf</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card text-light p-3 h-100">
+            <p class="card-text">"Best decision ever! Simra took her time with my designs and made sure I was happy with every detail. She’s honestly so talented ❤️"</p>
+            <p class="text-light font-weight-bold mb-0">- Fatima Bhatti</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card text-light p-3 h-100">
+            <p class="card-text">"My friends and I got party mehndi done for Eid and we were OBSESSED 🤩 She brought all the vibes, will def book again."</p>
+            <p class="text-light font-weight-bold mb-0">- Zoya Sheikh</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card text-light p-3 h-100">
+            <p class="card-text">"Simra was on time, super chill, and had amazing energy. Her festive mehndi matched my outfit perfectly. She’s my go-to now!"</p>
+            <p class="text-light font-weight-bold mb-0">- Hira Malik</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card text-light p-3 h-100">
+            <p class="card-text">"I showed her a Pinterest design and she did it even better 🔥 My mehndi stain was sooo dark too. Thank you Simra!"</p>
+            <p class="text-light font-weight-bold mb-0">- Rabia Ahmed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   
 
-<!-- About Section -->
-<section id="about" class="container mt-5">
-    <h2>Portfolio</h2>
-    <p>Welcome to Mehndi By Simra! We specialize in creating intricate and beautiful mehndi designs for weddings, parties, festivals, and special occasions.</p>
-    <p>At Mehndi By Simra, we believe in exceptional service and quality henna art for every client.</p>
-
-    <h3>Simra's Work</h3>
-    <div class="row mt-4">
-
-        <!-- Bridal Mehndi Design -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="images/bridal1.jpeg" class="card-img-top" alt="Bridal Mehndi" data-toggle="modal" data-target="#lightboxModal" data-section="bridal">
-                <div class="card-body"><p class="card-text">Bridal Mehndi Designs</p></div>
-            </div>
-        </div>
-
-        <!-- Party Mehndi Design -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="images/party3.jpeg" class="card-img-top" alt="Party Mehndi" data-toggle="modal" data-target="#lightboxModal" data-section="party">
-                <div class="card-body"><p class="card-text">Party Mehndi Designs</p></div>
-            </div>
-        </div>
-
-        <!-- Festive Mehndi Design -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="images/festive1.jpeg" class="card-img-top" alt="Festive Mehndi" data-toggle="modal" data-target="#lightboxModal" data-section="festive">
-                <div class="card-body"><p class="card-text">Festive Mehndi Designs</p></div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- Modal for Image/Video Gallery -->
-<div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-labelledby="lightboxModalLabel" aria-hidden="true">
+  <!-- Modal -->
+  <div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-labelledby="lightboxModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div id="lightboxContent" class="text-center"></div>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <div id="lightboxContent" class="text-center"></div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 text-light"
+          onmouseenter="pauseBackground()" onmouseleave="resumeBackground()"
+          style="background-image: url('images/background.png'); background-size: 300px 300px; background-repeat: repeat; animation: backgroundMove 120s linear infinite;">
+    <p>&copy; 2025 Mehndi By Simra. All rights reserved.</p>
+  </footer>
 </div>
 
-<!-- Reviews Section -->
-<section id="reviews" class="container mt-5">
-    <h2 class="text-center mb-4">What Our Clients Say</h2>
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <div class="card p-3 h-100">
-                <p class="card-text">"Simra’s bridal designs made my wedding so special. Highly detailed and absolutely beautiful work!"</p>
-                <p class="text-muted mb-0">- Ayesha K.</p>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="card p-3 h-100">
-                <p class="card-text">"Got party mehndi done and I was obsessed! Thank you so much Simra!"</p>
-                <p class="text-muted mb-0">- Sana R.</p>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="card p-3 h-100">
-                <p class="card-text">"Simra’s festive designs were so creative, she really brought my ideas to life!"</p>
-                <p class="text-muted mb-0">- Fatima B.</p>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="card p-3 h-100">
-                <p class="card-text">"Best mehndi artist I’ve ever booked. Super professional and talented!"</p>
-                <p class="text-muted mb-0">- Zainab L.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="text-center py-4 text-light pause-animate" 
-        style="background-image: url('images/background.png'); 
-               background-size: 300px 300px; 
-               background-repeat: repeat; 
-               animation: backgroundMove 120s linear infinite;">
-  <p>&copy; 2025 Mehndi By Simra. All rights reserved.</p>
-</footer>
-
-
 <script>
+function pauseBackground() {
+  document.getElementById('main-wrapper').classList.add('paused');
+}
+function resumeBackground() {
+  document.getElementById('main-wrapper').classList.remove('paused');
+}
+
 $(document).ready(function() {
-    var albums = {
-        bridal: [
-            "images/bridal1.jpeg",
-            "images/bridal2.jpeg",
-            "images/bridal3.jpeg",
-            { type: 'video', src: "images/bridal9.mp4" },
-            "images/bridal4.jpeg",
-            { type: 'video', src: "images/bridal8.mp4" },
-            "images/bridal5.jpeg",
-            { type: 'video', src: "images/bridal6.mp4" },
-            "images/bridal7.jpeg",
-            { type: 'video', src: "images/bridal10.mp4" }
-        ],
-        party: [
-            "images/party3.jpeg",
-            "images/party1.jpeg",
-            { type: 'video', src: "images/party7.mp4" },
-            "images/party2.jpeg",
-            "images/party4.jpeg",
-            { type: 'video', src: "images/party8.mp4" },
-            "images/party5.jpeg",
-            "images/party6.jpeg"
-        ],
-        festive: [
-            "images/festive1.jpeg",
-            "images/festive2.jpeg",
-            { type: 'video', src: "images/festive8.mp4" },
-            "images/festive3.jpeg",
-            { type: 'video', src: "images/festive10.mp4" },
-            "images/festive4.jpeg",
-            "images/festive5.jpeg",
-            "images/festive6.jpeg",
-            "images/festive7.jpeg",
-            "images/festive9.jpeg"
-        ]
-    };
+  const albums = {
+    bridal: [
+      "images/bridal1.jpeg", "images/bridal2.jpeg", "images/bridal3.jpeg",
+      { type: 'video', src: "images/bridal9.mp4" },
+      "images/bridal4.jpeg", { type: 'video', src: "images/bridal8.mp4" },
+      "images/bridal5.jpeg", { type: 'video', src: "images/bridal6.mp4" },
+      "images/bridal7.jpeg", { type: 'video', src: "images/bridal10.mp4" }
+    ],
+    party: [
+      "images/party3.jpeg", "images/party1.jpeg", { type: 'video', src: "images/party7.mp4" },
+      "images/party2.jpeg", "images/party4.jpeg", { type: 'video', src: "images/party8.mp4" },
+      "images/party5.jpeg", "images/party6.jpeg"
+    ],
+    festive: [
+      "images/festive1.jpeg", "images/festive2.jpeg", { type: 'video', src: "images/festive8.mp4" },
+      "images/festive3.jpeg", { type: 'video', src: "images/festive10.mp4" },
+      "images/festive4.jpeg", "images/festive5.jpeg", "images/festive6.jpeg",
+      "images/festive7.jpeg", "images/festive9.jpeg"
+    ]
+  };
 
-    var currentAlbum = [];
-    var currentIndex = 0;
+  let currentAlbum = [], currentIndex = 0;
 
-    function updateModalContent() {
-        var item = currentAlbum[currentIndex];
-        var content = '';
-
-        if (typeof item === 'string') {
-            content = '<img src="' + item + '" alt="Design" class="img-fluid">';
-        } else if (item.type === 'video') {
-            content = '<video controls autoplay muted playsinline preload="auto" class="img-fluid">';
-            content += '<source src="' + item.src + '" type="video/mp4">';
-            content += 'Your browser does not support the video tag.';
-            content += '</video>';
-        }
-
-        $('#lightboxContent').html(content);
+  function updateModalContent() {
+    const item = currentAlbum[currentIndex];
+    let content = '';
+    if (typeof item === 'string') {
+      content = `<img src="${item}" alt="Design" class="img-fluid">`;
+    } else if (item.type === 'video') {
+      content = `<video controls autoplay muted playsinline preload="auto" class="img-fluid">
+                   <source src="${item.src}" type="video/mp4">
+                   Your browser does not support the video tag.
+                 </video>`;
     }
+    $('#lightboxContent').html(content);
+  }
 
-    $('[data-toggle="modal"]').on('click', function() {
-        var section = $(this).data('section');
-        currentAlbum = albums[section];
-        currentIndex = 0;
+  $('[data-toggle="modal"]').on('click', function() {
+    const section = $(this).data('section');
+    currentAlbum = albums[section];
+    currentIndex = 0;
+    updateModalContent();
+    $('#lightboxModal').modal('show');
+  });
+
+  $(document).on('keydown', function(e) {
+    if ($('#lightboxModal').hasClass('show')) {
+      if (e.key === 'ArrowRight') {
+        currentIndex = (currentIndex + 1) % currentAlbum.length;
         updateModalContent();
-        $('#lightboxModal').modal('show');
-    });
-
-    $(document).on('keydown', function(e) {
-        if ($('#lightboxModal').hasClass('show')) {
-            if (e.key === 'ArrowRight') {
-                currentIndex = (currentIndex + 1) % currentAlbum.length;
-                updateModalContent();
-            } else if (e.key === 'ArrowLeft') {
-                currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
-                updateModalContent();
-            }
-        }
-    });
-
-    var touchStartX = null;
-    var touchEndX = null;
-
-    $('#lightboxModal').on('touchstart', function(e) {
-        touchStartX = e.originalEvent.changedTouches[0].screenX;
-    });
-
-    $('#lightboxModal').on('touchend', function(e) {
-        touchEndX = e.originalEvent.changedTouches[0].screenX;
-        handleSwipeGesture();
-    });
-
-    function handleSwipeGesture() {
-        if (touchStartX && touchEndX) {
-            var diffX = touchStartX - touchEndX;
-            if (Math.abs(diffX) > 50) {
-                if (diffX > 0) {
-                    currentIndex = (currentIndex + 1) % currentAlbum.length;
-                } else {
-                    currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
-                }
-                updateModalContent();
-            }
-        }
-        touchStartX = null;
-        touchEndX = null;
+      } else if (e.key === 'ArrowLeft') {
+        currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
+        updateModalContent();
+      }
     }
+  });
+
+  let touchStartX = null, touchEndX = null;
+  $('#lightboxModal').on('touchstart', function(e) {
+    touchStartX = e.originalEvent.changedTouches[0].screenX;
+  });
+  $('#lightboxModal').on('touchend', function(e) {
+    touchEndX = e.originalEvent.changedTouches[0].screenX;
+    if (touchStartX && touchEndX) {
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        currentIndex = (diff > 0)
+          ? (currentIndex + 1) % currentAlbum.length
+          : (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
+        updateModalContent();
+      }
+    }
+    touchStartX = null;
+    touchEndX = null;
+  });
 });
 </script>
 

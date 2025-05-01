@@ -1,17 +1,54 @@
-/* General Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #f4f4f4;
-    margin: 0;
-    padding: 0;
     background-color: #0b3d2e;
-    background-image: url('images/background.png'); /* Your new custom background */
-    background-repeat: repeat;
+    background-image: url('images/background.png'), url('images/background.png'), url('images/background.png');
+    background-repeat: repeat, repeat, repeat;
     background-size: 300px 300px;
     animation: backgroundMove 120s linear infinite;
-    overflow-x: hidden;
-}
+  }
+  
+  
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image: url('images/background.png');
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    opacity: 0.15;
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  body::before {
+    animation: moveLayer1 120s linear infinite;
+  }
+  
+  body::after {
+    animation: moveLayer2 120s linear infinite;
+  }
+  
+  @keyframes moveLayer1 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-300px, -300px); }
+  }
+  
+  @keyframes moveLayer2 {
+    0% { transform: translate(-150px, -150px); }
+    100% { transform: translate(-450px, -450px); }
+  }
+  
+  
+  @keyframes scrollBackground {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-300px, -300px); }
+  }
+  
+  
+  
 
 /* Background Animation */
 @keyframes backgroundMove {
