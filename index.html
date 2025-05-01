@@ -1,184 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Home - Mehndi By Simra</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Mehndi By Simra</title>
 
-  <!-- Bootstrap CSS (via CDN) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS (via CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
 
-  <style>
-    @keyframes backgroundMove {
-      from {
-        background-position: 0 0;
+    <style>
+      @keyframes backgroundMove {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 1000px 1000px;
+        }
       }
-      to {
-        background-position: 1000px 1000px;
+
+      @keyframes heroFade {
+        0% {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-    }
 
-    @keyframes heroFade {
-      0% { opacity: 0; transform: translateY(50px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes heroPulse {
-      0%, 100% {
-        filter: brightness(1);
+      @keyframes heroPulse {
+        0%,
+        100% {
+          filter: brightness(1);
+        }
+        50% {
+          filter: brightness(1.25);
+        }
       }
-      50% {
-        filter: brightness(1.25);
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #f4f4f4;
+        overflow-x: hidden;
       }
-    }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #f4f4f4;
-      overflow-x: hidden;
-    }
+      .background-wrapper {
+        background-color: #0b3d2e;
+        background-image: url("images/background.png");
+        background-repeat: repeat;
+        background-size: 300px 300px;
+        animation: backgroundMove 120s linear infinite;
+        animation-play-state: running;
+      }
 
-    .background-wrapper {
-      background-color: #0b3d2e;
-      background-image: url('images/background.png');
-      background-repeat: repeat;
-      background-size: 300px 300px;
-      animation: backgroundMove 120s linear infinite;
-      animation-play-state: running;
-    }
+      .background-wrapper.paused {
+        animation-play-state: paused !important;
+      }
 
-    .background-wrapper.paused {
-      animation-play-state: paused !important;
-    }
-
-    .hero {
-      background-image: url('images/hero.png');
-      background-size: cover;
-      background-position: center;
-      height: 60vh;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      border-top: 4px solid #7b3f00;
-      border-bottom: 4px solid #7b3f00;
-      animation:
-        heroFade 1.5s ease-in-out forwards,
-        heroPulse 6s ease-in-out infinite;
-    }
-
-    @media (max-width: 768px) {
       .hero {
-        height: 70vh;
+        background-image: url("images/hero.png");
         background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
-      }
-    }
-
-    @media (max-width: 991.98px) {
-      .navbar-collapse {
-        position: fixed;
-        top: 0;
-        right: -250px;
-        width: 250px;
-        height: 100vh;
-        background-color: rgba(11, 61, 46, 0.97);
-        border-left: 2px solid #7b3f00;
-        padding-top: 80px;
-        transition: right 0.3s ease-in-out;
-        z-index: 1050;
+        height: 60vh;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-top: 4px solid #7b3f00;
+        border-bottom: 4px solid #7b3f00;
+        animation: heroFade 1.5s ease-in-out forwards,
+          heroPulse 6s ease-in-out infinite;
       }
 
-      .navbar-collapse.show {
-        right: 0;
+      @media (max-width: 768px) {
+        .hero {
+          height: 70vh;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
       }
 
-      .navbar-close {
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        font-size: 30px;
-        color: #fff;
-        cursor: pointer;
-        z-index: 1060;
-        background: none;
-        border: none;
+      @media (max-width: 991.98px) {
+        .navbar-collapse {
+          position: fixed;
+          top: 0;
+          right: -250px;
+          width: 250px;
+          height: 100vh;
+          background-color: rgba(11, 61, 46, 0.97);
+          border-left: 2px solid #7b3f00;
+          padding-top: 80px;
+          transition: right 0.3s ease-in-out;
+          z-index: 1050;
+        }
+
+        .navbar-collapse.show {
+          right: 0;
+        }
+
+        .navbar-close {
+          position: absolute;
+          top: 15px;
+          right: 20px;
+          font-size: 30px;
+          color: #fff;
+          cursor: pointer;
+          z-index: 1060;
+          background: none;
+          border: none;
+        }
+
+        .navbar-close:hover {
+          color: #ffcc70;
+        }
       }
 
-      .navbar-close:hover {
-        color: #ffcc70;
+      nav.navbar {
+        border-bottom: 3px solid #7b3f00;
       }
-    }
 
-    nav.navbar {
-      border-bottom: 3px solid #7b3f00;
-    }
+      .intro-wrapper {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+        padding: 40px;
+      }
+    </style>
+  </head>
 
-    .intro-wrapper {
-      background-color: rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-      padding: 40px;
-    }
-  </style>
-</head>
+  <body>
+    <div id="main-wrapper" class="background-wrapper">
+      <!-- Navbar -->
+      <nav
+        class="navbar navbar-expand-lg navbar-light"
+        onmouseenter="pauseBackground()"
+        onmouseleave="resumeBackground()"
+      >
+        <a class="navbar-brand" href="index.html">
+          <img
+            src="images/logo.png"
+            alt="Mehndi By Simra Logo"
+            style="height: 125px"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <button
+            class="navbar-close d-lg-none"
+            onclick="document.getElementById('navbarNav').classList.remove('show')"
+          >
+            &times;
+          </button>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-light" href="aboutUs.html">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="faq.html">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-<body>
-  <div id="main-wrapper" class="background-wrapper">
+      <!-- Hero Section -->
+      <section class="hero"></section>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light" onmouseenter="pauseBackground()" onmouseleave="resumeBackground()">
-      <a class="navbar-brand" href="index.html">
-        <img src="images/logo.png" alt="Mehndi By Simra Logo" style="height: 125px;">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <button class="navbar-close d-lg-none" onclick="document.getElementById('navbarNav').classList.remove('show')">&times;</button>
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link text-light" href="aboutUs.html">Portfolio</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="faq.html">FAQ</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+      <!-- Introduction Section -->
+      <section
+        id="intro"
+        class="container mt-5"
+        onmouseenter="pauseBackground()"
+        onmouseleave="resumeBackground()"
+      >
+        <div class="intro-wrapper">
+          <h2>Introduction</h2>
+          <p>
+            Welcome to Mehndi By Simra, your trusted mehndi artist for every
+            occasion. Whether it's a wedding, a festival, or a party, we offer
+            stunning henna designs that will make your event truly special. Our
+            artist, Simra, has been creating intricate designs for over a
+            decade, blending traditional and modern styles for a unique
+            experience.
+          </p>
+          <p>
+            At Mehndi By Simra, we prioritize quality and customer satisfaction,
+            ensuring that every design is perfect and that you feel comfortable
+            and pampered throughout the process.
+          </p>
+        </div>
+      </section>
 
-    <!-- Hero Section -->
-    <section class="hero"></section>
+      <!-- Footer -->
+      <footer
+        class="text-center py-4 text-light"
+        onmouseenter="pauseBackground()"
+        onmouseleave="resumeBackground()"
+      >
+        <p>&copy; 2025 Mehndi By Simra. All rights reserved.</p>
+      </footer>
+    </div>
 
-    <!-- Introduction Section -->
-    <section id="intro" class="container mt-5" onmouseenter="pauseBackground()" onmouseleave="resumeBackground()">
-      <div class="intro-wrapper">
-        <h2>Introduction</h2>
-        <p>Welcome to Mehndi By Simra, your trusted mehndi artist for every occasion. Whether it's a wedding, a festival, or a party, we offer stunning henna designs that will make your event truly special. Our artist, Simra, has been creating intricate designs for over a decade, blending traditional and modern styles for a unique experience.</p>
-        <p>At Mehndi By Simra, we prioritize quality and customer satisfaction, ensuring that every design is perfect and that you feel comfortable and pampered throughout the process.</p>
-      </div>
-    </section>
+    <script>
+      function pauseBackground() {
+        document.getElementById("main-wrapper").classList.add("paused");
+      }
 
-    <!-- Footer -->
-    <footer class="text-center py-4 text-light" onmouseenter="pauseBackground()" onmouseleave="resumeBackground()">
-      <p>&copy; 2025 Mehndi By Simra. All rights reserved.</p>
-    </footer>
+      function resumeBackground() {
+        document.getElementById("main-wrapper").classList.remove("paused");
+      }
+    </script>
 
-  </div>
-
-  <script>
-    function pauseBackground() {
-      document.getElementById('main-wrapper').classList.add('paused');
-    }
-
-    function resumeBackground() {
-      document.getElementById('main-wrapper').classList.remove('paused');
-    }
-  </script>
-
-  <!-- Bootstrap JS (via CDN) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
+    <!-- Bootstrap JS (via CDN) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

@@ -4,11 +4,10 @@ body {
     background-repeat: repeat, repeat, repeat;
     background-size: 300px 300px;
     animation: backgroundMove 120s linear infinite;
-  }
-  
-  
-  body::before,
-  body::after {
+}
+
+body::before,
+body::after {
     content: "";
     position: fixed;
     top: 0;
@@ -21,315 +20,44 @@ body {
     opacity: 0.15;
     z-index: -1;
     pointer-events: none;
-  }
-  
-  body::before {
+}
+
+body::before {
     animation: moveLayer1 120s linear infinite;
-  }
-  
-  body::after {
+}
+body::after {
     animation: moveLayer2 120s linear infinite;
-  }
-  
-  @keyframes moveLayer1 {
+}
+
+@keyframes moveLayer1 {
     0% { transform: translate(0, 0); }
     100% { transform: translate(-300px, -300px); }
-  }
-  
-  @keyframes moveLayer2 {
+}
+
+@keyframes moveLayer2 {
     0% { transform: translate(-150px, -150px); }
     100% { transform: translate(-450px, -450px); }
-  }
-  
-  
-  @keyframes scrollBackground {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-300px, -300px); }
-  }
-  
-  
-  
+}
 
-/* Background Animation */
 @keyframes backgroundMove {
-    from {/* General Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            background-color: #0b3d2e;
-            background-image: url('images/deep-green-cultural-pattern.png');
-            background-repeat: repeat;
-            background-size: 300px 300px;
-            animation: backgroundMove 120s linear infinite;
-            overflow-x: hidden;
-        }
-        
-        .navbar, footer {
-            background-color: #0b3d2e;
-            background-image: url('images/deep-green-cultural-pattern.png');
-            background-repeat: repeat;
-            background-size: 300px 300px;
-        }
-        
-        /* Background Animation */
-        @keyframes backgroundMove {
-            from {
-                background-position: 0 0;
-            }
-            to {
-                background-position: 1000px 1000px;
-            }
-        }
-        
-        /* Fade-in animation for sections */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Applying fadeIn to sections */
-        section, .hero, .card, footer {
-            animation: fadeIn 1.5s ease forwards;
-        }
-        
-        /* Hover effects for smooth scaling */
-        .card:hover, .btn-primary:hover, .btn-light:hover {
-            transform: scale(1.05);
-            transition: transform 0.4s ease, background-color 0.4s ease;
-        }
-        
-        /* Navbar */
-        .navbar {
-            border-bottom: 2px solid #ddd;
-        }
-        
-        .navbar a.navbar-brand {
-            font-size: 1.5rem;
-            color: #f4f4f4;
-        }
-        
-        .navbar-nav .nav-item .nav-link {
-            color: #f4f4f4;
-            padding: 10px 15px;
-            transition: color 0.3s ease;
-        }
-        
-        .navbar-nav .nav-item .nav-link:hover {
-            color: #ffcc70;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background-color: #e0f7fa;
-            padding: 50px 0;
-            text-align: center;
-            border-bottom: 2px solid #ddd;
-            color: #333;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: #555;
-        }
-        
-        .hero .btn-primary {
-            background-color: #4CAF50;
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            font-size: 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .hero .btn-primary:hover {
-            background-color: #45a049;
-        }
-        
-        /* About Us Section */
-        #about {
-            background-color: transparent;
-            padding: 50px 0;
-            text-align: center;
-            border-bottom: 2px solid #ddd;
-        }
-        
-        #about a {
-            color: #ffcc70;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        #about a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Services Section */
-        #services {
-            background-color: transparent;
-            padding: 50px 0;
-            text-align: center;
-        }
-        
-        #services h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #f4f4f4;
-        }
-        
-        .card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.4s ease;
-            margin-bottom: 30px;
-            background-color: #ffffff;
-            color: #333;
-        }
-        
-        .card-body {
-            text-align: center;
-        }
-        
-        .card-title {
-            font-size: 1.25rem;
-            margin-bottom: 15px;
-        }
-        
-        .card-text {
-            font-size: 1rem;
-        }
-        
-        .card-img-top {
-            border-radius: 10px;
-        }
-        
-        /* Testimonials Section */
-        #testimonials {
-            background-color: transparent;
-            padding: 50px 0;
-            text-align: center;
-            color: #f4f4f4;
-        }
-        
-        blockquote {
-            font-style: italic;
-            color: #ddd;
-            margin: 20px auto;
-            padding: 20px;
-            border-left: 5px solid #ffcc70;
-            max-width: 800px;
-        }
-        
-        /* CTA Section */
-        .cta {
-            background-color: #4CAF50;
-            color: white;
-            padding: 50px 0;
-            text-align: center;
-        }
-        
-        .cta h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-        
-        .cta .btn-light {
-            background-color: #ffffff;
-            color: #4CAF50;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .cta .btn-light:hover {
-            background-color: #e0f7fa;
-        }
-        
-        /* Footer */
-        footer {
-            padding: 20px;
-            text-align: center;
-            color: #f4f4f4;
-        }
-        
-        footer p {
-            margin: 0;
-            font-size: 0.875rem;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 1s ease-out forwards;
-            opacity: 0;
-        }
-        
-        .delay-1s {
-            animation-delay: 1s;
-        }
-        
-        .delay-2s {
-            animation-delay: 2s;
-        }
-        
-        background-position: 0 0;
-    }
-    to {
-        background-position: 1000px 1000px;
-    }
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
 }
 
-/* Fade-in animation for sections */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Applying fadeIn to sections */
 section, .hero, .card, footer {
     animation: fadeIn 1.5s ease forwards;
 }
 
-/* Hover effects for smooth scaling */
 .card:hover, .btn-primary:hover, .btn-light:hover {
     transform: scale(1.05);
     transition: transform 0.4s ease, background-color 0.4s ease;
 }
 
-/* Navbar */
 .navbar {
     background-color: transparent;
     border-bottom: 2px solid #ddd;
@@ -350,7 +78,6 @@ section, .hero, .card, footer {
     color: #ffcc70;
 }
 
-/* Hero Section */
 .hero {
     background-image: url('images/hero.png');
     background-size: cover;
@@ -362,28 +89,26 @@ section, .hero, .card, footer {
     border-top: 4px solid #7b3f00;
     border-bottom: 4px solid #7b3f00;
     animation:
-      heroFade 1.5s ease-in-out forwards,
-      heroPulse 6s ease-in-out infinite;
+        heroFade 1.5s ease-in-out forwards,
+        heroPulse 6s ease-in-out infinite;
 }
 
 @media (max-width: 768px) {
     .hero {
-      height: 40vh;
-      background-size: cover;
-      background-position: top center;
+        height: 40vh;
+        background-size: cover;
+        background-position: top center;
     }
-  }
-  
-  @media (max-width: 480px) {
+}
+
+@media (max-width: 480px) {
     .hero {
-      height: 30vh !important;
-      background-size: cover;
-      background-position: top center;
-      background-repeat: no-repeat;
+        height: 30vh !important;
+        background-size: cover;
+        background-position: top center;
+        background-repeat: no-repeat;
     }
-  }
-  
-  
+}
 
 .hero h1 {
     font-size: 2.5rem;
@@ -411,114 +136,6 @@ section, .hero, .card, footer {
     background-color: #45a049;
 }
 
-/* About Us Section */
-#about {
-    background-color: transparent;
-    padding: 50px 0;
-    text-align: center;
-    border-bottom: 2px solid #ddd;
-}
-
-#about a {
-    color: #ffcc70;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-#about a:hover {
-    text-decoration: underline;
-}
-
-/* Services Section */
-#services {
-    background-color: transparent;
-    padding: 50px 0;
-    text-align: center;
-}
-
-#services h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: #f4f4f4;
-}
-
-.card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.4s ease;
-    margin-bottom: 30px;
-    background-color: #ffffff;
-    color: #333;
-}
-
-.card-body {
-    text-align: center;
-}
-
-.card-title {
-    font-size: 1.25rem;
-    margin-bottom: 15px;
-}
-
-.card-text {
-    font-size: 1rem;
-}
-
-.card-img-top {
-    border-radius: 10px;
-}
-
-/* Testimonials Section */
-#testimonials {
-    background-color: transparent;
-    padding: 50px 0;
-    text-align: center;
-    color: #f4f4f4;
-}
-
-blockquote {
-    font-style: italic;
-    color: #ddd;
-    margin: 20px auto;
-    padding: 20px;
-    border-left: 5px solid #ffcc70;
-    max-width: 800px;
-}
-
-/* CTA Section */
-.cta {
-    background-color: #4CAF50;
-    color: white;
-    padding: 50px 0;
-    text-align: center;
-}
-
-.cta h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.cta p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-}
-
-.cta .btn-light {
-    background-color: #ffffff;
-    color: #4CAF50;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.cta .btn-light:hover {
-    background-color: #e0f7fa;
-}
-
-/* Footer */
 footer {
     background-color: transparent;
     padding: 20px;
@@ -529,11 +146,6 @@ footer {
 footer p {
     margin: 0;
     font-size: 0.875rem;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
@@ -549,7 +161,6 @@ footer p {
     animation-delay: 2s;
 }
 
-/* Toggle bar (hamburger icon) customization */
 .navbar-toggler {
     border: none;
     background-color: transparent;
@@ -557,10 +168,8 @@ footer p {
     padding: 0.5rem 1rem;
     margin-left: auto;
     margin-right: 1rem;
-  }
-  
-  .navbar-toggler-icon {
+}
+
+.navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 204, 112, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-  }
-  
-  
+}
