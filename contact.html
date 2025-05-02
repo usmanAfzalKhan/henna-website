@@ -153,17 +153,10 @@
       <!-- Contact Section -->
       <section class="container mt-5 mb-5">
         <div class="intro-wrapper">
-          <h2 class="text-center">Contact Us</h2>
-          <p class="text-center text-light">
-            For inquiries, reach out via Instagram
-            <a
-              href="https://www.instagram.com/mehndibysimra"
-              target="_blank"
-              class="text-warning"
-              >@mehndibysimra</a
-            >
-            or complete the form below.
-          </p>
+          <h2 class="typing" style="color: #ffcc70; text-align: center">
+            Contact
+          </h2>
+          <p id="typed-contact"></p>
           <form
             id="contactForm"
             action="https://formspree.io/f/xwpovneg"
@@ -237,7 +230,7 @@
                 name="message"
                 rows="4"
                 maxlength="500"
-                placeholder="Type any message you want to send..."
+                placeholder="Event details, preferences, and contact info....."
               ></textarea>
             </div>
             <button type="submit" class="btn btn-primary mt-3" id="submitBtn">
@@ -248,9 +241,7 @@
             id="formSuccess"
             class="alert alert-success mt-3"
             style="display: none"
-          >
-            Simra has been notified of your request.
-          </div>
+          ></div>
         </div>
       </section>
 
@@ -260,7 +251,14 @@
         onmouseenter="pauseBackground()"
         onmouseleave="resumeBackground()"
       >
-        <p>&copy; 2025 Mehndi By Simra. All rights reserved.</p>
+        <p style="color: beige">
+          &copy; 2025
+          <a
+            href="https://www.instagram.com/mehndibysimra"
+            class="no-style-link"
+            >Mehndi By Simra</a
+          >. All rights reserved.
+        </p>
       </footer>
     </div>
 
@@ -340,5 +338,6 @@
         });
       });
     </script>
+    <script src="script.js"></script>
   </body>
 </html>
