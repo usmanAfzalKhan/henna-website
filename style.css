@@ -1,85 +1,97 @@
 body {
     background-color: #0b3d2e;
-    background-image: url('images/background.png'), url('images/background.png'), url('images/background.png');
+    background-image: url("images/background.png"), url("images/background.png"), url("images/background.png");
     background-repeat: repeat, repeat, repeat;
     background-size: 300px 300px;
     animation: backgroundMove 120s linear infinite;
-}
-
-body::before,
-body::after {
+  }
+  
+  body::before,
+  body::after {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 200%;
     height: 200%;
-    background-image: url('images/background.png');
+    background-image: url("images/background.png");
     background-repeat: repeat;
     background-size: 300px 300px;
     opacity: 0.15;
     z-index: -1;
     pointer-events: none;
-}
-
-body::before {
+  }
+  
+  body::before {
     animation: moveLayer1 120s linear infinite;
-}
-body::after {
+  }
+  
+  body::after {
     animation: moveLayer2 120s linear infinite;
-}
-
-@keyframes moveLayer1 {
+  }
+  
+  @keyframes moveLayer1 {
     0% { transform: translate(0, 0); }
     100% { transform: translate(-300px, -300px); }
-}
-
-@keyframes moveLayer2 {
+  }
+  
+  @keyframes moveLayer2 {
     0% { transform: translate(-150px, -150px); }
     100% { transform: translate(-450px, -450px); }
-}
-
-@keyframes backgroundMove {
+  }
+  
+  @keyframes backgroundMove {
     from { background-position: 0 0; }
     to { background-position: 1000px 1000px; }
-}
-
-@keyframes fadeIn {
+  }
+  
+  @keyframes fadeIn {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-section, .hero, .card, footer {
+  }
+  
+  @keyframes heroDim {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  
+  
+  section,
+  .hero,
+  .card,
+  footer {
     animation: fadeIn 1.5s ease forwards;
-}
-
-.card:hover, .btn-primary:hover, .btn-light:hover {
+  }
+  
+  .card:hover,
+  .btn-primary:hover,
+  .btn-light:hover {
     transform: scale(1.05);
     transition: transform 0.4s ease, background-color 0.4s ease;
-}
-
-.navbar {
+  }
+  
+  .navbar {
     background-color: transparent;
     border-bottom: 2px solid #ddd;
-}
-
-.navbar a.navbar-brand {
+  }
+  
+  .navbar a.navbar-brand {
     font-size: 1.5rem;
     color: #f4f4f4;
-}
-
-.navbar-nav .nav-item .nav-link {
+  }
+  
+  .navbar-nav .nav-item .nav-link {
     color: #f4f4f4;
     padding: 10px 15px;
     transition: color 0.3s ease;
-}
-
-.navbar-nav .nav-item .nav-link:hover {
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover {
     color: #ffcc70;
-}
-
-.hero {
-    background-image: url('images/hero.png');
+  }
+  
+  .hero {
+    background-image: url("images/hero.png");
     background-size: cover;
     background-position: center;
     height: 65vh;
@@ -88,88 +100,93 @@ section, .hero, .card, footer {
     padding: 0;
     border-top: 4px solid #7b3f00;
     border-bottom: 4px solid #7b3f00;
-    animation:
-        heroFade 1.5s ease-in-out forwards,
-        heroPulse 6s ease-in-out infinite;
-}
+    animation: fadeIn 1.5s ease forwards, heroDim 6s ease-in-out infinite;
 
-@media (max-width: 768px) {
+  }
+  
+  
+  .hero * {
+    opacity: 1 !important;
+  }
+  
+  @media (max-width: 768px) {
     .hero {
-        height: 40vh;
-        background-size: cover;
-        background-position: top center;
+      height: 40vh;
+      background-size: cover;
+      background-position: top center;
     }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     .hero {
-        height: 30vh !important;
-        background-size: cover;
-        background-position: top center;
-        background-repeat: no-repeat;
+      height: 30vh !important;
+      background-size: cover;
+      background-position: top center;
+      background-repeat: no-repeat;
     }
-}
-
-.hero h1 {
+  }
+  
+  .hero h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
     color: #333;
-}
-
-.hero p {
+  }
+  
+  .hero p {
     font-size: 1.2rem;
     margin-bottom: 30px;
     color: #555;
-}
-
-.hero .btn-primary {
-    background-color: #4CAF50;
+  }
+  
+  .hero .btn-primary {
+    background-color: #4caf50;
     border: none;
     padding: 10px 20px;
     color: white;
     font-size: 1rem;
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.hero .btn-primary:hover {
+  }
+  
+  .hero .btn-primary:hover {
     background-color: #45a049;
-}
-
-footer {
+  }
+  
+  footer {
     background-color: transparent;
     padding: 20px;
     text-align: center;
     color: #f4f4f4;
-}
-
-footer p {
+  }
+  
+  footer p {
     margin: 0;
     font-size: 0.875rem;
-}
-
-.animate-fade-in {
+  }
+  
+  .animate-fade-in {
     animation: fadeIn 1s ease-out forwards;
     opacity: 0;
-}
-
-.delay-1s {
+  }
+  
+  .delay-1s {
     animation-delay: 1s;
-}
-
-.delay-2s {
+  }
+  
+  .delay-2s {
     animation-delay: 2s;
-}
-
-.navbar-toggler {
+  }
+  
+  .navbar-toggler {
     border: none;
     background-color: transparent;
     outline: none;
     padding: 0.5rem 1rem;
     margin-left: auto;
     margin-right: 1rem;
-}
-
-.navbar-toggler-icon {
+  }
+  
+  .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 204, 112, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-}
+  }
+  
