@@ -274,8 +274,13 @@ footer p {
   }
 
   .navbar-brand img {
-    height: 80px;
+    transition: transform 0.3s ease-in-out;
   }
+  
+  .navbar-brand img:hover {
+    transform: scale(1.1);
+  }
+  
 
   .nav-link,
   .card-text,
@@ -335,13 +340,13 @@ footer p {
 
 /* Desktop glow effect */
 @media only screen and (min-width: 769px) {
-  .glow-logo {
-    transition: box-shadow 0.3s ease, filter 0.3s ease;
+  .navbar-brand img {
+    transition: transform 0.3s ease, filter 0.3s ease;
   }
 
-  .glow-logo:hover {
-    box-shadow: 0 0 20px #ffcc70;
-    filter: brightness(1.3);
-    border-radius: 12px;
+  .navbar-brand img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
   }
 }
+

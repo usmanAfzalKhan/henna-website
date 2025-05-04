@@ -6,19 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FAQ - Mehndi By Simra</title>
 
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
         @keyframes backgroundMove {
-            from {
-                background-position: 0 0;
-            }
+            from { background-position: 0 0; }
+            to { background-position: 1000px 1000px; }
+        }
 
-            to {
-                background-position: 1000px 1000px;
-            }
+        @keyframes moveLayer1 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-300px, -300px); }
+        }
+
+        @keyframes moveLayer2 {
+            0% { transform: translate(-150px, -150px); }
+            100% { transform: translate(-450px, -450px); }
         }
 
         body {
@@ -35,27 +40,38 @@
             animation: backgroundMove 120s linear infinite;
         }
 
-        .background-wrapper.paused {
-            animation-play-state: paused !important;
+        .background-wrapper::before,
+        .background-wrapper::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background-image: url("images/background.png");
+            background-repeat: repeat;
+            background-size: 300px 300px;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .background-wrapper::before {
+            animation: moveLayer1 120s linear infinite;
+        }
+
+        .background-wrapper::after {
+            animation: moveLayer2 120s linear infinite;
         }
 
         nav {
-            background-image: url('images/background.png');
-            background-size: 300px 300px;
-            background-repeat: repeat;
-            animation: backgroundMove 120s linear infinite;
-            border-bottom: 3px solid #7b3f00;
-            box-shadow: 0 0 10px #7b3f00;
+            background-color: transparent;
+            border-bottom: 2px solid #ddd;
         }
 
-        nav.navbar {
-            border-bottom: 3px solid #7b3f00 !important;
-            box-shadow: 0 0 10px #7b3f00 !important;
-        }
-
-
-        nav.paused {
-            animation-play-state: paused !important;
+        .navbar-brand img {
+            height: 100px;
+            transition: none;
         }
 
         .intro-wrapper {
@@ -64,6 +80,12 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
             padding: 40px;
             margin-bottom: 30px;
+            animation: fadeIn 1.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .faq-question {
@@ -110,36 +132,24 @@
 
         @media (max-width: 991.98px) {
             .navbar-collapse {
-                position: fixed;
-                top: 0;
-                right: -250px;
-                width: 250px;
-                height: 100vh;
-                background-color: rgba(11, 61, 46, 0.97);
-                border-left: 2px solid #7b3f00;
-                padding-top: 80px;
-                transition: right 0.3s ease-in-out;
-                z-index: 1050;
-            }
-
-            .navbar-collapse.show {
-                right: 0;
-            }
-
-            .navbar-close {
                 position: absolute;
-                top: 15px;
-                right: 20px;
-                font-size: 30px;
-                color: #fff;
-                cursor: pointer;
-                z-index: 1060;
-                background: none;
-                border: none;
+                top: 100%;
+                right: 0;
+                width: 250px;
+                background-color: rgba(11, 61, 46, 0.95);
+                border-left: 2px solid #ffcc70;
+                border-bottom: 2px solid #ffcc70;
+                padding: 15px;
+                z-index: 999;
             }
 
-            .navbar-close:hover {
-                color: #ffcc70;
+            .navbar-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-nav .nav-item {
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -147,20 +157,15 @@
 
 <body>
     <div class="background-wrapper" id="main-wrapper">
-
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light" onmouseenter="pauseBackground(); this.classList.add('paused')"
-            onmouseleave="resumeBackground(); this.classList.remove('paused')">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="index.html">
-                <img src="images/logo.png" alt="Mehndi By Simra Logo" style="height: 125px;">
+                <img src="images/logo.png" alt="Logo">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <button class="navbar-close d-lg-none"
-                    onclick="document.getElementById('navbarNav').classList.remove('show')">&times;</button>
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link text-light" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link text-light" href="aboutUs.html">Portfolio</a></li>
@@ -238,7 +243,7 @@
                 <div class="faq-item">
                     <div class="faq-question">Can you work around tight schedules or last-minute bookings?</div>
                     <div class="faq-answer">
-                        <p>We understand that sometimes bookings happen close to the event date due to unexpected
+                        <p>We understand that somaetimes bookings happen close to the event date due to unexpected
                             changes. While we recommend booking in advance to guarantee availability, we do accept
                             last-minute appointments if our schedule permits. We'll work with you to prioritize timing,
                             design simplicity, and efficient application without compromising on quality. Weekday
@@ -278,26 +283,17 @@
         </section>
 
         <!-- Footer -->
-        <footer class="text-center py-4 text-light" onmouseenter="pauseBackground()"
-            onmouseleave="resumeBackground()">
+        <footer class="text-center py-4 text-light">
             <p style="color: beige">
                 &copy; 2025
-                <a href="https://www.instagram.com/mehndibysimra" class="no-style-link">Mehndi By Simra</a>. All
-                rights reserved.
+                <a href="https://www.instagram.com/mehndibysimra" class="no-style-link">Mehndi By Simra</a>. All rights reserved.
             </p>
+        </footer>
     </div>
 
     <!-- Scripts -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function pauseBackground() {
-            document.getElementById('main-wrapper').classList.add('paused');
-        }
-
-        function resumeBackground() {
-            document.getElementById('main-wrapper').classList.remove('paused');
-        }
-
         document.addEventListener('DOMContentLoaded', function () {
             const toggler = document.querySelector('.navbar-toggler');
             const collapse = document.getElementById('navbarNav');
@@ -314,7 +310,6 @@
             });
         });
     </script>
-
 </body>
 
 </html>
