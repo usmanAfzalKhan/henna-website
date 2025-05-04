@@ -261,3 +261,22 @@ a:hover,
 .hover-bold:hover {
   font-weight: 700;
 }
+
+@media (max-width: 768px) {
+  body,
+  body::before,
+  body::after,
+  .hero,
+  .card,
+  footer {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .typing,
+  #typed-contact,
+  #typed-portfolio,
+  #typed-paragraph {
+    animation: none !important;
+  }
+}
