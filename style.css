@@ -344,4 +344,50 @@ a:hover,
   }
 }
 
+/* Default: Enable animations for desktop */
+body {
+  background-color: #0b3d2e;
+  background-image: url('images/background.png');
+  background-size: 300px 300px;
+  background-repeat: repeat;
+  animation: backgroundMove 120s linear infinite;
+  color: #f4f4f4;
+}
+
+@keyframes backgroundMove {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 1000px 1000px;
+  }
+}
+
+/* Typing animation */
+.typing::after {
+  content: '|';
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Disable animations on mobile */
+@media only screen and (max-width: 768px) {
+  body {
+    animation: none !important;
+  }
+
+  .typing::after {
+    animation: none !important;
+    content: ''; /* hide blinking cursor on mobile */
+  }
+
+  #typed-paragraph {
+    animation: none !important;
+  }
+}
 
