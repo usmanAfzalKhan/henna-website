@@ -80,7 +80,8 @@ body::after {
 }
 
 @keyframes heroDim {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -96,7 +97,7 @@ body::after {
 }
 
 .typing::after {
-  content: '|';
+  content: "|";
   animation: blink 1s step-start infinite;
 }
 
@@ -258,7 +259,7 @@ footer p {
   }
 
   .typing::after {
-    content: '' !important;
+    content: "" !important;
     animation: none !important;
   }
 
@@ -276,11 +277,10 @@ footer p {
   .navbar-brand img {
     transition: transform 0.3s ease-in-out;
   }
-  
+
   .navbar-brand img:hover {
     transform: scale(1.1);
   }
-  
 
   .nav-link,
   .card-text,
@@ -300,13 +300,12 @@ footer p {
     background-color: rgba(0, 0, 0, 0.3) !important;
     text-align: center;
   }
-  
+
   .card-body .card-text {
     color: #ffcc70;
     font-weight: bold;
     margin-bottom: 0;
   }
-  
 
   .modal-dialog {
     margin: 1rem auto;
@@ -350,3 +349,12 @@ footer p {
   }
 }
 
+@media (max-width: 768px) {
+  .hero {
+    height: 65vh;
+    min-height: 250px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+}

@@ -9,6 +9,33 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      .hero {
+        background-image: url("images/hero.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 65vh;
+        min-height: 300px;
+        width: 100%;
+        border-top: 4px solid #7b3f00;
+        border-bottom: 4px solid #7b3f00;
+        animation: fadeIn 1.5s ease forwards, heroDim 6s ease-in-out infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          height: 200px;
+          min-height: 200px;
+          background-size: cover;
+          background-position: center center;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="main-wrapper" class="background-wrapper">
@@ -18,17 +45,14 @@
         onmouseenter="pauseBackground()"
         onmouseleave="resumeBackground()"
       >
-      <a class="navbar-brand" href="index.html">
-        <img
-        src="images/logo.png"
-        alt="Mehndi By Simra Logo"
-        style="height: 100px"
-        class="glow-logo"
-      />
-      
-      
-      </a>
-      
+        <a class="navbar-brand" href="index.html">
+          <img
+            src="images/logo.png"
+            alt="Mehndi By Simra Logo"
+            style="height: 100px"
+            class="glow-logo"
+          />
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -40,7 +64,6 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div
           class="collapse navbar-collapse justify-content-end"
           id="navbarNav"
@@ -71,7 +94,7 @@
       >
         <div class="intro-wrapper">
           <h2 style="color: #ffcc70; text-align: center">Introduction</h2>
-          <p id="typed-paragraph" style="color: #f8f9fa; font-size: 1.1rem;"></p>
+          <p id="typed-paragraph" style="color: #f8f9fa; font-size: 1.1rem"></p>
         </div>
       </section>
 
@@ -86,8 +109,7 @@
           <a
             href="https://www.instagram.com/mehndibysimra"
             class="no-style-link"
-          >
-            Mehndi By Simra</a
+            >Mehndi By Simra</a
           >. All rights reserved.
         </p>
       </footer>

@@ -1,147 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us - Mehndi By Simra</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="background-wrapper" id="main-wrapper">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="index.html">
-        <img src="images/logo.png" alt="Logo" style="height: 100px" class="glow-logo" />
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link text-light" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="faq.html">FAQ</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Mehndi By Simra</title>
 
-    <!-- Portfolio Section -->
-    <section id="about" class="container mt-5">
-      <div class="intro-wrapper">
-        <h2 class="typing" style="color: #ffcc70; text-align: center">Portfolio</h2>
-        <p id="typed-portfolio"></p>
-      </div>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/css/intlTelInput.css"
+    />
+    <style>
+      .iti__country-list {
+        background-color: #fff;
+        color: #000;
+      }
+      .iti__country-name {
+        color: #000;
+      }
+      .no-style-link {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+      .no-style-link:hover {
+        font-weight: bold;
+      }
+      @media (max-width: 768px) {
+        h2.typing {
+          font-size: 1.5rem;
+          text-align: center !important;
+          display: flex;
+          justify-content: center;
+        }
+        .typing::after {
+          content: none !important;
+        }
+      }
+      .typing {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 2s steps(30, end) forwards;
+      }
+      .typing::after {
+        content: "";
+        animation: none;
+      }
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
 
-      <div class="intro-wrapper">
-        <h3 style="text-align: center; color: #ffcc70">Designs</h3>
-        <div class="row mt-4">
-          <div class="col-md-4">
-            <div class="card">
-              <img src="images/bridal1.jpeg" class="card-img-top" alt="Bridal" data-toggle="modal" data-target="#lightboxModal" data-section="bridal"/>
-              <div class="card-body"><p class="card-text">Bridal Mehndi Designs</p></div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <img src="images/festive1.jpeg" class="card-img-top" alt="Festive" data-toggle="modal" data-target="#lightboxModal" data-section="festive"/>
-              <div class="card-body"><p class="card-text">Festive Mehndi Designs</p></div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <img src="images/party3.jpeg" class="card-img-top" alt="Party" data-toggle="modal" data-target="#lightboxModal" data-section="party"/>
-              <div class="card-body"><p class="card-text">Party Mehndi Designs</p></div>
-            </div>
-          </div>
+  <body>
+    <div id="main-wrapper" class="background-wrapper">
+      <!-- Navbar -->
+      <nav
+        class="navbar navbar-expand-lg navbar-light"
+        onmouseenter="pauseBackground()"
+        onmouseleave="resumeBackground()"
+      >
+        <a class="navbar-brand" href="index.html">
+          <img
+            src="images/logo.png"
+            alt="Mehndi By Simra Logo"
+            style="height: 100px"
+            class="glow-logo"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-light" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="aboutUs.html">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="faq.html">FAQ</a>
+            </li>
+          </ul>
         </div>
-      </div>
-    </section>
+      </nav>
 
-    <!-- Reviews -->
-    <section id="reviews" class="container mt-5">
-      <div class="intro-wrapper">
-        <h2 class="typing" style="text-align: center; color: #ffcc70">What Our Clients Say</h2>
-        <div class="row">
-          <div class="col-md-4 mb-3">
-            <div class="card text-light p-3 h-100">
-              <p class="card-text">"Absolutely loved my bridal mehndi – it was better than I imagined!"</p>
-              <p class="text-light font-weight-bold mb-0">– Ayesha Khan</p>
+      <!-- Contact Section -->
+      <section class="container mt-5 mb-5">
+        <div class="intro-wrapper">
+          <h2 class="typing" style="color: #ffcc70; text-align: center">
+            Contact Information
+          </h2>
+          <p style="color: #f8f9fa; font-size: 1.1rem">
+            For faster response times and real-time availability, inquiries are
+            best directed through
+            <a
+              href="https://www.instagram.com/mehndibysimra"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="no-style-link"
+              >@mehndibysimra</a
+            >. If Instagram is not accessible, please complete the form below.
+            All complete submissions will be reviewed and responded to within
+            2–3 business days.
+          </p>
+          <form
+            action="https://formspree.io/f/xwpovneg"
+            method="POST"
+            id="contactForm"
+          >
+            <div class="form-group">
+              <label for="name"
+                >Full Name <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                required
+              />
             </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card text-light p-3 h-100">
-              <p class="card-text">"Elegant and professional service, my mehndi turned out amazing."</p>
-              <p class="text-light font-weight-bold mb-0">– Neha Patel</p>
+            <div class="form-group">
+              <label for="phone"
+                >Phone Number <span class="text-danger">*</span></label
+              ><br />
+              <input
+                type="tel"
+                class="form-control mt-2"
+                id="phone"
+                name="phone"
+                required
+              />
             </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card text-light p-3 h-100">
-              <p class="card-text">"Thank you for your creativity 💕 You made my event special!"</p>
-              <p class="text-light font-weight-bold mb-0">– Jaspreet Kaur</p>
+            <div class="form-group">
+              <label for="eventType"
+                >Type of Event <span class="text-danger">*</span></label
+              >
+              <select
+                class="form-control"
+                id="eventType"
+                name="eventType"
+                required
+              >
+                <option value="">-- Select --</option>
+                <option value="Bridal">Bridal</option>
+                <option value="Party">Party</option>
+                <option value="Festival">Festival</option>
+              </select>
             </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card text-light p-3 h-100">
-              <p class="card-text">"Booked for my cousin’s wedding – such intricate work!"</p>
-              <p class="text-light font-weight-bold mb-0">– Fatima Bhatti</p>
+            <div class="form-group">
+              <label for="guestCount"
+                >Number of People <span class="text-danger">*</span></label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="guestCount"
+                name="guestCount"
+                min="1"
+                required
+              />
             </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card text-light p-3 h-100">
-              <p class="card-text">"Amazing stain quality and designs. Will definitely return."</p>
-              <p class="text-light font-weight-bold mb-0">– Zoya Sheikh</p>
+            <div class="form-group">
+              <label for="message">Additional Message (optional)</label>
+              <textarea
+                class="form-control"
+                id="message"
+                name="message"
+                rows="4"
+              ></textarea>
             </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card text-light p-3 h-100">
-              <p class="card-text">"Creative hands, calm personality, and great hygiene!"</p>
-              <p class="text-light font-weight-bold mb-0">– Anika Sharma</p>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card text-light p-3 h-100">
-              <p class="card-text">"My bridal party loved their mehndi! 🌸 Great energy and vibe."</p>
-              <p class="text-light font-weight-bold mb-0">– Amina Qureshi</p>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card text-light p-3 h-100">
-              <p class="card-text">"Fast, friendly, and fabulous work!"</p>
-              <p class="text-light font-weight-bold mb-0">– Meera Nair</p>
-            </div>
-          </div>
+            <button type="submit" class="btn btn-warning mt-2">Submit</button>
+            <div
+              id="formSuccess"
+              class="mt-3 text-success font-weight-bold"
+              style="display: none"
+            ></div>
+          </form>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Modal -->
-    <div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-labelledby="lightboxModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content intro-wrapper">
-          <div class="modal-header border-0">
-            <h5 class="modal-title text-light" id="lightboxModalLabel"></h5>
-            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body text-center" id="lightboxContent"></div>
-        </div>
-      </div>
+      <!-- Footer -->
+      <footer
+        class="text-center py-4 text-light"
+        onmouseenter="pauseBackground()"
+        onmouseleave="resumeBackground()"
+      >
+        <p style="color: beige">
+          &copy; 2025
+          <a
+            href="https://www.instagram.com/mehndibysimra"
+            class="no-style-link"
+            >Mehndi By Simra</a
+          >. All rights reserved.
+        </p>
+      </footer>
     </div>
 
-    <!-- Footer -->
-    <footer class="text-center py-4 text-light">
-      <p style="color: beige">
-        &copy; 2025
-        <a href="https://www.instagram.com/mehndibysimra" class="no-style-link">Mehndi By Simra</a>. All rights reserved.
-      </p>
-    </footer>
-  </div>
+    <!-- Background animation control -->
+    <script>
+      function pauseBackground() {
+        if (window.innerWidth > 768) {
+          document.getElementById("main-wrapper").classList.add("paused");
+        }
+      }
 
-  <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
-</body>
+      function resumeBackground() {
+        if (window.innerWidth > 768) {
+          document.getElementById("main-wrapper").classList.remove("paused");
+        }
+      }
+
+      const form = document.getElementById("contactForm");
+      const formSuccess = document.getElementById("formSuccess");
+
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const formData = new FormData(form);
+          fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" },
+          })
+            .then((response) => {
+              if (response.ok) {
+                formSuccess.style.display = "block";
+                formSuccess.textContent =
+                  "Thank you for your submission. You will be contacted within 2–3 business days.";
+                const inputs = form.querySelectorAll(
+                  "input, textarea, select, button"
+                );
+                inputs.forEach((input) => (input.disabled = true));
+              } else {
+                alert(
+                  "There was an issue submitting the form. Please try again later."
+                );
+              }
+            })
+            .catch(() => {
+              alert("There was a connection issue. Please try again later.");
+            });
+        });
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/intlTelInput.min.js"></script>
+    <script>
+      const phoneInputField = document.querySelector("#phone");
+      if (phoneInputField) {
+        window.intlTelInput(phoneInputField, {
+          initialCountry: "auto",
+          geoIpLookup: function (callback) {
+            fetch("https://ipapi.co/json")
+              .then(function (res) {
+                return res.json();
+              })
+              .then(function (data) {
+                callback(data.country_code);
+              })
+              .catch(function () {
+                callback("us");
+              });
+          },
+          utilsScript:
+            "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/utils.js",
+        });
+      }
+    </script>
+    <script src="script.js"></script>
+  </body>
 </html>

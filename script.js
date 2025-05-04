@@ -50,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===== Contact Section =====
   const contactTarget = document.getElementById("typed-contact");
-  const beforeLink = "For inquiries or to view additional designs, please visit ";
+  const beforeLink =
+    "For inquiries or to view additional designs, please visit ";
   const linkText = "@mehndibysimra";
   const afterLink =
     " on Instagram. Direct messages are encouraged for faster communication. Alternatively, the contact form below is available for those without access to Instagram.";
@@ -87,7 +88,9 @@ document.addEventListener("DOMContentLoaded", function () {
             contactTarget.appendChild(link);
             index += linkText.length;
           } else {
-            contactTarget.appendChild(document.createTextNode(fullContactText.charAt(index)));
+            contactTarget.appendChild(
+              document.createTextNode(fullContactText.charAt(index))
+            );
             index++;
           }
           setTimeout(typeContact, 15);
@@ -130,10 +133,14 @@ document.addEventListener("DOMContentLoaded", function () {
               "Thank you for your inquiry. A response will be provided within 2–3 business days.",
               formSuccess
             );
-            const inputs = form.querySelectorAll("input, textarea, select, button");
+            const inputs = form.querySelectorAll(
+              "input, textarea, select, button"
+            );
             inputs.forEach((input) => (input.disabled = true));
           } else {
-            alert("There was an issue submitting the form. Please try again later.");
+            alert(
+              "There was an issue submitting the form. Please try again later."
+            );
           }
         })
         .catch(() => {
