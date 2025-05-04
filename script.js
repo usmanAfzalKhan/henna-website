@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // ===== Introduction Section =====
   const introText =
     "Mehndi By Simra is a premier provider of intricate henna designs for weddings, festivals, and special occasions. Known for precision and artistry, the studio specializes in blending traditional patterns with contemporary styles to suit a wide range of cultural and personal preferences. With over ten years of experience, lead artist Simra is recognized for creating bespoke designs that leave a lasting impression.<br><br>Every application is executed with a focus on detail, hygiene, and client comfort. Mehndi By Simra is dedicated to delivering exceptional quality while ensuring an elegant and seamless experience from consultation to final stain.";
-
   const introTarget = document.getElementById("typed-paragraph");
 
   if (introTarget) {
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // ===== Portfolio Section =====
   const portfolioText =
     "Each design in this portfolio is a testament to the artistry and cultural richness behind mehndi. Curated into bridal, party, and festive categories, the sections below showcase a range of work tailored for every occasion. Selecting a design will open additional photos and videos, offering a closer look at the detail and craftsmanship behind each piece.";
-
   const portfolioTarget = document.getElementById("typed-portfolio");
 
   if (portfolioTarget) {
@@ -66,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
       link.rel = "noopener noreferrer";
       link.textContent = linkText;
       link.className = "no-style-link";
-
       contactTarget.textContent = beforeLink;
       contactTarget.appendChild(link);
       contactTarget.appendChild(document.createTextNode(afterLink));
@@ -87,7 +84,6 @@ document.addEventListener("DOMContentLoaded", function () {
             link.addEventListener("mouseleave", () => {
               link.style.fontWeight = "normal";
             });
-
             contactTarget.appendChild(link);
             index += linkText.length;
           } else {
@@ -134,9 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
               "Thank you for your inquiry. A response will be provided within 2–3 business days.",
               formSuccess
             );
-            const inputs = form.querySelectorAll(
-              "input, textarea, select, button"
-            );
+            const inputs = form.querySelectorAll("input, textarea, select, button");
             inputs.forEach((input) => (input.disabled = true));
           } else {
             alert("There was an issue submitting the form. Please try again later.");
@@ -147,21 +141,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
   }
-});
 
-// Logo glow on click (only desktop)
-document.addEventListener("DOMContentLoaded", function () {
+  // ===== Logo Glow =====
   const logo = document.querySelector(".glow-logo");
-
-  if (logo) {
+  if (logo && window.innerWidth > 768) {
     logo.addEventListener("click", () => {
-      if (window.innerWidth > 768) {
-        logo.classList.remove("logo-glow"); // reset if already added
-        void logo.offsetWidth; // force reflow
-        logo.classList.add("logo-glow");
-      }
+      logo.classList.remove("logo-glow");
+      void logo.offsetWidth;
+      logo.classList.add("logo-glow");
     });
   }
-  
 });
-
