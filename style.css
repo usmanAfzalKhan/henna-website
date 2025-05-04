@@ -268,15 +268,80 @@ a:hover,
   body::after,
   .hero,
   .card,
-  footer {
-    animation: none !important;
-    transition: none !important;
-  }
-
+  footer,
   .typing,
   #typed-contact,
   #typed-portfolio,
   #typed-paragraph {
     animation: none !important;
+    transition: none !important;
+  }
+
+  .hero {
+    height: 40vh;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+
+  .intro-wrapper,
+  footer,
+  form,
+  .navbar,
+  .card,
+  .faq-question,
+  .faq-answer,
+  .form-control,
+  .form-group {
+    padding: 10px !important;
+    margin: 10px 0 !important;
+    font-size: 1rem !important;
+  }
+
+  .navbar-brand img {
+    height: 80px !important;
+  }
+
+  .card-text,
+  .faq-answer p,
+  .faq-question,
+  .form-control,
+  .nav-link {
+    font-size: 0.95rem !important;
+  }
+
+  .navbar-toggler {
+    padding: 0.25rem;
+  }
+
+  .navbar-collapse {
+    width: 100% !important;
+    right: -100% !important;
+  }
+
+  .navbar-collapse.show {
+    right: 0 !important;
+  }
+
+  .navbar-close {
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+  }
+
+  .modal-body {
+    padding: 0 !important;
+  }
+
+  img,
+  video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .card-body {
+    padding: 0.75rem !important;
   }
 }
+
+
