@@ -12,7 +12,7 @@
     <style>
         .btn-link {
             text-decoration: none !important;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -46,7 +46,7 @@
 
         @media (max-width: 768px) {
             .btn-link {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 padding: 0.75rem 1rem;
             }
 
@@ -71,10 +71,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="index.html">Home</a>
+                        <a class="nav-link text-light" href="aboutUs.html">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="aboutUs.html">Portfolio</a>
+                        <a class="nav-link text-light" href="faq.html">FAQ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="contact.html">Contact</a>
@@ -86,7 +86,7 @@
         <!-- FAQ Section -->
         <section class="container mt-5 mb-5">
             <div class="intro-wrapper">
-                <h2 class="typing" style="color: #ffcc70;">Frequently Asked Questions</h2>
+                <h2 class="typing" style="color: #ffcc70; text-align: center;">Frequently Asked Questions</h2>
                 <div class="accordion" id="faqAccordion"></div>
             </div>
         </section>
@@ -115,16 +115,20 @@
         }
 
         const faqs = [
-            { q: "What is the difference between natural and black henna?", a: "Natural henna is made from the dried leaves of the Lawsonia inermis plant and gives a reddish-brown stain that darkens over time. Black henna, on the other hand, often contains chemicals such as PPD (para-phenylenediamine), which can cause severe allergic reactions, blistering, and long-term skin damage. At Mehndi By Simra, we strictly use natural, chemical-free henna to ensure client safety and comfort." },
-            { q: "What should I do if I have very dry or oily skin?", a: "If you have dry skin, we recommend moisturizing with a natural oil like coconut or almond oil leading up to your mehndi appointment (but not on the day of application). For oily skin, cleanse thoroughly and avoid using lotions or oils on the day of application as they can prevent the henna from adhering properly and affect stain quality. Post-application, both skin types should avoid soap and water for 24 hours for best results." },
-            { q: "Can I book a mehndi appointment if I have eczema or sensitive skin?", a: "Yes, but we strongly advise doing a patch test at least 48 hours before the full application. While our henna is natural and free of harsh chemicals, individuals with eczema or highly sensitive skin may still react to plant-based products. Let us know in advance so we can tailor our application to avoid affected areas or use extra caution." },
-            { q: "Is it safe to get henna while pregnant?", a: "Natural henna is generally considered safe during pregnancy when applied externally. We take extra care to ensure all ingredients used are 100% natural and free from essential oils that are not pregnancy-safe. We’ve had many expectant mothers choose henna for baby showers or maternity shoots—just inform us beforehand so we can use the most gentle formulation possible." },
-            { q: "Can you match mehndi designs to my bridal outfit or cultural theme?", a: "Absolutely. During the consultation, we encourage clients to share outfit photos, fabric swatches, cultural inspirations, or Pinterest boards. We can incorporate paisleys, mandalas, florals, or cultural symbols (like Mughal motifs or South Indian patterns) to beautifully complement your attire and overall aesthetic." },
-            { q: "How do you ensure hygiene and cleanliness during the application?", a: "We follow strict hygiene protocols. All cones are freshly prepared in a sanitized environment, and single-use tissues and gloves are used where necessary. We sanitize our hands and surfaces before and during sessions. If the event involves multiple clients, we ensure each person receives clean, separate care without cross-contamination." },
-            { q: "Can you work around tight schedules or last-minute bookings?", a: "We understand that sometimes bookings happen close to the event date due to unexpected changes. While we recommend booking in advance to guarantee availability, we do accept last-minute appointments if our schedule permits. We'll work with you to prioritize timing, design simplicity, and efficient application without compromising on quality. Weekday bookings have better last-minute flexibility than weekends or peak wedding season." },
-            { q: "How do you handle large bookings or back-to-back events?", a: "For large events or multiple-day functions, we coordinate in advance to build a tailored schedule. Depending on the guest count, we may bring an assistant artist to maintain quality and timing. We also allocate buffer time to ensure no one is rushed and all guests receive a beautiful, complete design." },
-            { q: "Do you provide aftercare instructions, and why are they important?", a: "Yes! Every client receives a detailed aftercare guide. Aftercare is crucial to ensure the deepest stain and long-lasting results. It includes tips like avoiding water and soaps for the first 24 hours, applying natural oils for protection, and keeping the area warm to accelerate stain oxidation. Following our aftercare boosts the stain from orange to deep maroon over 48 hours." },
-            { q: "What happens if my event gets delayed or runs late?", a: "If your event runs behind schedule, we do our best to accommodate within reason. However, delays beyond 30 minutes may incur additional charges depending on the day's schedule. To avoid disruption, we recommend assigning someone to manage time slots if multiple guests are being served. We are always understanding, but fairness to other clients is also important." }
+            { q: "What is the difference between natural and black henna?", a: "Natural henna is derived from the Lawsonia inermis plant and creates a reddish-brown stain that deepens over time. Black henna often contains synthetic additives like PPD (para-phenylenediamine), which can result in severe allergic reactions. Only chemical-free, natural henna is safe for skin application and is recommended for body art." },
+            { q: "What should I do if I have very dry or oily skin?", a: "Dry skin should be moisturized with light natural oils in the days leading up to the appointment, but skin should be clean and product-free on the day of application. Oily skin should be washed thoroughly to remove excess oil before henna is applied, as oil can act as a barrier to proper staining." },
+            { q: "Can I book a mehndi appointment if I have eczema or sensitive skin?", a: "Yes, however a patch test 48 hours before the full application is advised. Even though natural ingredients are used, sensitive skin may react. The application can be adjusted to avoid irritated areas." },
+            { q: "Is it safe to get henna while pregnant?", a: "Natural henna, free from synthetic dyes and essential oils that aren't pregnancy-safe, is generally safe for external use during pregnancy. Care is taken to ensure all ingredients meet safety guidelines." },
+            { q: "Can you match mehndi designs to a bridal outfit or cultural theme?", a: "Yes. Custom patterns can be created based on provided outfit images, jewelry, fabric swatches, or specific cultural motifs. Designs may include florals, mandalas, or traditional symbols to enhance the overall aesthetic." },
+            { q: "How is hygiene maintained during the application?", a: "Henna cones are prepared in sanitized conditions. Single-use materials are used where applicable. Artists disinfect their hands and tools regularly throughout the session to maintain high hygiene standards." },
+            { q: "What if the appointment is close to the event or last-minute?", a: "Accommodations for last-minute bookings are possible if the schedule allows. Designs are planned efficiently and time-managed effectively to maintain quality results even within a limited window." },
+            { q: "How are large or multi-day bookings managed?", a: "For multiple-day events or large groups, pre-scheduling is key. Extra artists may be arranged to ensure timely service. Breaks and buffers are included in the timeline to maintain quality and consistency." },
+            { q: "What are aftercare instructions and why are they necessary?", a: "Post-application care includes avoiding water or soap for at least 24 hours, using natural oils to protect the stain, and keeping the area warm to help oxidation. Proper care helps intensify and prolong stain color." },
+            { q: "What happens if an event is delayed or runs behind schedule?", a: "If an event is delayed beyond the agreed time, additional charges may apply. It’s advisable to assign a person to manage timing so each client receives their appointment without overlap." },
+            { q: "Does henna stain differently on various body parts?", a: "Yes. Palms, fingertips, and soles stain the darkest due to thick skin and high keratin levels. Arms, legs, and backs may result in lighter shades. The stain also depends on skin texture and warmth." },
+            { q: "Can a specific fragrance or oil be requested in the henna paste?", a: "Yes, upon prior request, custom essential oils or fragrance profiles can be added during henna preparation. Only skin-safe, pregnancy-safe options are used." },
+            { q: "Is there a minimum booking requirement for bridal mehndi?", a: "Typically, bridal bookings include full coverage for both sides of hands and feet. A minimum booking size may apply and can be discussed during consultation." },
+            { q: "Can henna designs be removed quickly if needed?", a: "Henna stains are semi-permanent and naturally fade over one to two weeks. While exfoliation and warm salt water soaks can speed up the process, immediate removal is not guaranteed." }
         ];
 
         const container = document.getElementById("faqAccordion");
