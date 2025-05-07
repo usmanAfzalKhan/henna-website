@@ -274,19 +274,8 @@
       const phoneInputField = document.querySelector("#phone");
       if (phoneInputField) {
         window.intlTelInput(phoneInputField, {
-          initialCountry: "auto",
-          geoIpLookup: function (callback) {
-            fetch("https://ipapi.co/json")
-              .then(function (res) {
-                return res.json();
-              })
-              .then(function (data) {
-                callback(data.country_code);
-              })
-              .catch(function () {
-                callback("us");
-              });
-          },
+          initialCountry: "ca",
+          excludeCountries: ["il"], 
           utilsScript:
             "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/utils.js",
         });
