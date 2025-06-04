@@ -266,8 +266,17 @@ textarea.form-control {
     display: none !important;
   }
 
-  /* 2) Keep hero at full 65vh until truly small (handled below at 576px) */
-  /* No change here—hero stays 65vh on tablet widths */
+  /* 2) Hero: keep at full height (65vh) on most mobile until very small */
+  .hero {
+    height: 65vh !important;
+    min-height: 300px;
+    animation: none !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border-top: 4px solid #7b3f00 !important;
+    border-bottom: 4px solid #7b3f00 !important;
+  }
 
   /* 3) Pull Introduction right under hero’s bottom border */
   .intro-wrapper {
@@ -351,18 +360,16 @@ textarea.form-control {
   }
 }
 
-/* Responsive hero adjustment in very small mobile view */
+/* Responsive hero adjustment in very small mobile view (≤576px) */
 @media (max-width: 576px) {
-  /* Hero shrinks to 20vh on small phones */
+  /* Hero shrinks to 40vh only on very narrow screens */
   .hero {
-    height: 20vh !important;
-    min-height: 120px;
+    height: 40vh !important;
+    min-height: 200px;
     animation: none !important;
-
     background-size: cover !important;
     background-position: top center !important;
     background-repeat: no-repeat !important;
-
     border-top: 4px solid #7b3f00 !important;
     border-bottom: 4px solid #7b3f00 !important;
   }
