@@ -92,6 +92,7 @@ footer {
   padding: 30px;
   border-radius: 10px;
   margin-bottom: 30px;
+  overflow: visible; /* Ensure dropdowns aren’t clipped */
 }
 
 /* Navbar styling */
@@ -265,21 +266,8 @@ textarea.form-control {
     display: none !important;
   }
 
-  /* 2) Hero: shrink to 20vh, fill full width, keep brown borders */
-  .hero {
-    height: 20vh !important;
-    min-height: 120px;
-    animation: none !important;
-
-    /* Fill entire hero area horizontally, align top so “Welcome…” is visible */
-    background-size: cover !important;
-    background-position: top center !important;
-    background-repeat: no-repeat !important;
-
-    /* Keep brown top/bottom borders */
-    border-top: 4px solid #7b3f00 !important;
-    border-bottom: 4px solid #7b3f00 !important;
-  }
+  /* 2) Keep hero at full 65vh until truly small (handled below at 576px) */
+  /* No change here—hero stays 65vh on tablet widths */
 
   /* 3) Pull Introduction right under hero’s bottom border */
   .intro-wrapper {
@@ -365,10 +353,18 @@ textarea.form-control {
 
 /* Responsive hero adjustment in very small mobile view */
 @media (max-width: 576px) {
+  /* Hero shrinks to 20vh on small phones */
   .hero {
-    height: 30vh !important; /* keep it slightly larger on very narrow screens */
+    height: 20vh !important;
+    min-height: 120px;
+    animation: none !important;
+
     background-size: cover !important;
     background-position: top center !important;
+    background-repeat: no-repeat !important;
+
+    border-top: 4px solid #7b3f00 !important;
+    border-bottom: 4px solid #7b3f00 !important;
   }
 }
 
