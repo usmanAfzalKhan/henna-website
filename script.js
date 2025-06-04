@@ -169,40 +169,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // 2) FAQ page logic
   // =============================
   if (onFAQ) {
-    // Already handled inline in faq.html
+    // Handled inline in faq.html
   }
 
   // =============================
   // 3) Contact page logic
   // =============================
   if (onContact) {
-    const form = document.getElementById("contactForm");
-    const formSuccess = document.getElementById("formSuccess");
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-      fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" }
-      })
-        .then((response) => {
-          if (response.ok) {
-            formSuccess.style.display = "block";
-            formSuccess.textContent =
-              "Thank you for your submission. You will be contacted within 2–3 business days.";
-            form.querySelectorAll("input, textarea, select, button").forEach((input) => {
-              input.disabled = true;
-            });
-          } else {
-            alert("There was an issue submitting the form. Please try again later.");
-          }
-        })
-        .catch(() => {
-          alert("There was a connection issue. Please try again later.");
-        });
-    });
+    // Handled inline in contact.html
   }
 
   // =============================

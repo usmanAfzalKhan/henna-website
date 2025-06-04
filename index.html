@@ -16,57 +16,6 @@
 
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="style.css" />
-
-    <style>
-      /* ────────────────────────────────────────────────────────────── */
-      /* MOBILE (≤ 767.98px): Solid dark-green dropdown under the toggler,
-         right-aligned, no blur/translucency */
-      @media (max-width: 767.98px) {
-        /* Ensure <nav> is a positioning context */
-        nav.navbar {
-          position: relative !important;
-        }
-
-        /* When collapsed menu appears, style with solid dark-green background */
-        .navbar-collapse {
-          position: absolute !important;
-          top: 100% !important;      /* immediately below <nav> */
-          right: 1rem !important;    /* align to the right edge */
-          background-color: #0b3d2e !important;   /* dark-green theme */
-          border: 2px solid #ffcc70 !important;   /* gold border */
-          border-radius: 8px !important;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
-          width: 160px !important;    /* fit three links */
-          padding: 0.5rem 0 !important;
-          z-index: 9999 !important;
-        }
-
-        /* Stack nav items vertically */
-        .navbar-nav {
-          flex-direction: column !important;
-        }
-
-        .navbar-nav .nav-item {
-          margin: 0;
-        }
-
-        /* Gold-colored links, padded */
-        .navbar-nav .nav-link {
-          color: #ffcc70 !important;
-          padding: 0.5rem 1rem !important;
-          font-weight: 500;
-          font-size: 1rem;
-          text-align: left;
-        }
-
-        .navbar-nav .nav-link:hover {
-          color: #ffe190 !important;
-          background-color: rgba(255, 204, 112, 0.1) !important;
-        }
-      }
-      /* ────────────────────────────────────────────────────────────── */
-      /* NO OTHER CHANGES BELOW */
-    </style>
   </head>
 
   <body>

@@ -223,16 +223,27 @@ footer p {
 
 /* Mobile-specific tweaks */
 @media (max-width: 768px) {
+  /* 1) Stop background animation entirely */
+  body {
+    animation: none !important;
+  }
+  /* Hide overlay layers */
+  body::before,
+  body::after {
+    display: none !important;
+  }
+
+  /* 2) Disable hero/section/card/ footer animations */
   .hero {
     height: 40vh;
     background-position: top center;
     background-size: cover;
-    animation: none !important; /* disable hero animation on mobile */
+    animation: none !important;
   }
-
-  body {
-    /* Keep backgroundMove but remove overlay layers to improve performance */
-    animation: backgroundMove 120s linear infinite !important;
+  section,
+  .card,
+  footer {
+    animation: none !important;
   }
 
   .intro-wrapper {
@@ -240,17 +251,14 @@ footer p {
   }
 
   .navbar-brand img {
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .navbar-brand img:hover {
-    transform: scale(1.1);
+    transition: none !important;
   }
 
   .nav-link,
   .card-text,
   .form-control {
     font-size: 0.95rem;
+    transition: none !important;
   }
 
   img,
@@ -259,7 +267,7 @@ footer p {
     height: auto;
   }
 
-  /* Change made here: dark-green background on mobile card-body */
+  /* 3) Dark-green background on mobile card-body */
   .card-body {
     background-color: #0b3d2e !important;
     text-align: center;
@@ -274,6 +282,45 @@ footer p {
   .modal-dialog {
     margin: 1rem auto;
     max-width: 95%;
+  }
+
+  /* Navbar-collapse dropdown styling */
+  nav.navbar {
+    position: relative !important;
+  }
+
+  .navbar-collapse {
+    position: absolute !important;
+    top: 100% !important;
+    right: 1rem !important;
+    background-color: #0b3d2e !important;
+    border: 2px solid #ffcc70 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+    width: 160px !important;
+    padding: 0.5rem 0 !important;
+    z-index: 9999 !important;
+  }
+
+  .navbar-nav {
+    flex-direction: column !important;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0;
+  }
+
+  .navbar-nav .nav-link {
+    color: #ffcc70 !important;
+    padding: 0.5rem 1rem !important;
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #ffe190 !important;
+    background-color: rgba(255, 204, 112, 0.1) !important;
   }
 }
 
