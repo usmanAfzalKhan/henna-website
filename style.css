@@ -223,17 +223,17 @@ footer p {
 
 /* Mobile-specific tweaks */
 @media (max-width: 768px) {
-  /* 1) Stop background animation entirely */
+  /* 1) Restore background movement but keep overlays off */
   body {
-    animation: none !important;
+    animation: backgroundMove 120s linear infinite !important;
   }
-  /* Hide overlay layers */
+  /* Hide overlay layers for performance */
   body::before,
   body::after {
     display: none !important;
   }
 
-  /* 2) Disable hero/section/card/ footer animations */
+  /* 2) Disable hero fade/dim and other animations */
   .hero {
     height: 40vh;
     background-position: top center;
@@ -250,45 +250,21 @@ footer p {
     padding: 15px;
   }
 
-  .navbar-brand img {
-    transition: none !important;
-  }
-
-  .nav-link,
-  .card-text,
-  .form-control {
-    font-size: 0.95rem;
-    transition: none !important;
-  }
-
-  img,
-  video {
-    max-width: 100%;
-    height: auto;
-  }
-
-  /* 3) Dark-green background on mobile card-body */
+  /* 3) Keep card-body dark-green */
   .card-body {
     background-color: #0b3d2e !important;
     text-align: center;
   }
-
   .card-body .card-text {
     color: #ffcc70;
     font-weight: bold;
     margin-bottom: 0;
   }
 
-  .modal-dialog {
-    margin: 1rem auto;
-    max-width: 95%;
-  }
-
-  /* Navbar-collapse dropdown styling */
+  /* 4) Navbar-collapse dropdown styling */
   nav.navbar {
     position: relative !important;
   }
-
   .navbar-collapse {
     position: absolute !important;
     top: 100% !important;
@@ -301,15 +277,12 @@ footer p {
     padding: 0.5rem 0 !important;
     z-index: 9999 !important;
   }
-
   .navbar-nav {
     flex-direction: column !important;
   }
-
   .navbar-nav .nav-item {
     margin: 0;
   }
-
   .navbar-nav .nav-link {
     color: #ffcc70 !important;
     padding: 0.5rem 1rem !important;
@@ -317,10 +290,28 @@ footer p {
     font-size: 1rem;
     text-align: left;
   }
-
   .navbar-nav .nav-link:hover {
     color: #ffe190 !important;
     background-color: rgba(255, 204, 112, 0.1) !important;
+  }
+
+  /* 5) Disable other transitions */
+  .navbar-brand img,
+  .nav-link,
+  .btn,
+  .btn-link {
+    transition: none !important;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .modal-dialog {
+    margin: 1rem auto;
+    max-width: 95%;
   }
 }
 
