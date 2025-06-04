@@ -10,12 +10,8 @@ body {
 }
 
 @keyframes backgroundMove {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 1000px 1000px;
-  }
+  from { background-position: 0 0; }
+  to   { background-position: 1000px 1000px; }
 }
 
 /* Pause state when hovering over navbar or certain sections */
@@ -28,10 +24,8 @@ body::before,
 body::after {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
+  top: 0; left: 0;
+  width: 200%; height: 200%;
   background-image: url("images/background.png");
   background-repeat: repeat;
   background-size: 300px 300px;
@@ -43,27 +37,18 @@ body::after {
 body::before {
   animation: moveLayer1 120s linear infinite;
 }
-
-body::after {
+body::after  {
   animation: moveLayer2 120s linear infinite;
 }
 
 @keyframes moveLayer1 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-300px, -300px);
-  }
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(-300px, -300px); }
 }
 
 @keyframes moveLayer2 {
-  0% {
-    transform: translate(-150px, -150px);
-  }
-  100% {
-    transform: translate(-450px, -450px);
-  }
+  0%   { transform: translate(-150px, -150px); }
+  100% { transform: translate(-450px, -450px); }
 }
 
 /* Hero section styling (identical across pages) */
@@ -84,25 +69,14 @@ body::after {
 }
 
 @keyframes heroDim {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
 }
 
 /* Fade-in for sections/cards/footers */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 section,
@@ -132,7 +106,7 @@ footer {
 }
 
 .navbar-nav .nav-item .nav-link {
-  color: #f4f9f4;
+  color: #f4f4f4;
   padding: 10px 15px;
   transition: color 0.3s ease;
 }
@@ -169,13 +143,8 @@ footer {
   transition: all 0.3s ease-in-out;
 }
 
-.navbar-toggler-icon::before {
-  top: -8px;
-}
-
-.navbar-toggler-icon::after {
-  bottom: -8px;
-}
+.navbar-toggler-icon::before { top: -8px; }
+.navbar-toggler-icon::after  { bottom: -8px; }
 
 /* Footer styling */
 footer {
@@ -223,35 +192,38 @@ footer p {
 
 /* Mobile-specific tweaks */
 @media (max-width: 768px) {
-  /* 1) Restore background movement but keep overlays off */
+  /* 1) Keep lightweight background movement, remove heavy overlays */
   body {
     animation: backgroundMove 120s linear infinite !important;
   }
-  /* Hide overlay layers for performance */
   body::before,
   body::after {
     display: none !important;
   }
 
-  /* 2) Disable hero fade/dim and other animations */
+  /* 2) Hero: shrink to 20vh, fill full width, keep brown borders */
   .hero {
-    height: 65vh;            /* ← increased from 40vh to 65vh */
-    min-height: 300px;       /* ensure full image/text */
-    background-position: top center;
-    background-size: cover;
+    height: 20vh !important;
+    min-height: 120px;
     animation: none !important;
-  }
-  section,
-  .card,
-  footer {
-    animation: none !important;
+
+    /* Fill entire hero area horizontally, align top so “Welcome…” is visible */
+    background-size: cover !important;
+    background-position: top center !important;
+    background-repeat: no-repeat !important;
+
+    /* Keep brown top/bottom borders */
+    border-top: 4px solid #7b3f00 !important;
+    border-bottom: 4px solid #7b3f00 !important;
   }
 
+  /* 3) Pull Introduction right under hero’s bottom border */
   .intro-wrapper {
+    margin-top: -4px !important; /* sits flush under border */
     padding: 15px;
   }
 
-  /* 3) Keep card-body dark-green */
+  /* 4) Keep card-body dark-green */
   .card-body {
     background-color: #0b3d2e !important;
     text-align: center;
@@ -262,7 +234,7 @@ footer p {
     margin-bottom: 0;
   }
 
-  /* 4) Navbar-collapse dropdown styling */
+  /* 5) Navbar-collapse dropdown styling */
   nav.navbar {
     position: relative !important;
   }
@@ -296,7 +268,7 @@ footer p {
     background-color: rgba(255, 204, 112, 0.1) !important;
   }
 
-  /* 5) Disable other transitions */
+  /* 6) Disable other transitions on mobile */
   .navbar-brand img,
   .nav-link,
   .btn,
@@ -321,19 +293,17 @@ footer p {
   .navbar-brand img {
     transition: transform 0.3s ease, filter 0.3s ease;
   }
-
   .navbar-brand img:hover {
     transform: scale(1.1);
     filter: brightness(1.2);
   }
 }
 
-/* Responsive hero adjustment in small mobile view */
+/* Responsive hero adjustment in very small mobile view */
 @media (max-width: 576px) {
   .hero {
-    height: 65vh;
-    min-height: 250px;
-    background-size: cover;
-    background-position: center center;
+    height: 30vh !important; /* keep it slightly larger on very narrow screens */
+    background-size: cover !important;
+    background-position: top center !important;
   }
 }
