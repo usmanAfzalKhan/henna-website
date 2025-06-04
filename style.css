@@ -190,7 +190,71 @@ footer p {
   border-radius: 10px;
 }
 
-/* Mobile-specific tweaks */
+/* ============================================= */
+/* Form‐Input Styling to Match Dark Green Theme  */
+/* ============================================= */
+
+/* Make all form fields blend with the dark green background */
+.form-control {
+  background-color: rgba(0, 0, 0, 0.2); /* slightly transparent black */
+  color: #f4f4f4;                         /* light text */
+  border: 1px solid #7b3f00;              /* dark brownish‐green border */
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+/* Placeholder text a bit lighter */
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* On focus, highlight border with the gold accent and remove default box‐shadow */
+.form-control:focus {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #f4f4f4;
+  border-color: #ffcc70;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 204, 112, 0.3);
+}
+
+/* Date‐picker field styling */
+input[type="date"].form-control {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #f4f4f4;
+}
+
+/* Dropdown (select) styling */
+select.form-control {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #f4f4f4;
+  border: 1px solid #7b3f00;
+}
+
+/* Textarea styling */
+textarea.form-control {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #f4f4f4;
+  border: 1px solid #7b3f00;
+}
+
+/* Adjust button color as well to match theme */
+.btn-warning {
+  background-color: #ffcc70;
+  border-color: #e6b85c;
+  color: #0b3d2e;
+}
+
+.btn-warning:hover,
+.btn-warning:focus {
+  background-color: #e6b85c;
+  border-color: #d4a148;
+  color: #0b3d2e;
+  box-shadow: none;
+}
+
+/* ================================= */
+/* Mobile‐specific tweaks (≤768px)    */
+/* ================================= */
 @media (max-width: 768px) {
   /* 1) Keep lightweight background movement, remove heavy overlays */
   body {
@@ -306,4 +370,52 @@ footer p {
     background-size: cover !important;
     background-position: top center !important;
   }
+}
+
+/* ============================================= */
+/* IntlTelInput dropdown positioning & styling   */
+/* ============================================= */
+
+/* 1) Make the flag-container a positioning context */
+.iti__flag-container {
+  position: relative;
+}
+
+/* 2) Force the country-list to drop down under that container */
+.iti__country-list {
+  position: absolute !important;
+  top: 100% !important;       /* immediately below .iti__flag-container */
+  left: 0 !important;         /* align left edge under the flag */
+  transform: none !important; /* cancel any translateX that pushes it off */
+  
+  /* 3) Styling so it’s legible & confined */
+  background-color: #fff !important;
+  width: 250px !important;
+  max-height: 200px !important;
+  overflow-y: auto !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 9999 !important;
+}
+
+/* 4) Make sure each row in the list is easy to read */
+.iti__country {
+  padding: 6px 10px !important;
+  color: #000 !important;
+}
+
+/* 5) Keep flags a normal size inside the list */
+.iti__flag {
+  width: 20px;
+  height: 15px;
+}
+
+/* 6) Prevent the default flag-container from pushing layout */
+.iti__flag-container,
+.iti__selected-flag {
+  display: inline-block;
+}
+
+/* 7) Override any inherited width so input stays tidy */
+.iti.iti--allow-dropdown {
+  width: 100% !important;
 }
