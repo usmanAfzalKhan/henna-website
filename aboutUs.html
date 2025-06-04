@@ -2,24 +2,85 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>About Us - Mehndi By Simra</title>
+
+    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+      /* ────────────────────────────────────────────────────────────── */
+      /* MOBILE (≤ 767.98px): Solid dark-green dropdown under the toggler,
+         right-aligned, no blur/translucency */
+      @media (max-width: 767.98px) {
+        /* Ensure <nav> is positioning context */
+        nav.navbar {
+          position: relative !important;
+        }
+
+        /* Style collapsed menu */
+        .navbar-collapse {
+          position: absolute !important;
+          top: 100% !important;    /* immediately below <nav> */
+          right: 1rem !important;  /* align to the right edge */
+          background-color: #0b3d2e !important;   /* dark-green theme */
+          border: 2px solid #ffcc70 !important;   /* gold border */
+          border-radius: 8px !important;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+          width: 160px !important;   /* fit three links */
+          padding: 0.5rem 0 !important;
+          z-index: 9999 !important;
+        }
+
+        /* Stack nav items vertically */
+        .navbar-nav {
+          flex-direction: column !important;
+        }
+
+        .navbar-nav .nav-item {
+          margin: 0;
+        }
+
+        /* Gold links on dark-green background */
+        .navbar-nav .nav-link {
+          color: #ffcc70 !important;
+          padding: 0.5rem 1rem !important;
+          font-weight: 500;
+          font-size: 1rem;
+          text-align: left;
+        }
+
+        .navbar-nav .nav-link:hover {
+          color: #ffe190 !important;
+          background-color: rgba(255, 204, 112, 0.1) !important;
+        }
+      }
+      /* ────────────────────────────────────────────────────────────── */
+      /* NO OTHER CHANGES BELOW */
+    </style>
   </head>
+
   <body>
     <div class="background-wrapper" id="main-wrapper">
       <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-light">
+      <nav
+        class="navbar navbar-expand-lg navbar-light"
+        onmouseenter="pauseBackground()"
+        onmouseleave="resumeBackground()"
+      >
         <a class="navbar-brand" href="index.html">
           <img
             src="images/logo.png"
-            alt="Logo"
+            alt="Mehndi By Simra Logo"
             style="height: 100px"
             class="glow-logo"
           />
@@ -29,6 +90,9 @@
           type="button"
           data-toggle="collapse"
           data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -54,14 +118,30 @@
       <section id="about" class="container mt-5">
         <div class="intro-wrapper">
           <h2 style="color: #ffcc70; text-align: center">Portfolio</h2>
-          <p id="typed-portfolio"></p>
+          <p
+            style="
+              color: #f8f9fa;
+              font-size: 1.1rem;
+              margin-bottom: 20px;
+            "
+          >
+            Each design in this portfolio is a testament to the artistry and
+            cultural richness behind mehndi. Curated into bridal, party, and
+            festive categories, the sections below showcase a range of work
+            tailored for every occasion. Selecting a design will open additional
+            photos and videos, offering a closer look at the detail and
+            craftsmanship behind each piece.
+          </p>
         </div>
       </section>
+
+      <!-- Designs Grid -->
       <section id="designs" class="container mt-5">
         <div class="intro-wrapper">
           <h3 style="text-align: center; color: #ffcc70">Designs</h3>
           <div class="row mt-4">
-            <div class="col-md-4">
+            <!-- Bridal -->
+            <div class="col-md-4 mb-4">
               <div class="card">
                 <img
                   src="images/bridal1.jpeg"
@@ -84,7 +164,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <!-- Festival -->
+            <div class="col-md-4 mb-4">
               <div class="card">
                 <img
                   src="images/festive1.jpeg"
@@ -107,7 +188,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <!-- Party -->
+            <div class="col-md-4 mb-4">
               <div class="card">
                 <img
                   src="images/party3.jpeg"
@@ -134,7 +216,7 @@
         </div>
       </section>
 
-      <!-- Reviews -->
+      <!-- Reviews Section -->
       <section id="reviews" class="container mt-5">
         <div class="intro-wrapper">
           <h2 style="text-align: center; color: #ffcc70">
@@ -144,7 +226,7 @@
         </div>
       </section>
 
-      <!-- Modal -->
+      <!-- Lightbox Modal -->
       <div
         class="modal fade"
         id="lightboxModal"
@@ -172,7 +254,11 @@
       </div>
 
       <!-- Footer -->
-      <footer class="text-center py-4 text-light">
+      <footer
+        class="text-center py-4 text-light"
+        onmouseenter="pauseBackground()"
+        onmouseleave="resumeBackground()"
+      >
         <p style="color: beige">
           &copy; 2025
           <a
@@ -184,164 +270,27 @@
       </footer>
     </div>
 
-    <!-- External Script Includes Albums and Reviews -->
-    <script src="script.js"></script>
-
+    <!-- Pause/Resume background -->
     <script>
-      const reviews = [
-        {
-          name: "Zara Malik",
-          text: "Simra was amazing! She made me feel so comfortable and her designs were incredibly detailed. Everyone at the event complimented my mehndi. Highly recommend her services!",
-        },
-        {
-          name: "Hina Siddiqui",
-          text: "Absolutely loved the work! 💕 The stain lasted for so long and the design was exactly how I wanted it. Simra is professional and so talented.",
-        },
-        {
-          name: "Anum Farooq",
-          text: "Such an elegant experience! From consultation to application, it was seamless. The mehndi turned out beautiful and dark.",
-        },
-        {
-          name: "Rabia Khan",
-          text: "Simra's mehndi added a magical touch to my sister’s wedding. The design was so neat and symmetrical. Thank you for the lovely work!",
-        },
-        {
-          name: "Fariha Iqbal",
-          text: "I was so impressed with the creativity and patience. Simra really took her time and the final result was breathtaking!",
-        },
-        {
-          name: "Sana Javed",
-          text: "Booked for Eid and everyone in the family loved the designs! 🌙 The stain developed beautifully too. Definitely booking again.",
-        },
-        {
-          name: "Mehwish Chaudhry",
-          text: "My go-to for all events now. The professionalism, hygiene, and skill are unmatched. Couldn’t be happier with the results.",
-        },
-        {
-          name: "Amna Sheikh",
-          text: "Loved every part of the experience 💫 From start to finish, Simra was kind and professional. My design was a hit at the party!",
-        },
-        {
-          name: "Nida Tariq",
-          text: "Simra is truly an artist. Her attention to detail and ability to customize exactly what I wanted made all the difference!",
-        },
-      ];
-
-      const reviewContainer = document.getElementById("client-photos");
-
-      reviews.forEach((review) => {
-        const col = document.createElement("div");
-        col.className = "col-md-4 mb-3";
-
-        col.innerHTML = `
-          <div class="card text-light p-3 h-100" style="background-color: rgba(0, 0, 0, 0.3);">
-            <p class="card-text">${review.text}</p>
-            <p class="text-light font-weight-bold mb-0">– ${review.name}</p>
-          </div>
-        `;
-
-        reviewContainer.appendChild(col);
-      });
-    </script>
-
-    <script>
-      const albums = {
-        bridal: [
-          "images/bridal1.jpeg",
-          "images/bridal2.jpeg",
-          "images/bridal3.jpeg",
-          { type: "video", src: "images/bridal6.mp4" },
-          "images/bridal4.jpeg",
-          { type: "video", src: "images/bridal8.mp4" },
-          "images/bridal5.jpeg",
-          { type: "video", src: "images/bridal9.mp4" },
-          { type: "video", src: "images/bridal10.mp4" },
-        ],
-        party: [
-          "images/party1.jpeg",
-          "images/party2.jpeg",
-          { type: "video", src: "images/party7.mp4" },
-          "images/party3.jpeg",
-          "images/party4.jpeg",
-          { type: "video", src: "images/party8.mp4" },
-          "images/party5.jpeg",
-          "images/party6.jpeg",
-        ],
-        festive: [
-          "images/festive1.jpeg",
-          "images/festive2.jpeg",
-          { type: "video", src: "images/festive8.mp4" },
-          "images/festive3.jpeg",
-          { type: "video", src: "images/festive10.mp4" },
-          "images/festive4.jpeg",
-          "images/festive5.jpeg",
-          "images/festive6.jpeg",
-          "images/festive7.jpeg",
-          "images/festive9.jpeg",
-        ],
-      };
-
-      const titles = {
-        bridal: "Bridal Mehndi Designs",
-        party: "Party Mehndi Designs",
-        festive: "Festive Mehndi Designs",
-      };
-
-      let currentAlbum = [],
-        currentIndex = 0;
-
-      function updateModalContent() {
-        const item = currentAlbum[currentIndex];
-        const content =
-          typeof item === "string"
-            ? `<img src="${item}" class="img-fluid" alt="Mehndi Design">`
-            : `<video controls autoplay muted playsinline preload="auto" class="img-fluid"><source src="${item.src}" type="video/mp4"></video>`;
-
-        $("#lightboxContent").html(content);
+      function pauseBackground() {
+        document
+          .getElementById("main-wrapper")
+          .classList.add("paused");
       }
-
-      $("[data-toggle='modal']").on("click", function () {
-        const section = $(this).data("section");
-        currentAlbum = albums[section];
-        currentIndex = 0;
-        $("#lightboxModalLabel").text(titles[section]);
-        updateModalContent();
-      });
-
-      $(document).on("keydown", function (e) {
-        if ($("#lightboxModal").hasClass("show")) {
-          if (e.key === "ArrowRight") {
-            currentIndex = (currentIndex + 1) % currentAlbum.length;
-            updateModalContent();
-          } else if (e.key === "ArrowLeft") {
-            currentIndex =
-              (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
-            updateModalContent();
-          }
-        }
-      });
-
-      let touchStartX = null,
-        touchEndX = null;
-      $("#lightboxModal").on("touchstart", function (e) {
-        touchStartX = e.originalEvent.changedTouches[0].screenX;
-      });
-      $("#lightboxModal").on("touchend", function (e) {
-        touchEndX = e.originalEvent.changedTouches[0].screenX;
-        if (touchStartX && touchEndX) {
-          const diff = touchStartX - touchEndX;
-          if (Math.abs(diff) > 50) {
-            currentIndex =
-              diff > 0
-                ? (currentIndex + 1) % currentAlbum.length
-                : (currentIndex - 1 + currentAlbum.length) %
-                  currentAlbum.length;
-            updateModalContent();
-          }
-        }
-        touchStartX = null;
-        touchEndX = null;
-      });
+      function resumeBackground() {
+        document
+          .getElementById("main-wrapper")
+          .classList.remove("paused");
+      }
     </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <!-- Main script -->
+    <script src="script.js"></script>
   </body>
 </html>

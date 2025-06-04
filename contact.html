@@ -2,64 +2,76 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Contact - Mehndi By Simra</title>
 
+    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Intl Tel Input CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/css/intlTelInput.css"
     />
+
     <style>
-      .iti__country-list {
-        background-color: #fff;
-        color: #000;
-      }
-      .iti__country-name {
-        color: #000;
-      }
-      .no-style-link {
-        text-decoration: none !important;
-        color: inherit !important;
-      }
-      .no-style-link:hover {
-        font-weight: bold;
-      }
-      @media (max-width: 768px) {
-        h2.typing {
-          font-size: 1.5rem;
-          text-align: center !important;
-          display: flex;
-          justify-content: center;
+      /* ────────────────────────────────────────────────────────────── */
+      /* Mobile (≤ 767.98px): solid dark-green dropdown under toggler */
+      @media (max-width: 767.98px) {
+        /* Make <nav> positioning context */
+        nav.navbar {
+          position: relative !important;
         }
-        .typing::after {
-          content: none !important;
+
+        /* Style collapsed menu */
+        .navbar-collapse {
+          position: absolute !important;
+          top: 100% !important;      /* under <nav> */
+          right: 1rem !important;    /* right aligned */
+          background-color: #0b3d2e !important;   /* dark-green theme */
+          border: 2px solid #ffcc70 !important;   /* gold border */
+          border-radius: 8px !important;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+          width: 160px !important;   /* fit three links */
+          padding: 0.5rem 0 !important;
+          z-index: 9999 !important;
+        }
+
+        /* Stack nav items vertically */
+        .navbar-nav {
+          flex-direction: column !important;
+        }
+
+        .navbar-nav .nav-item {
+          margin: 0;
+        }
+
+        /* Gold links */
+        .navbar-nav .nav-link {
+          color: #ffcc70 !important;
+          padding: 0.5rem 1rem !important;
+          font-weight: 500;
+          font-size: 1rem;
+          text-align: left;
+        }
+
+        .navbar-nav .nav-link:hover {
+          color: #ffe190 !important;
+          background-color: rgba(255, 204, 112, 0.1) !important;
         }
       }
-      .typing {
-        display: inline-block;
-        overflow: hidden;
-        white-space: nowrap;
-        animation: typing 2s steps(30, end) forwards;
-      }
-      .typing::after {
-        content: "";
-        animation: none;
-      }
-      @keyframes typing {
-        from {
-          width: 0;
-        }
-        to {
-          width: 100%;
-        }
-      }
+      /* ────────────────────────────────────────────────────────────── */
+      /* NO OTHER CHANGES BELOW */
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
 
   <body>
@@ -110,10 +122,14 @@
       <!-- Contact Section -->
       <section class="container mt-5 mb-5">
         <div class="intro-wrapper">
-          <h2 class="typing" style="color: #ffcc70; text-align: center">
-            Contact Information
-          </h2>
-          <p style="color: #f8f9fa; font-size: 1.1rem">
+          <h2 style="color: #ffcc70; text-align: center">Contact Information</h2>
+          <p
+            style="
+              color: #f8f9fa;
+              font-size: 1.1rem;
+              margin-bottom: 20px;
+            "
+          >
             For faster response times and real-time availability, inquiries are
             best directed through
             <a
@@ -220,67 +236,43 @@
       </footer>
     </div>
 
-    <!-- Background animation control -->
+    <!-- Pause/Resume background -->
     <script>
       function pauseBackground() {
-        if (window.innerWidth > 768) {
-          document.getElementById("main-wrapper").classList.add("paused");
-        }
+        document
+          .getElementById("main-wrapper")
+          .classList.add("paused");
       }
-
       function resumeBackground() {
-        if (window.innerWidth > 768) {
-          document.getElementById("main-wrapper").classList.remove("paused");
-        }
-      }
-
-      const form = document.getElementById("contactForm");
-      const formSuccess = document.getElementById("formSuccess");
-
-      if (form) {
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const formData = new FormData(form);
-          fetch(form.action, {
-            method: "POST",
-            body: formData,
-            headers: { Accept: "application/json" },
-          })
-            .then((response) => {
-              if (response.ok) {
-                formSuccess.style.display = "block";
-                formSuccess.textContent =
-                  "Thank you for your submission. You will be contacted within 2–3 business days.";
-                const inputs = form.querySelectorAll(
-                  "input, textarea, select, button"
-                );
-                inputs.forEach((input) => (input.disabled = true));
-              } else {
-                alert(
-                  "There was an issue submitting the form. Please try again later."
-                );
-              }
-            })
-            .catch(() => {
-              alert("There was a connection issue. Please try again later.");
-            });
-        });
+        document
+          .getElementById("main-wrapper")
+          .classList.remove("paused");
       }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <!-- Intl Tel Input JS -->
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/intlTelInput.min.js"></script>
+
     <script>
+      // Initialize international phone input
       const phoneInputField = document.querySelector("#phone");
       if (phoneInputField) {
         window.intlTelInput(phoneInputField, {
           initialCountry: "ca",
-          excludeCountries: ["il"], 
+          excludeCountries: ["il"],
           utilsScript:
-            "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/utils.js",
+            "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/utils.js"
         });
       }
     </script>
+
+    <!-- Main script -->
     <script src="script.js"></script>
   </body>
 </html>

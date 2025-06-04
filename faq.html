@@ -2,16 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>FAQ - Mehndi By Simra</title>
 
+    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style>
+      /* ────────────────────────────────────────────────────────────── */
+      /* Base FAQ styles (same as before) */
       .btn-link {
         text-decoration: none !important;
         font-size: 1.1rem;
@@ -19,44 +27,67 @@
         justify-content: space-between;
         align-items: center;
       }
-
       .btn-link span {
         font-size: 1.5rem;
         margin-left: auto;
       }
-
       .btn-link:hover {
         text-decoration: none !important;
       }
-
       .card-body {
         font-size: 0.95rem;
         color: #fff;
       }
 
-      .typing {
-        font-size: 2rem;
-        text-align: center;
-        margin: 0 auto;
-        display: block;
-      }
-
-      .typing::after {
-        content: none !important;
-        animation: none !important;
-      }
-
-      @media (max-width: 768px) {
-        .btn-link {
-          font-size: 0.95rem;
-          padding: 0.75rem 1rem;
+      /* ────────────────────────────────────────────────────────────── */
+      /* MOBILE (≤ 767.98px): Solid dark-green dropdown under the toggler,
+         right-aligned, no blur/translucency */
+      @media (max-width: 767.98px) {
+        /* Ensure <nav> is a positioning context */
+        nav.navbar {
+          position: relative !important;
         }
 
-        .typing {
-          font-size: 1.25rem;
-          text-align: center;
+        /* When the collapsed menu appears, style it with a solid dark-green background */
+        .navbar-collapse {
+          position: absolute !important;
+          top: 100% !important;    /* immediately below the <nav> */
+          right: 1rem !important;  /* align to the right edge, slightly inset */
+          background-color: #0b3d2e !important; /* solid dark-green (theme color) */
+          border: 2px solid #ffcc70 !important; /* gold outline */
+          border-radius: 8px !important;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+          width: 160px !important;   /* enough width to fit the three links */
+          padding: 0.5rem 0 !important;
+          z-index: 9999 !important;
+        }
+
+        /* Stack links vertically */
+        .navbar-nav {
+          flex-direction: column !important;
+        }
+
+        .navbar-nav .nav-item {
+          margin: 0;
+        }
+
+        /* Gold-colored links on dark-green background */
+        .navbar-nav .nav-link {
+          color: #ffcc70 !important;
+          padding: 0.5rem 1rem !important;
+          font-weight: 500;
+          font-size: 1rem;
+          text-align: left;
+        }
+
+        /* Lighter gold on hover */
+        .navbar-nav .nav-link:hover {
+          color: #ffe190 !important;
+          background-color: rgba(255, 204, 112, 0.1) !important;
         }
       }
+      /* ────────────────────────────────────────────────────────────── */
+      /* NO OTHER CHANGES BELOW */
     </style>
   </head>
 
@@ -93,13 +124,13 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link text-light" href="aboutUs.html">Portfolio</a>
+              <a class="nav-link" href="aboutUs.html">Portfolio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light" href="faq.html">FAQ</a>
+              <a class="nav-link" href="faq.html">FAQ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light" href="contact.html">Contact</a>
+              <a class="nav-link" href="contact.html">Contact</a>
             </li>
           </ul>
         </div>
@@ -108,7 +139,7 @@
       <!-- FAQ Section -->
       <section class="container mt-5 mb-5">
         <div class="intro-wrapper">
-          <h2 class="typing" style="color: #ffcc70; text-align: center">
+          <h2 style="color: #ffcc70; text-align: center">
             Frequently Asked Questions
           </h2>
           <div class="accordion" id="faqAccordion"></div>
@@ -132,103 +163,116 @@
       </footer>
     </div>
 
-    <!-- Background animation control -->
+    <!-- Pause/Resume background -->
     <script>
       function pauseBackground() {
-        if (window.innerWidth > 768) {
-          document.getElementById("main-wrapper").classList.add("paused");
-        }
+        document
+          .getElementById("main-wrapper")
+          .classList.add("paused");
       }
-
       function resumeBackground() {
-        if (window.innerWidth > 768) {
-          document.getElementById("main-wrapper").classList.remove("paused");
-        }
+        document
+          .getElementById("main-wrapper")
+          .classList.remove("paused");
       }
-
-      const faqs = [
-        {
-          q: "What is the difference between natural and black henna?",
-          a: "Natural henna is derived from the Lawsonia inermis plant and creates a reddish-brown stain that deepens over time. Black henna often contains synthetic additives like PPD (para-phenylenediamine), which can result in severe allergic reactions. Only chemical-free, natural henna is safe for skin application and is recommended for body art.",
-        },
-        {
-          q: "What should I do if I have very dry or oily skin?",
-          a: "Dry skin should be moisturized with light natural oils in the days leading up to the appointment, but skin should be clean and product-free on the day of application. Oily skin should be washed thoroughly to remove excess oil before henna is applied, as oil can act as a barrier to proper staining.",
-        },
-        {
-          q: "Can I book a mehndi appointment if I have eczema or sensitive skin?",
-          a: "Yes, however a patch test 48 hours before the full application is advised. Even though natural ingredients are used, sensitive skin may react. The application can be adjusted to avoid irritated areas.",
-        },
-        {
-          q: "Is it safe to get henna while pregnant?",
-          a: "Natural henna, free from synthetic dyes and essential oils that aren't pregnancy-safe, is generally safe for external use during pregnancy. Care is taken to ensure all ingredients meet safety guidelines.",
-        },
-        {
-          q: "Can you match mehndi designs to a bridal outfit or cultural theme?",
-          a: "Yes. Custom patterns can be created based on provided outfit images, jewelry, fabric swatches, or specific cultural motifs. Designs may include florals, mandalas, or traditional symbols to enhance the overall aesthetic.",
-        },
-        {
-          q: "How is hygiene maintained during the application?",
-          a: "Henna cones are prepared in sanitized conditions. Single-use materials are used where applicable. Artists disinfect their hands and tools regularly throughout the session to maintain high hygiene standards.",
-        },
-        {
-          q: "What if the appointment is close to the event or last-minute?",
-          a: "Accommodations for last-minute bookings are possible if the schedule allows. Designs are planned efficiently and time-managed effectively to maintain quality results even within a limited window.",
-        },
-        {
-          q: "How are large or multi-day bookings managed?",
-          a: "For multiple-day events or large groups, pre-scheduling is key. Extra artists may be arranged to ensure timely service. Breaks and buffers are included in the timeline to maintain quality and consistency.",
-        },
-        {
-          q: "What are aftercare instructions and why are they necessary?",
-          a: "Post-application care includes avoiding water or soap for at least 24 hours, using natural oils to protect the stain, and keeping the area warm to help oxidation. Proper care helps intensify and prolong stain color.",
-        },
-        {
-          q: "What happens if an event is delayed or runs behind schedule?",
-          a: "If an event is delayed beyond the agreed time, additional charges may apply. It’s advisable to assign a person to manage timing so each client receives their appointment without overlap.",
-        },
-        {
-          q: "Does henna stain differently on various body parts?",
-          a: "Yes. Palms, fingertips, and soles stain the darkest due to thick skin and high keratin levels. Arms, legs, and backs may result in lighter shades. The stain also depends on skin texture and warmth.",
-        },
-        {
-          q: "Is there a minimum booking requirement for bridal mehndi?",
-          a: "Typically, bridal bookings include full coverage for both sides of hands and feet. A minimum booking size may apply and can be discussed during consultation.",
-        },
-        {
-          q: "Can henna designs be removed quickly if needed?",
-          a: "Henna stains are semi-permanent and naturally fade over one to two weeks. While exfoliation and warm salt water soaks can speed up the process, immediate removal is not guaranteed.",
-        },
-      ];
-
-      const container = document.getElementById("faqAccordion");
-      faqs.forEach((faq, index) => {
-        const card = document.createElement("div");
-        card.className = "card bg-transparent border-0";
-
-        const header = document.createElement("div");
-        header.className = "card-header bg-transparent border-0 p-0";
-        header.innerHTML = `
-                <h5 class="mb-0">
-                    <button class="btn btn-link text-light w-100 text-left d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faq${index}" aria-expanded="false" aria-controls="faq${index}">
-                        ${faq.q}<span>+</span>
-                    </button>
-                </h5>`;
-
-        const collapse = document.createElement("div");
-        collapse.className = "collapse";
-        collapse.id = `faq${index}`;
-        collapse.setAttribute("data-parent", "#faqAccordion");
-        collapse.innerHTML = `<div class="card-body">${faq.a}</div>`;
-
-        card.appendChild(header);
-        card.appendChild(collapse);
-        container.appendChild(card);
-      });
     </script>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <!-- FAQ Data & Rendering -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const faqs = [
+          {
+            q: "What is the difference between natural and black henna?",
+            a: "Natural henna is derived from the Lawsonia inermis plant and creates a reddish-brown stain that deepens over time. Black henna often contains synthetic additives like PPD (para-phenylenediamine), which can result in severe allergic reactions. Only chemical-free, natural henna is safe for skin application and is recommended for body art."
+          },
+          {
+            q: "What should I do if I have very dry or oily skin?",
+            a: "Dry skin should be moisturized with light natural oils in the days leading up to the appointment, but skin should be clean and product-free on the day of application. Oily skin should be washed thoroughly to remove excess oil before henna is applied, as oil can act as a barrier to proper staining."
+          },
+          {
+            q: "Can I book a mehndi appointment if I have eczema or sensitive skin?",
+            a: "Yes, however a patch test 48 hours before the full application is advised. Even though natural ingredients are used, sensitive skin may react. The application can be adjusted to avoid irritated areas."
+          },
+          {
+            q: "Is it safe to get henna while pregnant?",
+            a: "Natural henna, free from synthetic dyes and essential oils that aren't pregnancy-safe, is generally safe for external use during pregnancy. Care is taken to ensure all ingredients meet safety guidelines."
+          },
+          {
+            q: "Can you match mehndi designs to a bridal outfit or cultural theme?",
+            a: "Yes. Custom patterns can be created based on provided outfit images, jewelry, fabric swatches, or specific cultural motifs. Designs may include florals, mandalas, or traditional symbols to enhance the overall aesthetic."
+          },
+          {
+            q: "How is hygiene maintained during the application?",
+            a: "Henna cones are prepared in sanitized conditions. Single-use materials are used where applicable. Artists disinfect their hands and tools regularly throughout the session to maintain high hygiene standards."
+          },
+          {
+            q: "What if the appointment is close to the event or last-minute?",
+            a: "Accommodations for last-minute bookings are possible if the schedule allows. Designs are planned efficiently and time-managed effectively to maintain quality results even within a limited window."
+          },
+          {
+            q: "How are large or multi-day bookings managed?",
+            a: "For multiple-day events or large groups, pre-scheduling is key. Extra artists may be arranged to ensure timely service. Breaks and buffers are included in the timeline to maintain quality and consistency."
+          },
+          {
+            q: "What are aftercare instructions and why are they necessary?",
+            a: "Post-application care includes avoiding water or soap for at least 24 hours, using natural oils to protect the stain, and keeping the area warm to help oxidation. Proper care helps intensify and prolong stain color."
+          },
+          {
+            q: "What happens if an event is delayed or runs behind schedule?",
+            a: "If an event is delayed beyond the agreed time, additional charges may apply. It’s advisable to assign a person to manage timing so each client receives their appointment without overlap."
+          },
+          {
+            q: "Does henna stain differently on various body parts?",
+            a: "Yes. Palms, fingertips, and soles stain the darkest due to thick skin and high keratin levels. Arms, legs, and backs may result in lighter shades. The stain also depends on skin texture and warmth."
+          },
+          {
+            q: "Is there a minimum booking requirement for bridal mehndi?",
+            a: "Typically, bridal bookings include full coverage for both sides of hands and feet. A minimum booking size may apply and can be discussed during consultation."
+          },
+          {
+            q: "Can henna designs be removed quickly if needed?",
+            a: "Henna stains are semi-permanent and naturally fade over one to two weeks. While exfoliation and warm salt water soaks can speed up the process, immediate removal is not guaranteed."
+          }
+        ];
+
+        const container = document.getElementById("faqAccordion");
+        faqs.forEach((faq, index) => {
+          const card = document.createElement("div");
+          card.className = "card bg-transparent border-0 mb-2";
+
+          const header = document.createElement("div");
+          header.className = "card-header bg-transparent border-0 p-0";
+          header.innerHTML = `
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link text-light w-100 text-left d-flex justify-content-between align-items-center"
+                type="button"
+                data-toggle="collapse"
+                data-target="#faq${index}"
+                aria-expanded="false"
+                aria-controls="faq${index}"
+              >
+                ${faq.q}<span>+</span>
+              </button>
+            </h5>`;
+
+          const collapse = document.createElement("div");
+          collapse.className = "collapse";
+          collapse.id = `faq${index}`;
+          collapse.setAttribute("data-parent", "#faqAccordion");
+          collapse.innerHTML = `<div class="card-body">${faq.a}</div>`;
+
+          card.appendChild(header);
+          card.appendChild(collapse);
+          container.appendChild(card);
+        });
+      });
+    </script>
   </body>
 </html>

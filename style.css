@@ -1,3 +1,4 @@
+/* Base background & movement (applies to all screen sizes) */
 body {
   background-color: #0b3d2e;
   background-image: url("images/background.png");
@@ -17,10 +18,12 @@ body {
   }
 }
 
+/* Pause state when hovering over navbar or certain sections */
 .paused {
   animation-play-state: paused !important;
 }
 
+/* Subtle overlay layers to add depth */
 body::before,
 body::after {
   content: "";
@@ -63,6 +66,7 @@ body::after {
   }
 }
 
+/* Hero section styling (identical across pages) */
 .hero {
   background-image: url("images/hero.png");
   background-size: cover;
@@ -89,33 +93,7 @@ body::after {
   }
 }
 
-.typing {
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 2s steps(30, end) forwards;
-}
-
-.typing::after {
-  content: "|";
-  animation: blink 1s step-start infinite;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
+/* Fade-in for sections/cards/footers */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -134,20 +112,15 @@ footer {
   animation: fadeIn 1.5s ease forwards;
 }
 
+/* Dark translucent wrapper for intro & FAQ & contact forms */
 .intro-wrapper {
   background-color: rgba(0, 0, 0, 0.3);
   padding: 30px;
   border-radius: 10px;
+  margin-bottom: 30px;
 }
 
-#typed-paragraph,
-#typed-portfolio,
-#typed-contact {
-  color: #f8f9fa;
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-
+/* Navbar styling */
 .navbar {
   background-color: transparent;
   border-bottom: 2px solid #ddd;
@@ -174,7 +147,6 @@ footer {
   background: none;
   padding: 0.5rem 0.75rem;
   outline: none;
-  transition: transform 0.3s ease;
   margin-left: auto;
 }
 
@@ -205,6 +177,7 @@ footer {
   bottom: -8px;
 }
 
+/* Footer styling */
 footer {
   background-color: transparent;
   padding: 20px;
@@ -217,6 +190,7 @@ footer p {
   font-size: 0.875rem;
 }
 
+/* Links without default underlines */
 .no-style-link {
   text-decoration: none;
   color: inherit;
@@ -226,7 +200,7 @@ footer p {
   filter: brightness(1.8);
 }
 
-/* Modal Fixes */
+/* Modal tweaks for images/videos */
 .modal-body img,
 .modal-body video {
   max-width: 90%;
@@ -247,27 +221,18 @@ footer p {
   border-radius: 10px;
 }
 
-/* Mobile tweaks */
+/* Mobile-specific tweaks */
 @media (max-width: 768px) {
-  body {
-    animation: none !important;
-  }
-
-  .typing {
-    animation: none !important;
-    width: auto !important;
-  }
-
-  .typing::after {
-    content: "" !important;
-    animation: none !important;
-  }
-
   .hero {
     height: 40vh;
     background-position: top center;
     background-size: cover;
-    animation: none !important;
+    animation: none !important; /* disable hero animation on mobile */
+  }
+
+  body {
+    /* Keep backgroundMove but remove overlay layers to improve performance */
+    animation: backgroundMove 120s linear infinite !important;
   }
 
   .intro-wrapper {
@@ -284,8 +249,6 @@ footer p {
 
   .nav-link,
   .card-text,
-  .faq-answer p,
-  .faq-question,
   .form-control {
     font-size: 0.95rem;
   }
@@ -296,8 +259,9 @@ footer p {
     height: auto;
   }
 
+  /* Change made here: dark-green background on mobile card-body */
   .card-body {
-    background-color: rgba(0, 0, 0, 0.3) !important;
+    background-color: #0b3d2e !important;
     text-align: center;
   }
 
@@ -313,31 +277,7 @@ footer p {
   }
 }
 
-/* Off-canvas navbar */
-@media (max-width: 991.98px) {
-  .navbar-collapse {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 250px;
-    background-color: rgba(11, 61, 46, 0.95);
-    border-left: 2px solid #ffcc70;
-    border-bottom: 2px solid #ffcc70;
-    padding: 15px;
-    z-index: 999;
-  }
-
-  .navbar-nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .navbar-nav .nav-item {
-    margin-bottom: 10px;
-  }
-}
-
-/* Desktop glow effect */
+/* Desktop glow effect on logo */
 @media only screen and (min-width: 769px) {
   .navbar-brand img {
     transition: transform 0.3s ease, filter 0.3s ease;
@@ -349,12 +289,12 @@ footer p {
   }
 }
 
-@media (max-width: 768px) {
+/* Responsive hero adjustment in small mobile view */
+@media (max-width: 576px) {
   .hero {
     height: 65vh;
     min-height: 250px;
     background-size: cover;
     background-position: center center;
-    background-repeat: no-repeat;
   }
 }

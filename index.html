@@ -2,41 +2,73 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Home - Mehndi By Simra</title>
+
+    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      .hero {
-        background-image: url("images/hero.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 65vh;
-        min-height: 300px;
-        width: 100%;
-        border-top: 4px solid #7b3f00;
-        border-bottom: 4px solid #7b3f00;
-        animation: fadeIn 1.5s ease forwards, heroDim 6s ease-in-out infinite;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
 
-      @media (max-width: 768px) {
-        .hero {
-          height: 200px;
-          min-height: 200px;
-          background-size: cover;
-          background-position: center center;
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* ────────────────────────────────────────────────────────────── */
+      /* MOBILE (≤ 767.98px): Solid dark-green dropdown under the toggler,
+         right-aligned, no blur/translucency */
+      @media (max-width: 767.98px) {
+        /* Ensure <nav> is a positioning context */
+        nav.navbar {
+          position: relative !important;
+        }
+
+        /* When collapsed menu appears, style with solid dark-green background */
+        .navbar-collapse {
+          position: absolute !important;
+          top: 100% !important;      /* immediately below <nav> */
+          right: 1rem !important;    /* align to the right edge */
+          background-color: #0b3d2e !important;   /* dark-green theme */
+          border: 2px solid #ffcc70 !important;   /* gold border */
+          border-radius: 8px !important;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+          width: 160px !important;    /* fit three links */
+          padding: 0.5rem 0 !important;
+          z-index: 9999 !important;
+        }
+
+        /* Stack nav items vertically */
+        .navbar-nav {
+          flex-direction: column !important;
+        }
+
+        .navbar-nav .nav-item {
+          margin: 0;
+        }
+
+        /* Gold-colored links, padded */
+        .navbar-nav .nav-link {
+          color: #ffcc70 !important;
+          padding: 0.5rem 1rem !important;
+          font-weight: 500;
+          font-size: 1rem;
+          text-align: left;
+        }
+
+        .navbar-nav .nav-link:hover {
+          color: #ffe190 !important;
+          background-color: rgba(255, 204, 112, 0.1) !important;
         }
       }
+      /* ────────────────────────────────────────────────────────────── */
+      /* NO OTHER CHANGES BELOW */
     </style>
   </head>
+
   <body>
     <div id="main-wrapper" class="background-wrapper">
       <!-- Navbar -->
@@ -94,7 +126,26 @@
       >
         <div class="intro-wrapper">
           <h2 style="color: #ffcc70; text-align: center">Introduction</h2>
-          <p id="typed-paragraph" style="color: #f8f9fa; font-size: 1.1rem"></p>
+          <p
+            style="
+              color: #f8f9fa;
+              font-size: 1.1rem;
+              margin-bottom: 20px;
+            "
+          >
+            Mehndi By Simra is a premier provider of intricate henna designs for
+            weddings, festivals, and special occasions. Known for precision and
+            artistry, the studio specializes in blending traditional patterns
+            with contemporary styles to suit a wide range of cultural and
+            personal preferences. With over ten years of experience, lead artist
+            Simra is recognized for creating bespoke designs that leave a
+            lasting impression.
+            <br /><br />
+            Every application is executed with a focus on detail, hygiene, and
+            client comfort. Mehndi By Simra is dedicated to delivering
+            exceptional quality while ensuring an elegant and seamless experience
+            from consultation to final stain.
+          </p>
         </div>
       </section>
 
@@ -115,20 +166,27 @@
       </footer>
     </div>
 
-    <!-- Background animation control -->
+    <!-- Pause/Resume background -->
     <script>
       function pauseBackground() {
-        document.getElementById("main-wrapper").classList.add("paused");
+        document
+          .getElementById("main-wrapper")
+          .classList.add("paused");
       }
-
       function resumeBackground() {
-        document.getElementById("main-wrapper").classList.remove("paused");
+        document
+          .getElementById("main-wrapper")
+          .classList.remove("paused");
       }
     </script>
 
-    <!-- Scripts -->
+    <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <!-- Main script -->
     <script src="script.js"></script>
   </body>
 </html>
