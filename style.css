@@ -132,7 +132,7 @@ footer {
 }
 
 .navbar-nav .nav-item .nav-link {
-  color: #f4f4f4;
+  color: #f4f9f4;
   padding: 10px 15px;
   transition: color 0.3s ease;
 }
@@ -235,7 +235,8 @@ footer p {
 
   /* 2) Disable hero fade/dim and other animations */
   .hero {
-    height: 40vh;
+    height: 65vh;            /* ← increased from 40vh to 65vh */
+    min-height: 300px;       /* ensure full image/text */
     background-position: top center;
     background-size: cover;
     animation: none !important;
