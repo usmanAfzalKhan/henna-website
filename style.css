@@ -1,4 +1,13 @@
-/* Base background & movement (applies to all screen sizes) */
+/* ========================================================================
+   style.css for Mehndi By Simra
+   ------------------------------------------------------------------------
+   Contains global styling, responsive adjustments, and plugin overrides
+   ======================================================================== */
+
+
+/* ----------------------------------------
+   1. Base background & movement (all sizes)
+   ---------------------------------------- */
 body {
   background-color: #0b3d2e;
   background-image: url("images/background.png");
@@ -10,22 +19,28 @@ body {
 }
 
 @keyframes backgroundMove {
-  from { background-position: 0 0; }
-  to   { background-position: 1000px 1000px; }
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 1000px 1000px;
+  }
 }
 
-/* Pause state when hovering over navbar or certain sections */
 .paused {
+  /* Pause background animation when needed */
   animation-play-state: paused !important;
 }
 
-/* Subtle overlay layers to add depth */
+/* Subtle overlay layers for depth */
 body::before,
 body::after {
   content: "";
   position: fixed;
-  top: 0; left: 0;
-  width: 200%; height: 200%;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
   background-image: url("images/background.png");
   background-repeat: repeat;
   background-size: 300px 300px;
@@ -37,21 +52,33 @@ body::after {
 body::before {
   animation: moveLayer1 120s linear infinite;
 }
-body::after  {
+
+body::after {
   animation: moveLayer2 120s linear infinite;
 }
 
 @keyframes moveLayer1 {
-  0%   { transform: translate(0, 0); }
-  100% { transform: translate(-300px, -300px); }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-300px, -300px);
+  }
 }
 
 @keyframes moveLayer2 {
-  0%   { transform: translate(-150px, -150px); }
-  100% { transform: translate(-450px, -450px); }
+  0% {
+    transform: translate(-150px, -150px);
+  }
+  100% {
+    transform: translate(-450px, -450px);
+  }
 }
 
-/* Hero section styling (identical across pages) */
+
+/* ------------------------------
+   2. Hero section (all devices)
+   ------------------------------ */
 .hero {
   background-image: url("images/hero.png");
   background-size: cover;
@@ -69,14 +96,25 @@ body::after  {
 }
 
 @keyframes heroDim {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* Fade-in for sections/cards/footers */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 section,
@@ -86,16 +124,21 @@ footer {
   animation: fadeIn 1.5s ease forwards;
 }
 
-/* Dark translucent wrapper for intro & FAQ & contact forms */
+
+/* ---------------------------------------
+   3. Dark translucent wrapper (common)
+   --------------------------------------- */
 .intro-wrapper {
   background-color: rgba(0, 0, 0, 0.3);
   padding: 30px;
   border-radius: 10px;
   margin-bottom: 30px;
-  overflow: visible; /* Ensure dropdowns aren’t clipped */
 }
 
-/* Navbar styling */
+
+/* ------------------------
+   4. Navbar (desktop view)
+   ------------------------ */
 .navbar {
   background-color: transparent;
   border-bottom: 2px solid #ddd;
@@ -116,7 +159,7 @@ footer {
   color: #ffcc70;
 }
 
-/* Custom Toggler */
+/* Custom hamburger toggler */
 .navbar-toggler {
   border: none;
   background: none;
@@ -144,10 +187,18 @@ footer {
   transition: all 0.3s ease-in-out;
 }
 
-.navbar-toggler-icon::before { top: -8px; }
-.navbar-toggler-icon::after  { bottom: -8px; }
+.navbar-toggler-icon::before {
+  top: -8px;
+}
 
-/* Footer styling */
+.navbar-toggler-icon::after {
+  bottom: -8px;
+}
+
+
+/* ------------------------
+   5. Footer (common)
+   ------------------------ */
 footer {
   background-color: transparent;
   padding: 20px;
@@ -160,7 +211,10 @@ footer p {
   font-size: 0.875rem;
 }
 
-/* Links without default underlines */
+
+/* ------------------------------
+   6. Links without underlines
+   ------------------------------ */
 .no-style-link {
   text-decoration: none;
   color: inherit;
@@ -170,7 +224,10 @@ footer p {
   filter: brightness(1.8);
 }
 
-/* Modal tweaks for images/videos */
+
+/* -------------------------------
+   7. Modal tweaks for media
+   ------------------------------- */
 .modal-body img,
 .modal-body video {
   max-width: 90%;
@@ -191,73 +248,20 @@ footer p {
   border-radius: 10px;
 }
 
-/* ============================================= */
-/* Form‐Input Styling to Match Dark Green Theme  */
-/* ============================================= */
 
-/* Make all form fields blend with the dark green background */
-.form-control {
-  background-color: rgba(0, 0, 0, 0.2); /* slightly transparent black */
-  color: #f4f4f4;                         /* light text */
-  border: 1px solid #7b3f00;              /* dark brownish‐green border */
-  border-radius: 4px;
-  box-shadow: none;
-}
-
-/* Placeholder text a bit lighter */
-.form-control::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* On focus, highlight border with the gold accent and remove default box‐shadow */
-.form-control:focus {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #f4f4f4;
-  border-color: #ffcc70;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(255, 204, 112, 0.3);
-}
-
-/* Date‐picker field styling */
-input[type="date"].form-control {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #f4f4f4;
-}
-
-/* Dropdown (select) styling */
-select.form-control {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #f4f4f4;
-  border: 1px solid #7b3f00;
-}
-
-/* Textarea styling */
-textarea.form-control {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #f4f4f4;
-  border: 1px solid #7b3f00;
-}
-
-/* Adjust button color as well to match theme */
-.btn-warning {
-  background-color: #ffcc70;
-  border-color: #e6b85c;
-  color: #0b3d2e;
-}
-
-.btn-warning:hover,
-.btn-warning:focus {
-  background-color: #e6b85c;
-  border-color: #d4a148;
-  color: #0b3d2e;
-  box-shadow: none;
-}
-
-/* ================================= */
-/* Mobile‐specific tweaks (≤768px)    */
-/* ================================= */
+/* =====================================
+   8. Mobile-specific tweaks (max-width:768)
+   ===================================== */
 @media (max-width: 768px) {
-  /* 1) Keep lightweight background movement, remove heavy overlays */
+  /* 8.1) Simplify/disable hero animation */
+  .hero {
+    height: 40vh;
+    background-position: top center;
+    background-size: cover;
+    animation: none !important;
+  }
+
+  /* 8.2) Keep background moving but hide heavy overlays */
   body {
     animation: backgroundMove 120s linear infinite !important;
   }
@@ -266,27 +270,27 @@ textarea.form-control {
     display: none !important;
   }
 
-  /* 2) Hero: keep at full height (65vh) on most mobile until very small */
-  .hero {
-    height: 65vh !important;
-    min-height: 300px;
-    animation: none !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    border-top: 4px solid #7b3f00 !important;
-    border-bottom: 4px solid #7b3f00 !important;
-  }
-
-  /* 3) Pull Introduction right under hero’s bottom border */
+  /* 8.3) Intro padding */
   .intro-wrapper {
-    margin-top: -4px !important; /* sits flush under border */
     padding: 15px;
   }
 
-  /* 4) Keep card-body dark-green */
+  /* 8.4) Shrink some fonts and responsive images */
+  .nav-link,
+  .card-text,
+  .form-control {
+    font-size: 0.95rem;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 8.5) Card-body styling */
   .card-body {
-    background-color: #0b3d2e !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
     text-align: center;
   }
   .card-body .card-text {
@@ -295,7 +299,13 @@ textarea.form-control {
     margin-bottom: 0;
   }
 
-  /* 5) Navbar-collapse dropdown styling */
+  /* 8.6) Modal sizing on small screens */
+  .modal-dialog {
+    margin: 1rem auto;
+    max-width: 95%;
+  }
+
+  /* 8.7) Mobile menu dropdown below toggler */
   nav.navbar {
     position: relative !important;
   }
@@ -329,27 +339,18 @@ textarea.form-control {
     background-color: rgba(255, 204, 112, 0.1) !important;
   }
 
-  /* 6) Disable other transitions on mobile */
+  /* 8.8) Disable transitions on mobile elements */
   .navbar-brand img,
   .nav-link,
   .btn,
   .btn-link {
     transition: none !important;
   }
-
-  img,
-  video {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .modal-dialog {
-    margin: 1rem auto;
-    max-width: 95%;
-  }
 }
 
-/* Desktop glow effect on logo */
+/* ---------------------------------------
+   9. Desktop glow effect on logo (min-width:769)
+   --------------------------------------- */
 @media only screen and (min-width: 769px) {
   .navbar-brand img {
     transition: transform 0.3s ease, filter 0.3s ease;
@@ -360,65 +361,132 @@ textarea.form-control {
   }
 }
 
-/* Responsive hero adjustment in very small mobile view (≤576px) */
+/* -----------------------------------------------------
+   10. Responsive hero adjustment for very small widths
+   ----------------------------------------------------- */
 @media (max-width: 576px) {
-  /* Hero shrinks to 40vh only on very narrow screens */
   .hero {
-    height: 40vh !important;
-    min-height: 200px;
-    animation: none !important;
-    background-size: cover !important;
-    background-position: top center !important;
-    background-repeat: no-repeat !important;
-    border-top: 4px solid #7b3f00 !important;
-    border-bottom: 4px solid #7b3f00 !important;
+    height: 65vh;
+    min-height: 250px;
+    background-size: cover;
+    background-position: center center;
   }
 }
 
-/* ============================================= */
-/* IntlTelInput dropdown positioning & styling   */
-/* ============================================= */
+/* ===========================================
+   Override for the country dropdown list
+   =========================================== */
 
-/* 1) Make the flag-container a positioning context */
-.iti__flag-container {
-  position: relative;
-}
-
-/* 2) Force the country-list to drop down under that container */
-.iti__country-list {
-  position: absolute !important;
-  top: 100% !important;       /* immediately below .iti__flag-container */
-  left: 0 !important;         /* align left edge under the flag */
-  transform: none !important; /* cancel any translateX that pushes it off */
-  
-  /* 3) Styling so it’s legible & confined */
-  background-color: #fff !important;
-  width: 250px !important;
-  max-height: 200px !important;
-  overflow-y: auto !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  z-index: 9999 !important;
-}
-
-/* 4) Make sure each row in the list is easy to read */
+/* Make each country row’s background white and text black */
 .iti__country {
-  padding: 6px 10px !important;
-  color: #000 !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
 }
 
-/* 5) Keep flags a normal size inside the list */
-.iti__flag {
-  width: 20px;
-  height: 15px;
+/* When you hover over a country, give it a light gray background */
+.iti__country:hover {
+  background-color: #eeeeee !important;
 }
 
-/* 6) Prevent the default flag-container from pushing layout */
-.iti__flag-container,
-.iti__selected-flag {
-  display: inline-block;
+/* Ensure the country‐name text is black */
+.iti__country-name {
+  color: #000000 !important;
 }
 
-/* 7) Override any inherited width so input stays tidy */
-.iti.iti--allow-dropdown {
-  width: 100% !important;
+/* Ensure the dial code (e.g. +1, +44) text is also black */
+.iti__dial-code {
+  color: #000000 !important;
+}
+
+/* If you use the "preferred countries" section, force them to the same style */
+.iti__country.iti__preferred {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* =======================================================
+   14. Make all form‐control fields match the site theme
+   ======================================================= */
+
+/* Apply to text, tel, number, email, date, etc. */
+.form-control {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: #f4f4f4 !important;
+  border: 1px solid #ffcc70 !important;
+  border-radius: 4px !important;
+}
+
+/* Also override the placeholder color so it’s visible on dark */
+.form-control::placeholder {
+  color: rgba(244, 244, 244, 0.6) !important;
+}
+
+/* Specifically style textareas (multi‐line) */
+textarea.form-control {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: #f4f4f4 !important;
+  border: 1px solid #ffcc70 !important;
+  border-radius: 4px !important;
+  resize: vertical; /* allow vertical resize only */
+}
+
+/* If any input has focus, keep the box dark and remove default blue glow */
+.form-control:focus {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  color: #ffffff !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* The date picker arrow icon sits within the input; ensure that container is transparent */
+.form-control[type="date"]::-webkit-calendar-picker-indicator {
+  filter: brightness(0) invert(1);
+}
+
+/* If you have any file inputs, force them dark too */
+input[type="file"].form-control {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: #f4f4f4 !important;
+  border: 1px solid #ffcc70 !important;
+}
+
+/* If select forms are already styled, just reinforce consistency */
+select.form-control {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: #f4f4f4 !important;
+  border: 1px solid #ffcc70 !important;
+  border-radius: 4px !important;
+}
+
+/* And when a select item is open, ensure its list items match theme overrides (if needed) */
+.iti, /* for phone‐input wrapper */
+.iti .form-control {
+  background-color: rgba(0,0,0,0.2) !important;
+  color: #f4f4f4 !important;
+}
+
+/* Finally, if any .input-group exists (e.g. Bootstrap addons), style children */
+.input-group .form-control {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: #f4f4f4 !important;
+  border: 1px solid #ffcc70 !important;
+}
+
+/* Ensure the closed <select> matches the dark translucent background */
+select#eventType.form-control {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: #f4f4f4 !important;
+  border: 1px solid #ffcc70 !important;
+}
+
+/* Style each option’s dropdown background + text */
+select#eventType.form-control option {
+  background-color: #0b3d2e !important;  /* dark green matching the page */
+  color: #f4f4f4 !important;             /* light text */
+}
+
+/* When you expand the dropdown, ensure hovered option is highlighted */
+select#eventType.form-control option:hover {
+  background-color: rgba(255, 204, 112, 0.2) !important; /* light gold hover */
+  color: #000000 !important;                              /* black text on hover */
 }
