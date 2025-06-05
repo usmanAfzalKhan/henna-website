@@ -490,3 +490,27 @@ select#eventType.form-control option:hover {
   background-color: rgba(255, 204, 112, 0.2) !important; /* light gold hover */
   color: #000000 !important;                              /* black text on hover */
 }
+
+@media (max-width: 768px) {
+  .hero {
+    background-size: contain !important;
+    background-position: center center !important;
+    height: auto !important;
+    padding-top: 50%; /* preserve aspect ratio; adjust as needed */
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+#main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* Make the FAQ section take up all available space before the footer */
+section.container {
+  flex: 1;
+}
