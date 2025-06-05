@@ -4,7 +4,6 @@
    Contains global styling, responsive adjustments, and plugin overrides
    ======================================================================== */
 
-
 /* ----------------------------------------
    1. Base background & movement (all sizes)
    ---------------------------------------- */
@@ -75,7 +74,6 @@ body::after {
   }
 }
 
-
 /* ------------------------------
    2. Hero section (all devices)
    ------------------------------ */
@@ -96,8 +94,7 @@ body::after {
 }
 
 @keyframes heroDim {
-  0%,
-  100% {
+  0%, 100% {
     opacity: 1;
   }
   50% {
@@ -124,7 +121,6 @@ footer {
   animation: fadeIn 1.5s ease forwards;
 }
 
-
 /* ---------------------------------------
    3. Dark translucent wrapper (common)
    --------------------------------------- */
@@ -134,7 +130,6 @@ footer {
   border-radius: 10px;
   margin-bottom: 30px;
 }
-
 
 /* ------------------------
    4. Navbar (desktop view)
@@ -195,7 +190,6 @@ footer {
   bottom: -8px;
 }
 
-
 /* ------------------------
    5. Footer (common)
    ------------------------ */
@@ -211,7 +205,6 @@ footer p {
   font-size: 0.875rem;
 }
 
-
 /* ------------------------------
    6. Links without underlines
    ------------------------------ */
@@ -223,7 +216,6 @@ footer p {
 .no-style-link:hover {
   filter: brightness(1.8);
 }
-
 
 /* -------------------------------
    7. Modal tweaks for media
@@ -241,17 +233,17 @@ footer p {
   max-width: 90%;
 }
 
+/* Make modal-content less transparent */
 .modal-content {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6) !important;
   border: none;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 }
 
-
-/* =====================================
+/* ----------------------------------------
    8. Mobile-specific tweaks (max-width:768)
-   ===================================== */
+   ---------------------------------------- */
 @media (max-width: 768px) {
   /* 8.1) Simplify/disable hero animation */
   .hero {
@@ -454,14 +446,14 @@ input[type="file"].form-control {
 select.form-control {
   background-color: rgba(0, 0, 0, 0.2) !important;
   color: #f4f4f4 !important;
-  border: 1px solid #ffcc70 !important;
+  border: 1px solid (#ffcc70) !important;
   border-radius: 4px !important;
 }
 
 /* And when a select item is open, ensure its list items match theme overrides (if needed) */
-.iti, /* for phone‐input wrapper */
+.iti,
 .iti .form-control {
-  background-color: rgba(0,0,0,0.2) !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
   color: #f4f4f4 !important;
 }
 
@@ -481,14 +473,14 @@ select#eventType.form-control {
 
 /* Style each option’s dropdown background + text */
 select#eventType.form-control option {
-  background-color: #0b3d2e !important;  /* dark green matching the page */
-  color: #f4f4f4 !important;             /* light text */
+  background-color: #0b3d2e !important; /* dark green matching the page */
+  color: #f4f4f4 !important; /* light text */
 }
 
 /* When you expand the dropdown, ensure hovered option is highlighted */
 select#eventType.form-control option:hover {
   background-color: rgba(255, 204, 112, 0.2) !important; /* light gold hover */
-  color: #000000 !important;                              /* black text on hover */
+  color: #000000 !important; /* black text on hover */
 }
 
 @media (max-width: 768px) {
@@ -498,21 +490,6 @@ select#eventType.form-control option:hover {
     height: auto !important;
     padding-top: 50%; /* preserve aspect ratio; adjust as needed */
   }
-}
-
-html, body {
-  height: 100%;
-}
-
-#main-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-
-/* Make the FAQ section take up all available space before the footer */
-section.container {
-  flex: 1;
 }
 
 /* ===================================================================
@@ -529,3 +506,80 @@ section.container {
   }
 }
 
+/* Portfolio lightbox navigation instructions */
+.desktop-instruction {
+  display: block;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6) !important; /* less transparent */
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.mobile-instruction {
+  display: none;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6) !important; /* less transparent */
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .desktop-instruction {
+    display: none !important;
+  }
+  .mobile-instruction {
+    display: block !important;
+  }
+}
+
+/* Desktop arrows overlay (only on large screens) */
+#lightboxModal .arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  opacity: 0.75;
+  cursor: pointer;
+  z-index: 1050; /* on top of modal content */
+  user-select: none;
+}
+
+#lightboxModal .arrow-left {
+  left: 16px;
+}
+
+#lightboxModal .arrow-right {
+  right: 16px;
+}
+
+#lightboxModal .arrow-btn:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  #lightboxModal .arrow-btn {
+    display: none !important;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* Make the FAQ section take up all available space before the footer */
+section.container {
+  flex: 1;
+}
