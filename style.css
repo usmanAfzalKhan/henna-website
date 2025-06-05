@@ -514,3 +514,18 @@ html, body {
 section.container {
   flex: 1;
 }
+
+/* ===================================================================
+   15. Force portfolio card-body to stay green on mobile
+   =================================================================== */
+@media (max-width: 768px) {
+  /* Only affect the “Designs” grid under #designs */
+  #designs .card-body {
+    background-color: #0b3d2e !important;
+  }
+  /* Make sure the text inside stays gold */
+  #designs .card-body .card-text {
+    color: #ffcc70 !important;
+  }
+}
+
