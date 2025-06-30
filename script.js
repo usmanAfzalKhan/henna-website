@@ -83,7 +83,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "images/party4.jpeg",
         { type: "video", src: "images/party8.mp4" },
         "images/party5.jpeg",
-        "images/party6.jpeg"
+        "images/party6.jpeg",
+        "images/party9.jpeg",
+        "images/party10.jpeg",
+        "images/party11.jpeg",
+        "images/party12.jpeg"
       ],
       festive: [
         "images/festive1.jpeg",
@@ -95,7 +99,10 @@ document.addEventListener("DOMContentLoaded", function () {
         "images/festive5.jpeg",
         "images/festive6.jpeg",
         "images/festive7.jpeg",
-        "images/festive9.jpeg"
+        "images/festive9.jpeg",
+        "images/festive11.jpeg",
+        "images/festive12.jpeg",
+        "images/festive13.jpeg"
       ]
     };
 
