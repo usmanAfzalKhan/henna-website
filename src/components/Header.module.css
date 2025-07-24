@@ -1,45 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap");
+
 .header {
-  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 14px 32px;
-  background: #183321; /* deep green */
-  box-shadow: 0 2px 16px rgba(24,51,33, 0.08);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #2c1a15; /* warm dark brown */
+  animation: fadeIn 0.8s ease forwards;
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-.logoWrap {
+.logoSection {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .logo {
-  height: 60px;
+  height: 90px;
   width: auto;
-  border-radius: 50%;
-  border: 2px solid #d1ac36; /* gold accent */
-  background: #183321;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 0 5px #f8c471);
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  font-family: "Great Vibes", cursive;
+  color: #f4e6d8; /* soft cream */
+  user-select: none;
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+
+.logoText span:not(.simra) {
+  margin: 0;
+  padding: 0;
+}
+
+.simra {
+  font-size: 1.3rem;
 }
 
 .nav {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #f4e6d8;
+  user-select: none;
 }
 
 .link {
-  color: #d1ac36; /* gold */
-  font-weight: 600;
-  font-size: 1.1rem;
-  letter-spacing: 0.03em;
   text-decoration: none;
-  transition: color 0.2s;
-  font-family: 'Great Vibes', cursive, 'Segoe UI', sans-serif; /* see below for font setup */
+  color: inherit;
+  position: relative;
+  transition: color 0.3s ease;
 }
 
 .link:hover {
-  color: #fff8dc;
-  text-shadow: 0 2px 6px #d1ac3699;
+  color: #f8c471;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 3.5px;
+  width: 100%;
+  background-color: #f4e6d8;
+  border-radius: 2px;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger:hover span {
+  background-color: #f8c471;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 100%;
+    right: 2rem;
+    background-color: #3a2618;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    min-width: 140px;
+  }
+
+  .nav.showMenu {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .link {
+    padding: 0.5rem 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* Animations */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

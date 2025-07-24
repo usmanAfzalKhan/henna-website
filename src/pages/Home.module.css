@@ -1,45 +1,79 @@
-.home {
-  min-height: 60vh;
+.homepage {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background: #12362d;
-  color: #ffe174;
-  padding: 40px 20px;
+  /* Animation & other styles as in your OCD code */
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  animation: homepageFadeIn 1s cubic-bezier(.28,1.28,.35,.97) 0.05s both;
 }
 
-.logo {
-  width: 180px;
-  margin-bottom: 32px;
+@keyframes homepageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  60% {
+    opacity: 0.85;
+    transform: translateY(10px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.heading {
-  font-family: serif;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-
-.text {
-  max-width: 600px;
-  font-size: 1.15rem;
+.homepageWelcome {
+  max-width: 800px;
+  padding: 3.5rem 1rem 0.2rem 1rem;
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 1.1rem;
+  opacity: 0;
+  transform: translateY(36px) scale(0.96);
+  animation: bubblePop 0.74s cubic-bezier(.25,1.7,.38,.96) 0.38s both;
 }
 
-.button {
-  background: #ffe174;
-  color: #12362d;
-  border: none;
-  border-radius: 24px;
-  padding: 12px 32px;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  transition: background 0.2s;
+@keyframes bubblePop {
+  0% {
+    opacity: 0;
+    transform: translateY(36px) scale(0.96);
+  }
+  60% {
+    opacity: 0.93;
+    transform: translateY(-8px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.button:hover {
-  background: #ffe69b;
+.homepageWelcome h1 {
+  font-family: 'Playfair Display', serif;  /* Use your preferred font */
+  font-size: 2.5rem;
+  margin-bottom: 0.7rem;
+  color: #B57F50; /* Example mehndi-inspired gold/brown */
+}
+
+.homepageWelcome p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  color: #5E4630; /* Muted brown or your theme color */
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .homepageWelcome {
+    padding-top: 2.3rem;
+    padding-bottom: 0.06rem;
+    margin-bottom: 0.85rem;
+  }
+  .homepageWelcome h1 {
+    font-size: 1.48rem;
+    margin-bottom: 0.34rem;
+  }
+  .homepageWelcome p {
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
 }

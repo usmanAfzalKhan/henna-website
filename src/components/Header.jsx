@@ -1,25 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom"; // or "next/link" if using Next.js
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
     <header className={styles.header}>
-      <div className={styles.logoWrap}>
+      <div className={styles.logoSection}>
         <img
           src="/images/logo.png"
-          alt="Mehndi by Simra"
+          alt="Mehndi By Simra Logo"
           className={styles.logo}
+          onMouseEnter={() => {}}
         />
+        <div className={styles.logoText}>
+          <span>Mehndi By</span>
+          <span>Simra</span>
+        </div>
       </div>
-      <nav className={styles.nav}>
-        <a href="/" className={styles.link}>Home</a>
-        <a href="/about" className={styles.link}>About</a>
-        <a href="/gallery" className={styles.link}>Gallery</a>
-        <a href="/services" className={styles.link}>Services</a>
-        <a href="/faq" className={styles.link}>FAQ</a>
-        <a href="/contact" className={styles.link}>Contact</a>
+
+      <nav className={`${styles.nav} ${menuOpen ? styles.showMenu : ""}`}>
+        <a href="/" className={styles.link} onClick={() => setMenuOpen(false)}>
+          Home
+        </a>
+        <a href="/about" className={styles.link} onClick={() => setMenuOpen(false)}>
+          About
+        </a>
+        <a href="/gallery" className={styles.link} onClick={() => setMenuOpen(false)}>
+          Gallery
+        </a>
+        <a href="/services" className={styles.link} onClick={() => setMenuOpen(false)}>
+          Services
+        </a>
+        <a href="/faq" className={styles.link} onClick={() => setMenuOpen(false)}>
+          FAQ
+        </a>
+        <a href="/contact" className={styles.link} onClick={() => setMenuOpen(false)}>
+          Contact
+        </a>
       </nav>
+
+      <div
+        className={styles.hamburger}
+        onClick={toggleMenu}
+        aria-label="Toggle menu"
+      >
+        <span />
+        <span />
+        <span />
+      </div>
     </header>
   );
 };
