@@ -1,0 +1,45 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  background: #183321; /* deep green */
+  box-shadow: 0 2px 16px rgba(24,51,33, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  border-radius: 50%;
+  border: 2px solid #d1ac36; /* gold accent */
+  background: #183321;
+}
+
+.nav {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.link {
+  color: #d1ac36; /* gold */
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-family: 'Great Vibes', cursive, 'Segoe UI', sans-serif; /* see below for font setup */
+}
+
+.link:hover {
+  color: #fff8dc;
+  text-shadow: 0 2px 6px #d1ac3699;
+}
