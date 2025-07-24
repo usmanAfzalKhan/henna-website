@@ -1,20 +1,14 @@
-/* Make html and body take full viewport */
-html, body, #root {
+/* Reset default margin/padding and full viewport size */
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  min-height: 100vh;
-  min-width: 100vw;
-  box-sizing: border-box;
-  background-color: #1e1e1e; /* or your background color */
-  font-family: Arial, sans-serif; /* or your font */
+  background-color: #1a1919; /* Match your site's dark background */
+  font-family: 'Arial', sans-serif; /* Or your preferred global font */
 }
 
-/* Optional: Make the main app container also fill */
-#root > div {
+#root {
   min-height: 100vh;
-  min-width: 100vw;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 }
