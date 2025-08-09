@@ -1,149 +1,143 @@
 /* src/components/Hero.module.css */
 
-/* Container */
+/* Full-bleed WITHOUT 100vw (no right-edge gap) */
 .hero {
-  width: 100%;
-  height: 80vh;
   position: relative;
-  overflow: hidden;
-}
-
-/* Each slide uses a background-image (set in Hero.jsx) */
-.slide {
+  align-self: stretch;
+  flex: 0 0 auto;
   width: 100%;
-  height: 100%;
-  background-size: cover;       /* cover entire header */
-  background-position: center;
-  background-repeat: no-repeat; /* never tile */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  height: 80vh;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: #0b2f2e;
 }
 
-/* Gradient overlay for text contrast */
+/* horizontal slider track */
+.track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+  z-index: 0;
+  touch-action: pan-y;
+}
+.dragging { cursor: grabbing; }
+
+/* each slide fills the viewport width */
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  /* background-position is set per-slide via inline style (bgPosition) */
+  background-repeat: no-repeat;
+}
+
+/* gradient overlay – never fully transparent on the right */
 .gradient {
   position: absolute;
   inset: 0;
+  z-index: 1;
+  pointer-events: none;
   background: linear-gradient(
     to right,
-    rgba(11, 47, 46, 0.85) 0%,
-    rgba(11, 47, 46, 0.3) 40%,
-    transparent 70%
+    rgba(11,47,46,.85) 0%,
+    rgba(11,47,46,.30) 40%,
+    rgba(11,47,46,.30) 100%
   );
-  z-index: 2;
 }
 
-/* Logo in bottom-right on desktop */
-.logo {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  width: 4rem;       /* smaller than before */
-  z-index: 4;
-}
-
-/* Content (title/subtitle/cta) */
+/* text content (base) */
 .content {
   position: absolute;
-  z-index: 3;
+  z-index: 2;
   color: #ffe174;
-  max-width: 45%;
+  max-width: min(45%, 720px);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.content h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  margin: 0 0 0.5rem;
+/* left/right positions (choose per slide) */
+.contentLeft {
+  left: clamp(16px, 5vw, 5%);
+  text-align: left;
 }
 
-.content p {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
-  margin: 0 0 1.5rem;
+.contentRight {
+  right: clamp(16px, 5vw, 5%);
+  text-align: right;
 }
 
-.cta {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background: #ffe174;
-  color: #0b2f2e;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-}
+/* typography + cta */
+.content h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 0 0 .5rem; }
+.content p  { font-family: 'Inter', sans-serif;  font-size: 1.1rem; margin: 0 0 1.5rem; }
+.cta { display:inline-block; padding:.75rem 1.5rem; background:#ffe174; color:#0b2f2e; border-radius:6px; font-weight:600; text-decoration:none; }
 
-/* Desktop: text on left-middle */
-@media (min-width: 768px) {
-  .content {
-    top: 50%;
-    left: 5%;
-    transform: translateY(-50%);
-    text-align: left;
-  }
-}
-
-/* Mobile tweaks */
-@media (max-width: 767px) {
-  /* Logo moves to top-right and shrinks */
-  .logo {
-    top: 1rem;
-    bottom: auto;
-    right: 1rem;
-    width: 3rem;
-  }
-
-  /* Gradient fades up from bottom */
-  .gradient {
-    background: linear-gradient(
-      to top,
-      rgba(11, 47, 46, 0.85) 0%,
-      rgba(11, 47, 46, 0.3) 40%,
-      transparent 70%
-    );
-  }
-
-  /* Text at bottom-center */
-  .content {
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 90%;
-    text-align: center;
-  }
-}
-
-/* Navigation buttons */
-.prev,
-.next {
+/* arrows */
+.prev, .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   color: #ffe174;
-  font-size: 2rem;
-  padding: 0 1rem;
+  font-size: 2.25rem;
+  line-height: 1;
+  padding: 0 .75rem;
   cursor: pointer;
   z-index: 3;
+  user-select: none;
 }
 .prev { left: 0; }
 .next { right: 0; }
 
-/* Pagination dots */
+/* dots */
 .dots {
   position: absolute;
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 0.5rem;
+  gap: .5rem;
   z-index: 3;
 }
-.dot,
-.dotActive {
-  width: 0.75rem;
-  height: 0.75rem;
+.dot, .dotActive {
+  width: .75rem;
+  height: .75rem;
   border-radius: 50%;
-  background: rgba(255, 225, 116, 0.5);
+  background: rgba(255,225,116,.5);
   cursor: pointer;
 }
-.dotActive {
-  background: #ffe174;
+.dotActive { background: #ffe174; }
+
+/* small logo badge bottom-right */
+.logoBadge {
+  position: absolute;
+  right: clamp(10px, 2vw, 16px);
+  bottom: clamp(10px, 2vw, 16px);
+  z-index: 4;
+  display: block;
+}
+.logoBadge img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.35);
+  opacity: .95;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.logoBadge:hover img { transform: scale(1.04); opacity: 1; }
+
+/* mobile */
+@media (max-width: 767px) {
+  .content {
+    bottom: 10%;
+    top: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    max-width: 90%;
+    text-align: center;
+  }
 }

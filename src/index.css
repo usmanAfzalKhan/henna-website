@@ -4,8 +4,9 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #1a1919; /* Match your site's dark background */
-  font-family: 'Arial', sans-serif; /* Or your preferred global font */
+  overflow-x: hidden;          
+  background-color: #1a1919;
+  font-family: 'Arial', sans-serif;
 }
 
 #root {
