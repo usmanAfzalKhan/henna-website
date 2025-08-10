@@ -1,56 +1,59 @@
-// src/pages/About.jsx
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./About.module.css";
 
 export default function About() {
-  useEffect(() => {
-    document.title = "About | Mehndi by Simra";
-  }, []);
-
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.title}>About Mehndi by Simra</h1>
         <p className={styles.lede}>
-          For over nine years, Simra has been transforming hands into living
-          works of art. From intimate gatherings to grand celebrations, her
-          passion for mehndi is more than tradition—it’s a way to bring joy and
-          beauty to every special occasion.
+          At Mehndi by Simra, every design tells a story. With over 9 years of
+          experience, Simra blends traditional artistry with modern elegance.
+          Whether it’s a small gathering or a grand celebration, her work is
+          loved for its precision, beauty, and lasting impact.
         </p>
       </header>
 
       <section className={styles.section}>
-        <h2 className={styles.h2}>Our Love for Mehndi</h2>
+        <h2 className={styles.h2}>Our Passion</h2>
         <p>
-          Mehndi is more than a design; it’s a connection to culture, joy, and
-          celebration. We love the magic of applying mehndi during weddings,
-          Eid, Diwali, bridal showers, and family events—moments where every
-          swirl and pattern adds to the memories being made. Seeing the smiles
-          and excitement of clients as the stain blooms is what keeps us
-          inspired.
+          Simra’s love for mehndi began at family celebrations and quickly grew
+          into a professional craft. She finds joy in making clients feel
+          special, capturing the excitement of weddings, festivals, and
+          milestone moments through intricate designs.
         </p>
       </section>
 
       <section className={styles.section}>
         <h2 className={styles.h2}>Why Choose Us</h2>
         <p>
-          We believe in creating designs that feel personal, elegant, and
-          perfectly suited to the event. Our focus on clean lines, rich stain,
-          and comfortable application means you can enjoy your day while knowing
-          your mehndi will look stunning. With attention to detail, punctuality,
-          and a warm, client-first approach, we aim to make your mehndi
-          experience as memorable as the event itself.
+          From detailed consultation to expert application, we focus on giving
+          each client a smooth, enjoyable experience. Our designs are customized
+          to match your vision, ensuring your mehndi not only looks stunning
+          but also holds personal meaning.
         </p>
       </section>
 
-      {/* Logo at the bottom */}
+      {/* Refined CTA section */}
+      <section className={styles.galleryCta}>
+        <div className={styles.galleryCard}>
+          <h3 className={styles.galleryHeading}>See the artistry up close</h3>
+          <p className={styles.galleryText}>
+            Browse real designs from bridal, festival, and party bookings.
+          </p>
+          <a href="/gallery" className={styles.galleryBtn}>
+            View Our Gallery →
+          </a>
+        </div>
+      </section>
+
       <div className={styles.logoWrap}>
         <img
           src="/images/logo.png"
-          alt="Mehndi by Simra Logo"
+          alt="Mehndi By Simra Logo"
           className={styles.logo}
         />
       </div>
-    </main>
+    </div>
   );
 }
