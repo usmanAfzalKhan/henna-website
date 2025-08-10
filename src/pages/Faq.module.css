@@ -137,3 +137,31 @@
   .answerInner { animation: none; }
   .question { transition: none; }
 }
+
+.reviewsCta {
+  text-align: center;
+  margin: 2rem 0 0;
+}
+
+.reviewsText {
+  font-family: "Inter", sans-serif;
+  font-size: 1.02rem;
+  color: var(--gold-strong);
+  margin: 0 0 .75rem;
+}
+
+.reviewsBtn {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  color: #0b1f16;
+  background: var(--gold);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.08);
+  transition: transform .16s ease, background .16s ease;
+}
+.reviewsBtn:hover {
+  transform: translateY(-1px);
+}

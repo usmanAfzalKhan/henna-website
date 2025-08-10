@@ -155,13 +155,14 @@ export default function ServiceSlug() {
       )}
 
       <nav className={styles.footerNav}>
-        <Link to="/" className={styles.link}>
+        <Link to="/" className={styles.galleryBtn}>
           Back to Home
         </Link>
-        <Link to="/#about" className={styles.linkAlt}>
-          Back to About
+        <Link to="/about" className={styles.galleryBtnAlt}>
+          Go to About
         </Link>
       </nav>
+
     </main>
   );
 }

@@ -1,3 +1,4 @@
+// src/pages/Faq.jsx
 import React, { useEffect, useRef, useState } from "react";
 import faq from "../data/faq";
 import styles from "./Faq.module.css";
@@ -6,7 +7,6 @@ function FaqItem({ item, index, isOpen, onToggle }) {
   const wrapRef = useRef(null);
   const innerRef = useRef(null);
 
-  // Smooth height transition without layout jank
   useEffect(() => {
     const wrap = wrapRef.current;
     const inner = innerRef.current;
@@ -15,11 +15,10 @@ function FaqItem({ item, index, isOpen, onToggle }) {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (isOpen) {
-      // from 0 -> exact height, then lock to auto
       const full = inner.scrollHeight;
       wrap.style.height = "0px";
       // force reflow
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      // eslint-disable-next-line no-unused-expressions
       wrap.offsetHeight;
       wrap.style.transition = reduceMotion ? "none" : "height 220ms cubic-bezier(.28,1.28,.35,.97)";
       wrap.style.height = full + "px";
@@ -33,11 +32,9 @@ function FaqItem({ item, index, isOpen, onToggle }) {
       };
       wrap.addEventListener("transitionend", done);
     } else {
-      // from auto -> exact px -> 0
-      const current = wrap.offsetHeight; // if auto, gets actual height
+      const current = wrap.offsetHeight;
       wrap.style.transition = "none";
       wrap.style.height = current + "px";
-      // next frame
       requestAnimationFrame(() => {
         wrap.style.transition = reduceMotion ? "none" : "height 200ms ease";
         wrap.style.height = "0px";
@@ -59,12 +56,7 @@ function FaqItem({ item, index, isOpen, onToggle }) {
         </span>
       </button>
 
-      <div
-        id={`faq-panel-${index}`}
-        role="region"
-        ref={wrapRef}
-        className={styles.answerWrap}
-      >
+      <div id={`faq-panel-${index}`} role="region" ref={wrapRef} className={styles.answerWrap}>
         <div ref={innerRef} className={styles.answerInner}>
           <p className={styles.answerText}>{item.answer}</p>
         </div>
@@ -101,6 +93,12 @@ export default function Faq() {
             />
           ))}
         </section>
+
+        {/* NEW: Reviews CTA at bottom */}
+        <div className={styles.reviewsCta}>
+          <p className={styles.reviewsText}>Want to see what clients say?</p>
+          <a href="/reviews" className={styles.reviewsBtn}>Read Our Reviews →</a>
+        </div>
       </div>
     </main>
   );

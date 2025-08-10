@@ -217,3 +217,38 @@
   justify-content: center;
   gap: 0.6rem;
 }
+
+.galleryBtn {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  color: #0b1f16;
+  background: var(--gold);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.08);
+  transition: transform .16s ease, background .16s ease;
+}
+
+.galleryBtn:hover {
+  transform: translateY(-1px);
+}
+
+.galleryBtnAlt {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  color: #0b1f16;
+  background: var(--gold-strong);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.08);
+  transition: transform .16s ease, background .16s ease;
+}
+
+.galleryBtnAlt:hover {
+  transform: translateY(-1px);
+}
+
