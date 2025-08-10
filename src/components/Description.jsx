@@ -12,7 +12,7 @@ export default function Description({
       blurb:
         "Intricate coverage with consult, planning, and aftercare guidance. Timed so your stain peaks on the day.",
       href: "/services/bridal",
-      cta: "Explore Bridal →",
+      cta: "Explore Bridal Service →",
       image: "/images/services/bridal-hand.webp",
     },
     {
@@ -21,7 +21,7 @@ export default function Description({
       blurb:
         "Photogenic patterns for Eid, Diwali, and community nights. Quick sets with beautiful flow and consistency.",
       href: "/services/festival",
-      cta: "Festival Sets →",
+      cta: "Explore Festival Service →",
       image: "/images/services/festival-hand.webp",
     },
     {
@@ -30,7 +30,7 @@ export default function Description({
       blurb:
         "Minimal to statement looks for birthdays, showers, and girls’ nights. Book by time or guest count.",
       href: "/services/party",
-      cta: "Party Packages →",
+      cta: "Explore Party Service →",
       image: "/images/services/party-hand.webp",
     },
   ],
