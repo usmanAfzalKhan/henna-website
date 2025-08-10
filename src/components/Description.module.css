@@ -1,0 +1,157 @@
+.section {
+  width: 100%;
+  background-color: #103423;
+  padding: 2.75rem 1rem;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  line-height: 1.25;
+  color: #ffe174;
+  margin: 0 0 0.5rem;
+}
+
+.lede {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.075rem;
+  line-height: 1.75;
+  color: #ffd700;
+  max-width: 760px;
+  margin: 0.25rem auto 1.75rem auto;
+  text-wrap: balance;
+}
+
+/* space before the new "What We Do" block */
+.servicesIntro {
+  margin-top: 1.25rem;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+/* 2-column grid; CTA centered under the text */
+.row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  grid-template-areas:
+    "thumb text"
+    "thumb cta";
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(255, 225, 116, 0.06);
+  border: 1px solid rgba(255, 225, 116, 0.18);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  text-align: left;
+}
+
+.row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.26);
+  border-color: rgba(255, 225, 116, 0.28);
+}
+
+/* image box */
+.thumb {
+  grid-area: thumb;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 225, 116, 0.05);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 225, 116, 0.18),
+    0 4px 10px rgba(0,0,0,0.22);
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform .25s ease;
+}
+.row:hover .thumb img { transform: scale(1.06); }
+
+/* text + cta */
+.text { grid-area: text; display: grid; gap: 4px; }
+
+.name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: #ffe174;
+  margin: 0;
+}
+.blurb {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #f0f7f3;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.link {
+  grid-area: cta;
+  justify-self: center;   /* center the button horizontally */
+  align-self: start;
+  margin-top: 6px;
+
+  font-family: 'Inter', sans-serif;
+  color: #ffe174;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 225, 116, 0.09);
+  box-shadow: inset 0 0 0 1px rgba(255, 225, 116, 0.22);
+  transition: background .15s ease, transform .15s ease, box-shadow .15s ease;
+  white-space: nowrap;
+}
+.link:hover {
+  background: rgba(255, 225, 116, 0.16);
+  transform: translateY(-1px);
+  box-shadow: inset 0 0 0 1px rgba(255, 225, 116, 0.35), 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .row {
+    grid-template-columns: 120px 1fr;
+    grid-template-areas:
+      "thumb text"
+      "thumb cta";
+  }
+}
+
+@media (max-width: 560px) {
+  .section { padding: 2rem 1rem; }
+  .title { font-size: 1.5rem; }
+  .lede  { font-size: 1rem; max-width: 92%; }
+  .servicesIntro { margin-top: 1rem; }
+  .row {
+    grid-template-columns: 90px 1fr;
+    grid-template-areas:
+      "thumb text"
+      "thumb cta";
+    gap: 12px;
+  }
+  .thumb { border-radius: 10px; }
+  .name { font-size: 1.15rem; }
+}

@@ -31,9 +31,6 @@ const Header = () => {
         <a href="/gallery" className={styles.link} onClick={() => setMenuOpen(false)}>
           Gallery
         </a>
-        <a href="/services" className={styles.link} onClick={() => setMenuOpen(false)}>
-          Services
-        </a>
         <a href="/faq" className={styles.link} onClick={() => setMenuOpen(false)}>
           FAQ
         </a>
