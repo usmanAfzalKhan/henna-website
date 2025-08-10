@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const Header = () => {
@@ -8,18 +9,17 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logoSection}>
+      <Link to="/" className={styles.logoSection} onClick={() => setMenuOpen(false)}>
         <img
           src="/images/logo.png"
           alt="Mehndi By Simra Logo"
           className={styles.logo}
-          onMouseEnter={() => {}}
         />
         <div className={styles.logoText}>
-          <span>Mehndi By</span>
-          <span>Simra</span>
+          <span className={styles.top}>Mehndi By</span>
+          <span className={styles.bottom}>Simra</span>
         </div>
-      </div>
+      </Link>
 
       <nav className={`${styles.nav} ${menuOpen ? styles.showMenu : ""}`}>
         <a href="/" className={styles.link} onClick={() => setMenuOpen(false)}>
@@ -40,7 +40,7 @@ const Header = () => {
       </nav>
 
       <div
-        className={styles.hamburger}
+        className={`${styles.hamburger} ${menuOpen ? styles.active : ""}`}
         onClick={toggleMenu}
         aria-label="Toggle menu"
       >

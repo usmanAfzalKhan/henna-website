@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@400;600&display=swap");
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #2c1a15; /* warm dark brown */
+  background-color: #103423; /* brand emerald */
   animation: fadeIn 0.8s ease forwards;
   position: relative;
   z-index: 1000;
@@ -16,37 +16,40 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .logo {
-  height: 90px;
+  height: 80px;
   width: auto;
   margin-right: 10px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .logo:hover {
-  transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(0 0 5px #f8c471);
+  transform: scale(1.1) rotate(3deg);
+  filter: drop-shadow(0 0 6px rgba(255, 225, 116, 0.6));
 }
 
 .logoText {
   display: flex;
   flex-direction: column;
-  font-family: "Great Vibes", cursive;
-  color: #f4e6d8; /* soft cream */
+  font-family: "Playfair Display", serif;
+  color: #ffe174; /* gold */
   user-select: none;
-  font-size: 1.8rem;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
-.logoText span:not(.simra) {
-  margin: 0;
-  padding: 0;
+.logoText .top {
+  font-size: 1.35rem;
+  letter-spacing: 0.5px;
+  font-weight: 500;
 }
 
-.simra {
-  font-size: 1.3rem;
+.logoText .bottom {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .nav {
@@ -54,7 +57,7 @@
   gap: 2rem;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #f4e6d8;
   user-select: none;
 }
@@ -67,39 +70,49 @@
 }
 
 .link:hover {
-  color: #f8c471;
+  color: #ffd700;
 }
 
 .hamburger {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 28px;
+  width: 30px;
   height: 22px;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .hamburger span {
   display: block;
-  height: 3.5px;
+  height: 3px;
   width: 100%;
   background-color: #f4e6d8;
   border-radius: 2px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
 }
 
 .hamburger:hover span {
-  background-color: #f8c471;
+  background-color: #ffd700;
 }
 
 /* Responsive */
-
 @media (max-width: 768px) {
   .nav {
     position: absolute;
     top: 100%;
     right: 2rem;
-    background-color: #3a2618;
+    background-color: #144c38;
     flex-direction: column;
     padding: 1rem;
     border-radius: 8px;
@@ -125,7 +138,6 @@
 }
 
 /* Animations */
-
 @keyframes fadeIn {
   from {
     opacity: 0;
