@@ -6,7 +6,6 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Gallery from "./pages/Gallery";
-import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 import Faq from "./pages/Faq";
 import Contact from "./pages/Contact";

@@ -1,63 +1,13 @@
 // src/pages/Contact.jsx
-import React, { useState } from "react";
-import styles from "./Contact.module.css";
+import React from "react";
 
-const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can add backend/emailjs/netlify-form logic here
-    setSubmitted(true);
-  };
-
+export default function Contact() {
   return (
-    <div className={styles.contact}>
-      <h1 className={styles.heading}>Contact</h1>
-      <p className={styles.desc}>Have questions or want to book? Reach out below!</p>
-      {!submitted ? (
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            className={styles.input}
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            className={styles.input}
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="Message"
-            className={styles.textarea}
-            value={form.message}
-            onChange={handleChange}
-            rows={5}
-            required
-          />
-          <button type="submit" className={styles.button}>Send</button>
-        </form>
-      ) : (
-        <div className={styles.thankyou}>
-          Thank you for reaching out! We’ll get back to you soon.
-        </div>
-      )}
-    </div>
+    <section style={{ maxWidth: 980, margin: "2rem auto", padding: "0 1rem", color: "#ffe174" }}>
+      <h1 style={{ fontFamily: "Playfair Display, serif", margin: 0, fontSize: "2rem" }}>Contact</h1>
+      <p style={{ fontFamily: "Inter, sans-serif", color: "#ffd700" }}>
+        Contact placeholder. Hook up your form or email later.
+      </p>
+    </section>
   );
-};
-
-export default Contact;
+}
