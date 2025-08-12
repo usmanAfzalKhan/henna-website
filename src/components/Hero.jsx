@@ -1,4 +1,3 @@
-// src/components/Hero.jsx
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Hero.module.css";
 import slides from "../data/slides";
@@ -51,6 +50,45 @@ export default function Hero() {
     transition: dragging ? "none" : "transform 400ms ease",
   };
 
+  // --- helpers for CTA ---
+  const findServicesList = () => {
+    // Prefer the UL with aria-label (stable with CSS Modules)
+    let el = document.querySelector('[aria-label="Services overview"]');
+    if (el) return el;
+
+    // Else look inside the next element sibling after hero (Description wrapper)
+    const getNextElement = (node) => {
+      let n = node?.nextSibling;
+      while (n && n.nodeType !== 1) n = n.nextSibling;
+      return n || null;
+    };
+    const desc = getNextElement(heroRef.current);
+    if (desc) {
+      el = desc.querySelector('[aria-label="Services overview"]') || desc.querySelector("ul");
+      if (el) return el;
+    }
+    return null;
+  };
+
+  const smoothScrollTo = (target, offset = 120) => {
+    if (!target) return false;
+    try {
+      // try scrollIntoView first (respects scroll containers)
+      const prev = target.style.scrollMarginTop;
+      target.style.scrollMarginTop = `${offset}px`;
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // restore after a tick
+      setTimeout(() => { target.style.scrollMarginTop = prev || ""; }, 700);
+      return true;
+    } catch {
+      // fallback to window scroll
+      const rect = target.getBoundingClientRect();
+      window.scrollTo({ top: rect.top + window.scrollY - offset, behavior: "smooth" });
+      return true;
+    }
+  };
+
   return (
     <section ref={heroRef} className={styles.hero} aria-label="Hero">
       <div
@@ -88,58 +126,24 @@ export default function Hero() {
         const side = s.contentSide === "right" ? styles.contentRight : styles.contentLeft;
         const isFirstSlide = s.id === 1 || current === 0;
 
-        const scrollToServices = () => {
-          // Prefer the UL with an aria-label (stable even with CSS Modules)
-          let target = document.querySelector('[aria-label="Services overview"]');
-
-          // If not found, search inside the next section after Hero
-          if (!target) {
-            const getNextElement = (el) => {
-              let n = el?.nextSibling;
-              while (n && n.nodeType !== 1) n = n.nextSibling;
-              return n || null;
-            };
-            const descSection = getNextElement(heroRef.current);
-            if (descSection) {
-              target =
-                descSection.querySelector('[aria-label="Services overview"]') ||
-                descSection.querySelector("ul");
-            }
-          }
-
-          if (target) {
-            // Smooth scroll with nice top offset
-            const prev = target.style.scrollMarginTop;
-            target.style.scrollMarginTop = "120px";
-            try {
-              target.scrollIntoView({ behavior: "smooth", block: "start" });
-            } catch {
-              const rect = target.getBoundingClientRect();
-              window.scrollTo({ top: rect.top + window.scrollY - 120, behavior: "smooth" });
-            }
-            setTimeout(() => { target.style.scrollMarginTop = prev || ""; }, 700);
-            return true;
-          }
-
-          // Fallback: scroll to the section after Hero
-          const fallback = heroRef.current?.nextElementSibling;
-          if (fallback && typeof fallback.scrollIntoView === "function") {
-            fallback.scrollIntoView({ behavior: "smooth", block: "start" });
-            return true;
-          }
-          return false;
-        };
-
-        // Use the same handler for click & touchend (mobile can drop click after a slight move)
+        // robust activation for mobile (pointer covers mouse+touch)
         const onCtaActivate = (e) => {
-          if (!isFirstSlide) return; // let other slides navigate normally
+          if (!isFirstSlide) return; // let non-first slides navigate normally
           e.preventDefault();
           e.stopPropagation();
-          const ok = scrollToServices();
-          if (!ok) {
-            // last resort: follow original link
-            window.location.href = s.link;
-          }
+
+          // wait one frame so any layout shifts settle (mobile)
+          requestAnimationFrame(() => {
+            const list = findServicesList();
+            if (list) {
+              // double rAF to avoid Safari race after lazy image decode
+              requestAnimationFrame(() => { smoothScrollTo(list, 120); });
+            } else {
+              // fallback to the next section
+              const nextEl = heroRef.current?.nextElementSibling;
+              if (nextEl) smoothScrollTo(nextEl, 0);
+            }
+          });
         };
 
         return (
@@ -148,9 +152,9 @@ export default function Hero() {
             <p>{s.subtitle}</p>
             <a
               className={styles.cta}
-              href={isFirstSlide ? "#" : s.link}   // prevent accidental nav on first slide
-              onClick={onCtaActivate}
-              onTouchEnd={onCtaActivate}
+              href={s.link}               // keep original link; we intercept only on slide 1
+              onPointerUp={onCtaActivate} // mobile + desktop reliable
+              onClick={(e) => isFirstSlide && (e.preventDefault(), onCtaActivate(e))}
             >
               {s.buttonText}
             </a>
