@@ -1,0 +1,102 @@
+:root {
+  --emerald: #103423;
+  --emerald-deep: #0e2c20;
+  --gold: #ffe174;
+  --gold-strong: #ffd700;
+  --text: #f0f7f3;
+  --panel: rgba(255, 225, 116, 0.06);
+  --panel-strong: rgba(255, 225, 116, 0.09);
+  --border: rgba(255, 225, 116, 0.18);
+}
+
+/* Match description section */
+.section {
+  width: 100%;
+  background-color: var(--emerald);
+  /* was: padding: 2.75rem 1rem; */
+  padding: 1.2rem 1rem 2.75rem; /* bring it up a bit */
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.card {
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  padding: 18px;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  right: 18px;
+  background: var(--gold);
+  color: #0b1f16;
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.title {
+  margin: 6px 0 8px;
+  font-family: "Playfair Display", serif;
+  color: var(--gold);
+  font-size: 1.6rem;
+}
+
+.copy {
+  margin: 0 auto 14px;
+  max-width: 760px;
+  font-family: "Inter", sans-serif;
+  color: var(--gold-strong);
+  line-height: 1.6;
+}
+
+.cta {
+  display: inline-block;
+  background: var(--gold);
+  color: #0b1f16;
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid rgba(0,0,0,0.08);
+  transition: transform .16s ease;
+}
+.cta:hover {
+  transform: translateY(-1px);
+  box-shadow: none;            /* ← remove hover shadow */
+}
+
+/* Accent bar */
+.flagBar {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.fRed, .fWhite, .fGreen, .fBlack {
+  height: 4px;
+  border-radius: 3px;
+}
+.fRed { background: #c71f2d; }
+.fWhite { background: #f5f5f5; }
+.fGreen { background: #1f8b4c; }
+.fBlack { background: #171717; }
+
+@media (max-width: 560px) {
+  .section { padding: 2rem 1rem; }
+  .title { font-size: 1.35rem; }
+  .badge { right: 12px; font-size: 0.8rem; }
+}
