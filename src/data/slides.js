@@ -19,7 +19,7 @@ const slides = [
     link: "/services/bridal",
     imageDesktop: "/images/hero/slide2-desktop.webp",
     imageMobile: "/images/hero/slide2-mobile.webp",
-    contentSide: "left",
+    contentSide: "right",
     // bgPosition: "center right",
   },
   {
@@ -41,7 +41,7 @@ const slides = [
     link: "/services/party",
     imageDesktop: "/images/hero/slide4-desktop.webp",
     imageMobile: "/images/hero/slide4-mobile.webp",
-    contentSide: "left",
+    contentSide: "right",
     // bgPosition: "center right",
   },
 ];

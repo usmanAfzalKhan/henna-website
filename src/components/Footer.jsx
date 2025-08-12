@@ -28,7 +28,7 @@ export default function Footer() {
       <div className={styles.inner}>
         <div className={styles.brand}>
           <img src={logo} alt="Mehndi by Simra logo" className={styles.logoImg} />
-          <span className={styles.brandText}>Mehndi by Simra</span>
+          <span className={styles.brandText}>Mehndi By Simra</span>
         </div>
 
         <nav className={styles.actions} aria-label="Contact and social links">
@@ -62,7 +62,7 @@ export default function Footer() {
         </nav>
 
         <div className={styles.copy}>
-          <small>© Mehndi by Simra. All rights reserved.</small>
+          <small>© Mehndi By Simra. All rights reserved.</small>
         </div>
       </div>
     </footer>

@@ -10,6 +10,9 @@ export default function Hero() {
   const [dragging, setDragging] = useState(false);
   const startX = useRef(0);
 
+  // ref to the hero section so we can find the next section (Description)
+  const heroRef = useRef(null);
+
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", onResize);
@@ -49,7 +52,7 @@ export default function Hero() {
   };
 
   return (
-    <section className={styles.hero} aria-label="Hero">
+    <section ref={heroRef} className={styles.hero} aria-label="Hero">
       <div
         className={`${styles.track} ${dragging ? styles.dragging : ""}`}
         style={trackStyle}
@@ -83,11 +86,61 @@ export default function Hero() {
       {(() => {
         const s = slides[current];
         const side = s.contentSide === "right" ? styles.contentRight : styles.contentLeft;
+
+        // First slide CTA → scroll to Description's Services overview <ul aria-label="Services overview">
+        const onCtaClick = (e) => {
+          if (s.id === 1 || current === 0) {
+            e.preventDefault();
+
+            // 1) Find the services list by aria-label (stable with CSS Modules)
+            let listEl = document.querySelector('[aria-label="Services overview"]');
+
+            // 2) If not found, prefer the next section after hero (Description) and look inside it
+            if (!listEl) {
+              const getNextElement = (el) => {
+                let n = el?.nextSibling;
+                while (n && n.nodeType !== 1) n = n.nextSibling;
+                return n || null;
+              };
+              const descSection = getNextElement(heroRef.current);
+              if (descSection) {
+                listEl =
+                  descSection.querySelector('[aria-label="Services overview"]') ||
+                  descSection.querySelector("ul");
+              }
+            }
+
+            // 3) Scroll into view with a margin so cards sit nicely under the header/lede
+            if (listEl && typeof listEl.scrollIntoView === "function") {
+              const prevMargin = listEl.style.scrollMarginTop;
+              listEl.style.scrollMarginTop = "120px"; // adjust if you want more/less gap
+              listEl.scrollIntoView({ behavior: "smooth", block: "start" });
+
+              // Clean up the temporary margin after the scroll finishes
+              setTimeout(() => {
+                listEl.style.scrollMarginTop = prevMargin || "";
+              }, 600);
+
+              return;
+            }
+
+            // 4) Fallback: scroll to the section right after hero
+            const fallback = heroRef.current?.nextElementSibling;
+            if (fallback && typeof fallback.scrollIntoView === "function") {
+              fallback.scrollIntoView({ behavior: "smooth", block: "start" });
+              return;
+            }
+
+            // 5) Last resort: follow the link
+            window.location.href = s.link;
+          }
+        };
+
         return (
           <div className={`${styles.content} ${side}`}>
             <h1>{s.title}</h1>
             <p>{s.subtitle}</p>
-            <a className={styles.cta} href={s.link}>
+            <a className={styles.cta} href={s.link} onClick={onCtaClick}>
               {s.buttonText}
             </a>
           </div>
