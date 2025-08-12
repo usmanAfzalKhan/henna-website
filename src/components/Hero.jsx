@@ -25,8 +25,8 @@ export default function Hero() {
   const THRESHOLD = 60;
 
   const onStart = (x) => { setDragging(true); startX.current = x; };
-  const onMove = (x) => { if (dragging) setDragOffset(x - startX.current); };
-  const onEnd = () => {
+  const onMove  = (x) => { if (dragging) setDragOffset(x - startX.current); };
+  const onEnd   = () => {
     if (!dragging) return;
     const dx = dragOffset;
     setDragging(false);
@@ -86,52 +86,58 @@ export default function Hero() {
       {(() => {
         const s = slides[current];
         const side = s.contentSide === "right" ? styles.contentRight : styles.contentLeft;
+        const isFirstSlide = s.id === 1 || current === 0;
 
-        // First slide CTA → scroll to Description's Services overview <ul aria-label="Services overview">
-        const onCtaClick = (e) => {
-          if (s.id === 1 || current === 0) {
-            e.preventDefault();
+        const scrollToServices = () => {
+          // Prefer the UL with an aria-label (stable even with CSS Modules)
+          let target = document.querySelector('[aria-label="Services overview"]');
 
-            // 1) Find the services list by aria-label (stable with CSS Modules)
-            let listEl = document.querySelector('[aria-label="Services overview"]');
-
-            // 2) If not found, prefer the next section after hero (Description) and look inside it
-            if (!listEl) {
-              const getNextElement = (el) => {
-                let n = el?.nextSibling;
-                while (n && n.nodeType !== 1) n = n.nextSibling;
-                return n || null;
-              };
-              const descSection = getNextElement(heroRef.current);
-              if (descSection) {
-                listEl =
-                  descSection.querySelector('[aria-label="Services overview"]') ||
-                  descSection.querySelector("ul");
-              }
+          // If not found, search inside the next section after Hero
+          if (!target) {
+            const getNextElement = (el) => {
+              let n = el?.nextSibling;
+              while (n && n.nodeType !== 1) n = n.nextSibling;
+              return n || null;
+            };
+            const descSection = getNextElement(heroRef.current);
+            if (descSection) {
+              target =
+                descSection.querySelector('[aria-label="Services overview"]') ||
+                descSection.querySelector("ul");
             }
+          }
 
-            // 3) Scroll into view with a margin so cards sit nicely under the header/lede
-            if (listEl && typeof listEl.scrollIntoView === "function") {
-              const prevMargin = listEl.style.scrollMarginTop;
-              listEl.style.scrollMarginTop = "120px"; // adjust if you want more/less gap
-              listEl.scrollIntoView({ behavior: "smooth", block: "start" });
-
-              // Clean up the temporary margin after the scroll finishes
-              setTimeout(() => {
-                listEl.style.scrollMarginTop = prevMargin || "";
-              }, 600);
-
-              return;
+          if (target) {
+            // Smooth scroll with nice top offset
+            const prev = target.style.scrollMarginTop;
+            target.style.scrollMarginTop = "120px";
+            try {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            } catch {
+              const rect = target.getBoundingClientRect();
+              window.scrollTo({ top: rect.top + window.scrollY - 120, behavior: "smooth" });
             }
+            setTimeout(() => { target.style.scrollMarginTop = prev || ""; }, 700);
+            return true;
+          }
 
-            // 4) Fallback: scroll to the section right after hero
-            const fallback = heroRef.current?.nextElementSibling;
-            if (fallback && typeof fallback.scrollIntoView === "function") {
-              fallback.scrollIntoView({ behavior: "smooth", block: "start" });
-              return;
-            }
+          // Fallback: scroll to the section after Hero
+          const fallback = heroRef.current?.nextElementSibling;
+          if (fallback && typeof fallback.scrollIntoView === "function") {
+            fallback.scrollIntoView({ behavior: "smooth", block: "start" });
+            return true;
+          }
+          return false;
+        };
 
-            // 5) Last resort: follow the link
+        // Use the same handler for click & touchend (mobile can drop click after a slight move)
+        const onCtaActivate = (e) => {
+          if (!isFirstSlide) return; // let other slides navigate normally
+          e.preventDefault();
+          e.stopPropagation();
+          const ok = scrollToServices();
+          if (!ok) {
+            // last resort: follow original link
             window.location.href = s.link;
           }
         };
@@ -140,7 +146,12 @@ export default function Hero() {
           <div className={`${styles.content} ${side}`}>
             <h1>{s.title}</h1>
             <p>{s.subtitle}</p>
-            <a className={styles.cta} href={s.link} onClick={onCtaClick}>
+            <a
+              className={styles.cta}
+              href={isFirstSlide ? "#" : s.link}   // prevent accidental nav on first slide
+              onClick={onCtaActivate}
+              onTouchEnd={onCtaActivate}
+            >
               {s.buttonText}
             </a>
           </div>
