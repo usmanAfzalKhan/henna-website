@@ -12,7 +12,7 @@ export default function Description({
       name: "Bridal",
       blurb:
         "Intricate coverage with consult, planning, and aftercare guidance. Timed so your stain peaks on the day.",
-      href: "/bridal", // UPDATED
+      href: "/bridal",
       cta: "Explore Bridal Service →",
       image: "/images/services/bridal-hand.webp",
     },
@@ -21,7 +21,7 @@ export default function Description({
       name: "Festival",
       blurb:
         "Photogenic patterns for Eid, Diwali, and community nights. Quick sets with beautiful flow and consistency.",
-      href: "/festival", // UPDATED
+      href: "/festival",
       cta: "Explore Festival Service →",
       image: "/images/services/festival-hand.webp",
     },
@@ -30,7 +30,7 @@ export default function Description({
       name: "Party",
       blurb:
         "Minimal to statement looks for birthdays, showers, and girls’ nights. Book by time or guest count.",
-      href: "/party", // UPDATED
+      href: "/party",
       cta: "Explore Party Service →",
       image: "/images/services/party-hand.webp",
     },
@@ -53,7 +53,11 @@ export default function Description({
           </p>
         </div>
 
-        <ul className={styles.list} aria-label="Services overview">
+        <ul
+          className={styles.list}
+          aria-label="Services overview"
+          id="services-overview" // ← anchor target for hero CTA
+        >
           {services.map((s) => (
             <li key={s.key} className={styles.row}>
               <div className={styles.thumb}>

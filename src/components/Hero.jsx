@@ -10,9 +10,9 @@ export default function Hero() {
   const [dragging, setDragging] = useState(false);
   const startX = useRef(0);
 
-  // refs
+  // ref to the hero section so we can find the next section (Description)
   const heroRef = useRef(null);
-  const ctaRef = useRef(null); // ← native listeners for reliability
+  const ctaGuard = useRef(false); // prevent double fire (touchend + click)
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 768);
@@ -24,6 +24,7 @@ export default function Hero() {
   const next = () => setCurrent((c) => (c + 1) % slides.length);
 
   const THRESHOLD = 60;
+
   const onStart = (x) => { setDragging(true); startX.current = x; };
   const onMove  = (x) => { if (dragging) setDragOffset(x - startX.current); };
   const onEnd   = () => {
@@ -51,20 +52,23 @@ export default function Hero() {
     transition: dragging ? "none" : "transform 400ms ease",
   };
 
-  // ---- scrolling helpers ----
+  // helpers
   const findServicesList = () => {
-    let el = document.querySelector('[aria-label="Services overview"]');
+    // Prefer the UL with aria-label (stable even with CSS Modules)
+    let el = document.getElementById("services-overview") ||
+             document.querySelector('[aria-label="Services overview"]');
     if (el) return el;
 
-    // next element sibling after hero (Description wrapper)
+    // Else look inside the next element sibling after hero (Description wrapper)
     let n = heroRef.current?.nextSibling;
     while (n && n.nodeType !== 1) n = n.nextSibling;
     const desc = n || null;
     if (desc) {
-      el = desc.querySelector('[aria-label="Services overview"]') || desc.querySelector("ul");
-      if (el) return el;
+      el = desc.querySelector("#services-overview") ||
+           desc.querySelector('[aria-label="Services overview"]') ||
+           desc.querySelector("ul");
     }
-    return null;
+    return el || null;
   };
 
   const smoothScrollTo = (target, offset = 120) => {
@@ -79,67 +83,36 @@ export default function Hero() {
     return true;
   };
 
-  // Attach **native** listeners to the CTA when slide 1 is active
-  useEffect(() => {
-    const a = ctaRef.current;
-    const s = slides[current];
-    const isFirst = s?.id === 1 || current === 0;
-    if (!a || !isFirst) return;
+  // Unified CTA handler for first slide (works on mobile + desktop)
+  const handleCtaActivate = (e, slideMeta) => {
+    const isFirstSlide = slideMeta.id === 1 || current === 0;
+    if (!isFirstSlide) return; // let others navigate normally
 
-    let downX = 0, downY = 0, downT = 0, moved = false;
+    // prevent slider drag from swallowing the tap
+    e.preventDefault();
+    e.stopPropagation();
 
-    const onPointerDown = (ev) => {
-      // capture start to distinguish tap vs swipe
-      downX = ev.clientX ?? (ev.touches && ev.touches[0]?.clientX) ?? 0;
-      downY = ev.clientY ?? (ev.touches && ev.touches[0]?.clientY) ?? 0;
-      downT = performance.now();
-      moved = false;
-      ev.stopPropagation(); // keep slider from stealing the gesture
-    };
+    // avoid double-trigger when touchend + click both fire
+    if (ctaGuard.current) return;
+    ctaGuard.current = true;
+    setTimeout(() => (ctaGuard.current = false), 350);
 
-    const onPointerMove = (ev) => {
-      const x = ev.clientX ?? (ev.touches && ev.touches[0]?.clientX) ?? downX;
-      const y = ev.clientY ?? (ev.touches && ev.touches[0]?.clientY) ?? downY;
-      if (Math.abs(x - downX) > 8 || Math.abs(y - downY) > 8) moved = true;
-    };
-
-    const activate = (ev) => {
-      // treat as click only if not a swipe
-      const dt = performance.now() - downT;
-      if (moved && dt < 800) return; // likely a swipe; ignore
-
-      ev.preventDefault();
-      ev.stopPropagation();
-
-      // use double-rAF to avoid mobile lazy-layout races
+    // wait a frame (or two) to avoid layout races on mobile
+    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          const list = findServicesList();
-          if (list) smoothScrollTo(list, 120);
-          else {
-            const nextEl = (() => {
-              let n = heroRef.current?.nextSibling;
-              while (n && n.nodeType !== 1) n = n.nextSibling;
-              return n || null;
-            })();
-            if (nextEl) smoothScrollTo(nextEl, 0);
-          }
-        });
+        const list = findServicesList();
+        if (list) {
+          smoothScrollTo(list, 120);
+        } else {
+          // fallback: scroll to next section after hero
+          let n = heroRef.current?.nextSibling;
+          while (n && n.nodeType !== 1) n = n.nextSibling;
+          if (n) smoothScrollTo(n, 0);
+          else window.location.href = slideMeta.link; // last resort
+        }
       });
-    };
-
-    // Add listeners (pointer covers mouse+touch on modern browsers)
-    a.addEventListener("pointerdown", onPointerDown, { passive: true });
-    a.addEventListener("pointermove", onPointerMove, { passive: true });
-    a.addEventListener("pointerup", activate, { passive: false });
-    a.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
-
-    return () => {
-      a.removeEventListener("pointerdown", onPointerDown);
-      a.removeEventListener("pointermove", onPointerMove);
-      a.removeEventListener("pointerup", activate);
-    };
-  }, [current]);
+    });
+  };
 
   return (
     <section ref={heroRef} className={styles.hero} aria-label="Hero">
@@ -173,17 +146,17 @@ export default function Hero() {
       {(() => {
         const s = slides[current];
         const side = s.contentSide === "right" ? styles.contentRight : styles.contentLeft;
-        const isFirst = s.id === 1 || current === 0;
 
         return (
           <div className={`${styles.content} ${side}`}>
             <h1>{s.title}</h1>
             <p>{s.subtitle}</p>
             <a
-              ref={ctaRef}
               className={styles.cta}
-              href={isFirst ? "#" : s.link}  // prevent navigation on first slide
-              style={{ touchAction: "manipulation" }} // reduce touch delays
+              href={s.link} // keep original link; we intercept on first slide only
+              onClick={(e) => handleCtaActivate(e, s)}
+              onTouchEnd={(e) => handleCtaActivate(e, s)}
+              style={{ touchAction: "manipulation" }}
             >
               {s.buttonText}
             </a>
