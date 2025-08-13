@@ -11,7 +11,6 @@ export default function Hero() {
   const startX = useRef(0);
 
   const heroRef = useRef(null);
-  const miniLinkGuard = useRef(false); // prevent touchend+click double-fire
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 768);
@@ -49,49 +48,6 @@ export default function Hero() {
   const trackStyle = {
     transform: `translateX(calc(${base}% + ${dragging ? offsetPct : 0}%))`,
     transition: dragging ? "none" : "transform 400ms ease",
-  };
-
-  const findServicesList = () => {
-    let el = document.getElementById("services-overview") ||
-             document.querySelector('[aria-label="Services overview"]');
-    if (el) return el;
-
-    let n = heroRef.current?.nextSibling;
-    while (n && n.nodeType !== 1) n = n.nextSibling;
-    const desc = n || null;
-    if (desc) {
-      el = desc.querySelector("#services-overview") ||
-           desc.querySelector('[aria-label="Services overview"]') ||
-           desc.querySelector("ul");
-    }
-    return el || null;
-  };
-
-  const smoothScrollTo = (target, offset = 120) => {
-    if (!target) return false;
-    const prev = target.style.scrollMarginTop;
-    target.style.scrollMarginTop = `${offset}px`;
-    try {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    } finally {
-      setTimeout(() => { target.style.scrollMarginTop = prev || ""; }, 700);
-    }
-    return true;
-  };
-
-  // Underlined "See services" link handler (first slide only)
-  const handleMiniLink = (e) => {
-    if (e && typeof e.preventDefault === "function") e.preventDefault();
-    if (e && typeof e.stopPropagation === "function") e.stopPropagation();
-
-    if (miniLinkGuard.current) return false;
-    miniLinkGuard.current = true;
-    setTimeout(() => (miniLinkGuard.current = false), 500);
-
-    const list = findServicesList();
-    if (list) smoothScrollTo(list, 120);
-    else window.location.hash = "#services-overview";
-    return false;
   };
 
   return (
@@ -133,22 +89,13 @@ export default function Hero() {
             <h1>{s.title}</h1>
             <p>{s.subtitle}</p>
 
+            {/* Slide 1: small chip under subtitle (anchors to services) */}
             {isFirst ? (
-              <a
-                className={styles.miniLink}
-                href="#services-overview"
-                onClick={handleMiniLink}
-                onTouchEnd={handleMiniLink}
-                aria-label="Jump to services"
-              >
-                See services <span aria-hidden="true"></span>
+              <a className={styles.scrollChip} href="#services-overview">
+                See services <span aria-hidden="true">↓</span>
               </a>
             ) : (
-              <a
-                className={styles.cta}
-                href={s.link}
-                style={{ touchAction: "manipulation" }}
-              >
+              <a className={styles.cta} href={s.link} style={{ touchAction: "manipulation" }}>
                 {s.buttonText}
               </a>
             )}

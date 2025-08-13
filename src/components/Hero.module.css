@@ -166,3 +166,30 @@
   .content p  { font-size: 1rem; }
   .miniLink   { font-size: 1.05rem; }
 }
+
+/* === Inline chip under the content (slide 1 only) === */
+.scrollChip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .5rem .9rem;
+  border-radius: 9999px;
+  background: #ffe174;  /* theme gold */
+  color: #0b2f2e;       /* theme green */
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,.25);
+  margin-top: .75rem;   /* sits right under the subtitle */
+  touch-action: manipulation;
+}
+
+@media (max-width: 767px) {
+  .scrollChip {
+    font-size: 1.05rem;
+    margin-top: .6rem;  /* a bit tighter on mobile, as requested */
+  }
+}
+
+/* (Legacy) floating chip — kept for backward-compatibility if present in JSX
+.scrollHint { ... }
+*/
