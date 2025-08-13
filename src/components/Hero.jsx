@@ -1,3 +1,4 @@
+// src/components/Hero.jsx
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Hero.module.css";
 import slides from "../data/slides";
@@ -49,18 +50,6 @@ export default function Hero() {
     transition: dragging ? "none" : "transform 400ms ease",
   };
 
-  // Smooth-scroll helper for the chip
-  const handleChipClick = (e) => {
-    if (e && typeof e.preventDefault === "function") e.preventDefault();
-    const el = document.getElementById("what-we-do");
-    if (el && typeof el.scrollIntoView === "function") {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      // Fallback
-      window.location.hash = "#what-we-do";
-    }
-  };
-
   return (
     <section ref={heroRef} className={styles.hero} aria-label="Hero">
       <div
@@ -100,14 +89,9 @@ export default function Hero() {
             <h1>{s.title}</h1>
             <p>{s.subtitle}</p>
 
+            {/* Slide 1: small chip under subtitle (anchors to services) */}
             {isFirst ? (
-              <a
-                className={styles.scrollChip}
-                href="#what-we-do"
-                onClick={handleChipClick}
-                onTouchEnd={handleChipClick}
-                aria-label="Jump to What We Do"
-              >
+              <a className={styles.scrollChip} href="#services-overview">
                 See services <span aria-hidden="true">↓</span>
               </a>
             ) : (
