@@ -24,9 +24,9 @@ const slides = [
   },
   {
     id: 3,
-    title: "Festival Vibes",
+    title: "Festive Vibes",
     subtitle: "Vibrant, celebratory mehndi for every occasion.",
-    buttonText: "Explore Festival Services",
+    buttonText: "Explore Festive Services",
     link: "/services/festival",
     imageDesktop: "/images/hero/slide3-desktop.webp",
     imageMobile: "/images/hero/slide3-mobile.webp",

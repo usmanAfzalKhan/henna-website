@@ -22,7 +22,7 @@ const serviceData = {
   },
 
   festival: {
-    title: "Festival Mehndi",
+    title: "Festive Mehndi",
     slug: "festival",
     lede:
       "Fresh, joyful designs for Eid, Diwali, and seasonal festivities—balanced for quick sessions with eye-catching results.",

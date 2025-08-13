@@ -1,4 +1,3 @@
-// src/components/Description.jsx
 import React from "react";
 import styles from "./Description.module.css";
 
@@ -18,11 +17,11 @@ export default function Description({
     },
     {
       key: "festival",
-      name: "Festival",
+      name: "Festive",
       blurb:
         "Photogenic patterns for Eid, Diwali, and community nights. Quick sets with beautiful flow and consistency.",
       href: "/festival",
-      cta: "Explore Festival Service →",
+      cta: "Explore Festive Service →",
       image: "/images/services/festival-hand.webp",
     },
     {
@@ -43,11 +42,15 @@ export default function Description({
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.lede}>{intro}</p>
 
-        {/* NEW: What We Do intro (same styling) */}
-        <div className={styles.servicesIntro}>
+        {/* What We Do intro + ANCHOR TARGET */}
+        <div
+          className={styles.servicesIntro}
+          id="what-we-do"
+          style={{ scrollMarginTop: "120px" }} // offset for sticky header
+        >
           <h2 className={styles.title}>What We Do</h2>
           <p className={styles.lede}>
-            Explore our core services—Bridal, Festival, and Party mehndi. Each
+            Explore our core services—Bridal, Festive, and Party mehndi. Each
             service page includes sample designs, package details, and clear
             pricing so you can choose what fits and book with confidence.
           </p>
@@ -56,7 +59,7 @@ export default function Description({
         <ul
           className={styles.list}
           aria-label="Services overview"
-          id="services-overview" // ← anchor target for hero CTA
+          id="services-overview" // ← remains for other anchors if needed
         >
           {services.map((s) => (
             <li key={s.key} className={styles.row}>

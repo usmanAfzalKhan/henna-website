@@ -19,6 +19,11 @@ const Icon = {
       <path d="M6.62 10.79a15.09 15.09 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a2 2 0 0 1-2.18 2 17.99 17.99 0 0 1-7.89-3.06 18.37 18.37 0 0 1-5.6-5.6A17.99 17.99 0 0 1 2 5.18 2 2 0 0 1 4 3h3.49a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.24 1.02l-2.2 2.2z" />
     </svg>
   ),
+  Location: (props) => (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path d="M12 2a6 6 0 0 0-6 6c0 4.42 6 12 6 12s6-7.58 6-12a6 6 0 0 0-6-6zm0 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z" />
+    </svg>
+  ),
 };
 
 export default function Footer() {
@@ -51,13 +56,24 @@ export default function Footer() {
           >
             <Icon.Facebook className={styles.icon} />
           </a>
-
           <a
             className={styles.iconBtn}
             href="tel:6479360392"
             aria-label="Call 647-936-0392"
           >
             <Icon.Phone className={styles.icon} />
+          </a>
+          
+          {/* Location → opens Maps with Brampton, ON */}
+          <a
+            className={styles.iconBtn}
+            href="https://www.google.com/maps/search/?api=1&query=Brampton%2C+ON"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Brampton, ON in Maps"
+            title="Brampton, ON"
+          >
+            <Icon.Location className={styles.icon} />
           </a>
         </nav>
 
