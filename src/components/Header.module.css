@@ -109,6 +109,11 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  /* 👉 move logo + text a bit to the right */
+  .logoSection {
+    margin-left: 10px; /* tweak to taste (8–14px) */
+  }
+
   .nav {
     position: absolute;
     top: 100%;
@@ -116,14 +121,15 @@
     background-color: #144c38;
     flex-direction: column;
     align-items: center; /* center items in dropdown */
-    padding: 1rem;
+    padding: 0.85rem; /* a hair tighter to fit dividers nicely */
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-    min-width: 140px;
+    min-width: 160px; /* a bit wider so lines breathe */
     border: 2px solid #ffe174; /* gold border */
+    overflow: hidden;
   }
 
   .nav.showMenu {
@@ -131,10 +137,58 @@
     pointer-events: auto;
   }
 
+  /* Dropdown link styling + divider “design” under each option */
   .link {
-    padding: 0.5rem 0;
-    text-align: center; /* center text inside link */
+    padding: 0.6rem 0.75rem;
     width: 100%;
+    text-align: center;
+    border-radius: 8px;
+    color: #f4e6d8;
+  }
+
+  /* subtle gold gradient divider UNDER each item */
+  .link:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 225, 116, 0.65),
+      transparent
+    );
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  /* hover/focus background + animated underline */
+  .link::before {
+    content: "";
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 6px;
+    height: 2px;
+    background: #ffe174;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 200ms ease;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  .link:hover,
+  .link:focus-visible {
+    background: rgba(255, 225, 116, 0.09);
+    color: #ffd700;
+    outline: none;
+  }
+  .link:hover::before,
+  .link:focus-visible::before {
+    transform: scaleX(1);
   }
 
   .hamburger {
