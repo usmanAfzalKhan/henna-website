@@ -32,18 +32,20 @@
   position: relative;
 }
 
+/* Updated badge so it doesn't match the CTA */
 .badge {
   position: absolute;
   top: -12px;
   right: 18px;
-  background: var(--gold);
-  color: #0b1f16;
+  background: var(--emerald-deep);  /* darker emerald pill */
+  color: var(--gold);                /* gold text for contrast */
   font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 0.85rem;
   padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(0,0,0,0.08);
+  border: 1px solid var(--gold);     /* gold outline */
+  box-shadow: 0 4px 10px rgba(0,0,0,.22);
 }
 
 .title {

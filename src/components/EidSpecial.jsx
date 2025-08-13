@@ -5,7 +5,7 @@ export default function EidSpecial({
   title = "Eid Special",
   percent = 10,
   cause = "Palestine",
-  blurb = "Celebrate with beautiful mehndi—and do good.",
+  blurb = "Share beautiful mehndi—and give back.",
   ctaHref = "/contact",           // ← default to Contact page
   ctaLabel = "Book Now",
 }) {
