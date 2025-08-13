@@ -16,7 +16,7 @@ const galleryData = {
     ],
   },
   festival: {
-    title: "Festival Gallery",
+    title: "Festive Gallery",
     slug: "festival",
     cardThumb: "",
     items: [

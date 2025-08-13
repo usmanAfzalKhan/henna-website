@@ -6,7 +6,7 @@ import galleryData from "../data/galleryData";
 
 const CARDS = [
   { key: "bridal", title: "Bridal" },
-  { key: "festival", title: "Festival" },
+  { key: "festival", title: "Festive" },
   { key: "party", title: "Party" },
 ];
 

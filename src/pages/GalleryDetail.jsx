@@ -41,7 +41,7 @@ export default function GalleryDetail() {
       <main className={styles.container}>
         <div className={styles.notFound}>
           <h1 className={styles.title}>Gallery not found</h1>
-          <p className={styles.lede}>Try Bridal, Festival, or Party.</p>
+          <p className={styles.lede}>Try Bridal, Festive, or Party.</p>
           <div className={styles.footerNav}>
             <Link to="/gallery" className={styles.galleryBtn}>Back to Gallery</Link>
             <Link to="/" className={styles.galleryBtnAlt}>Back to Home</Link>
