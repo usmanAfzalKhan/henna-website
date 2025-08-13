@@ -109,9 +109,9 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  /* 👉 move logo + text a bit to the right */
+  /* ⬅️ move logo + text further to the LEFT on mobile */
   .logoSection {
-    margin-left: 10px; /* tweak to taste (8–14px) */
+    margin-left: -8px; /* tweak between -4px and -14px to taste */
   }
 
   .nav {
