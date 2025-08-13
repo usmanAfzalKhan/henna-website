@@ -73,6 +73,28 @@
 .content p  { font-family: 'Inter', sans-serif;  font-size: 1.1rem; margin: 0 0 1.5rem; }
 .cta { display:inline-block; padding:.75rem 1.5rem; background:#ffe174; color:#0b2f2e; border-radius:6px; font-weight:600; text-decoration:none; }
 
+/* NEW: first-slide underlined link (theme-aligned) */
+.miniLink {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-weight: 600;
+  color: #ffe174;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: .25rem 0;
+  min-height: 40px; /* comfy tap target */
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+.miniLink:hover { opacity: .9; }
+.miniLink:focus-visible {
+  outline: 2px dashed #ffe174;
+  outline-offset: 3px;
+}
+
 /* arrows */
 .prev, .next {
   position: absolute;
@@ -140,4 +162,7 @@
     max-width: 90%;
     text-align: center;
   }
+  .content h1 { font-size: 2.1rem; }
+  .content p  { font-size: 1rem; }
+  .miniLink   { font-size: 1.05rem; }
 }

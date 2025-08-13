@@ -10,9 +10,8 @@ export default function Hero() {
   const [dragging, setDragging] = useState(false);
   const startX = useRef(0);
 
-  // ref to the hero section so we can find the next section (Description)
   const heroRef = useRef(null);
-  const ctaGuard = useRef(false); // prevent double fire (touchend + click)
+  const miniLinkGuard = useRef(false); // prevent touchend+click double-fire
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 768);
@@ -52,14 +51,11 @@ export default function Hero() {
     transition: dragging ? "none" : "transform 400ms ease",
   };
 
-  // helpers
   const findServicesList = () => {
-    // Prefer the UL with aria-label (stable even with CSS Modules)
     let el = document.getElementById("services-overview") ||
              document.querySelector('[aria-label="Services overview"]');
     if (el) return el;
 
-    // Else look inside the next element sibling after hero (Description wrapper)
     let n = heroRef.current?.nextSibling;
     while (n && n.nodeType !== 1) n = n.nextSibling;
     const desc = n || null;
@@ -83,38 +79,18 @@ export default function Hero() {
     return true;
   };
 
-  // Unified CTA handler for first slide (works on mobile + desktop)
-  const handleCtaActivate = (e, slideMeta) => {
-    const isFirstSlide = slideMeta.id === 1 || current === 0;
-    if (!isFirstSlide) return;
-
-    // Always cancel default FIRST so mobile Safari can't follow the link
+  // Underlined "See services" link handler (first slide only)
+  const handleMiniLink = (e) => {
     if (e && typeof e.preventDefault === "function") e.preventDefault();
     if (e && typeof e.stopPropagation === "function") e.stopPropagation();
 
-    // If we've already handled the touch, ignore the subsequent click,
-    // but DO NOT allow the browser default to sneak through.
-    if (ctaGuard.current) return false;
+    if (miniLinkGuard.current) return false;
+    miniLinkGuard.current = true;
+    setTimeout(() => (miniLinkGuard.current = false), 500);
 
-    ctaGuard.current = true;
-    setTimeout(() => (ctaGuard.current = false), 600);
-
-    // Defer to avoid layout races on mobile
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const list = findServicesList();
-        if (list) {
-          smoothScrollTo(list, 120);
-        } else {
-          // fallback: scroll to next section after hero, else hash jump
-          let n = heroRef.current?.nextSibling;
-          while (n && n.nodeType !== 1) n = n.nextSibling;
-          if (n) smoothScrollTo(n, 0);
-          else window.location.hash = "#services-overview";
-        }
-      });
-    });
-
+    const list = findServicesList();
+    if (list) smoothScrollTo(list, 120);
+    else window.location.hash = "#services-overview";
     return false;
   };
 
@@ -150,21 +126,32 @@ export default function Hero() {
       {(() => {
         const s = slides[current];
         const side = s.contentSide === "right" ? styles.contentRight : styles.contentLeft;
+        const isFirst = s.id === 1 || current === 0;
 
         return (
           <div className={`${styles.content} ${side}`}>
             <h1>{s.title}</h1>
             <p>{s.subtitle}</p>
-            <a
-              className={styles.cta}
-              // Native fallback: if first slide, point at the on-page target
-              href={current === 0 ? "#services-overview" : s.link}
-              onClick={(e) => handleCtaActivate(e, s)}
-              onTouchEnd={(e) => handleCtaActivate(e, s)}
-              style={{ touchAction: "manipulation" }}
-            >
-              {s.buttonText}
-            </a>
+
+            {isFirst ? (
+              <a
+                className={styles.miniLink}
+                href="#services-overview"
+                onClick={handleMiniLink}
+                onTouchEnd={handleMiniLink}
+                aria-label="Jump to services"
+              >
+                See services <span aria-hidden="true"></span>
+              </a>
+            ) : (
+              <a
+                className={styles.cta}
+                href={s.link}
+                style={{ touchAction: "manipulation" }}
+              >
+                {s.buttonText}
+              </a>
+            )}
           </div>
         );
       })()}
