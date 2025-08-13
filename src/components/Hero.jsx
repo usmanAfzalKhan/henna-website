@@ -86,32 +86,36 @@ export default function Hero() {
   // Unified CTA handler for first slide (works on mobile + desktop)
   const handleCtaActivate = (e, slideMeta) => {
     const isFirstSlide = slideMeta.id === 1 || current === 0;
-    if (!isFirstSlide) return; // let others navigate normally
+    if (!isFirstSlide) return;
 
-    // prevent slider drag from swallowing the tap
-    e.preventDefault();
-    e.stopPropagation();
+    // Always cancel default FIRST so mobile Safari can't follow the link
+    if (e && typeof e.preventDefault === "function") e.preventDefault();
+    if (e && typeof e.stopPropagation === "function") e.stopPropagation();
 
-    // avoid double-trigger when touchend + click both fire
-    if (ctaGuard.current) return;
+    // If we've already handled the touch, ignore the subsequent click,
+    // but DO NOT allow the browser default to sneak through.
+    if (ctaGuard.current) return false;
+
     ctaGuard.current = true;
-    setTimeout(() => (ctaGuard.current = false), 350);
+    setTimeout(() => (ctaGuard.current = false), 600);
 
-    // wait a frame (or two) to avoid layout races on mobile
+    // Defer to avoid layout races on mobile
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         const list = findServicesList();
         if (list) {
           smoothScrollTo(list, 120);
         } else {
-          // fallback: scroll to next section after hero
+          // fallback: scroll to next section after hero, else hash jump
           let n = heroRef.current?.nextSibling;
           while (n && n.nodeType !== 1) n = n.nextSibling;
           if (n) smoothScrollTo(n, 0);
-          else window.location.href = slideMeta.link; // last resort
+          else window.location.hash = "#services-overview";
         }
       });
     });
+
+    return false;
   };
 
   return (
@@ -153,7 +157,8 @@ export default function Hero() {
             <p>{s.subtitle}</p>
             <a
               className={styles.cta}
-              href={s.link} // keep original link; we intercept on first slide only
+              // Native fallback: if first slide, point at the on-page target
+              href={current === 0 ? "#services-overview" : s.link}
               onClick={(e) => handleCtaActivate(e, s)}
               onTouchEnd={(e) => handleCtaActivate(e, s)}
               style={{ touchAction: "manipulation" }}
