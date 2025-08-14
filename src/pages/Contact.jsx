@@ -79,9 +79,9 @@ export default function Contact() {
     try {
       const q = new URLSearchParams(window.location.search).get("service");
       const s = (q || "").toLowerCase();
-      return groups.includes(s) ? s : groups[0];
+      return groups.includes(s) ? s : "";
     } catch {
-      return groups[0];
+      return "";
     }
   });
 
@@ -186,7 +186,7 @@ export default function Contact() {
       <div className={styles.wrap}>
         <header className={styles.header}>
           <h1 className={styles.title}>Contact Us</h1>
-          <p className={styles.subtitle}>
+        <p className={styles.subtitle}>
             You can call{" "}
             <a href="tel:6479360392">647-936-0392</a> or send a DM on{" "}
             <a
@@ -248,6 +248,26 @@ export default function Contact() {
                   opacity: 0.95,
                 }}
               />
+
+              {/* Back to Home button styled like Services .galleryBtn */}
+              <a
+                href="/"
+                style={{
+                  display: "inline-block",
+                  fontFamily: "Inter, sans-serif",
+                  color: "#0b1f16",
+                  background: "var(--gold)",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  padding: "10px 14px",
+                  borderRadius: "999px",
+                  border: "1px solid rgba(0,0,0,0.08)",
+                  transition: "transform .16s ease, background .16s ease",
+                  marginTop: 16,
+                }}
+              >
+                Back to Home
+              </a>
             </div>
           </div>
         ) : (
