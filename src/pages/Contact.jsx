@@ -90,6 +90,9 @@ export default function Contact() {
   // submitted state (replace form with thank-you)
   const [submitted, setSubmitted] = useState(false);
 
+  // functions base: prod uses relative path; dev can override with VITE_FUNCTIONS_BASE
+  const FN_BASE = import.meta.env.VITE_FUNCTIONS_BASE || "/.netlify/functions";
+
   /* ----- handlers ----- */
   function handleDialPick(item) {
     setSelectedDial(item);
@@ -125,7 +128,7 @@ export default function Contact() {
     return pick < today;
   }
 
-  function submitForm(e) {
+  async function submitForm(e) {
     e.preventDefault();
 
     if (!name || !valid10(phone) || !dateVal || !people) {
@@ -133,26 +136,34 @@ export default function Contact() {
       return;
     }
 
-    // Build mailto
-    const selectedTitle = serviceData[service]?.title || service;
-    const phoneFull = `${selectedDial.dial} ${phone}`;
-    const subject = `Contact request: ${selectedTitle}`;
-    const body =
-      `Name: ${name}\n` +
-      `Phone: ${phoneFull}\n` +
-      `City: ${city}\n` +
-      `Service: ${selectedTitle}\n` +
-      `Event Day: ${dateVal}\n` +
-      `Guests: ${people}\n\n` +
-      (message ? `Message:\n${message}\n\n` : "") +
-      `Sent from Mehndi By Simra site`;
+    // Build payload for Netlify Function
+    const payload = {
+      name,
+      phone: `${selectedDial.dial} ${phone}`,
+      city,
+      serviceTitle: serviceData[service]?.title || service,
+      dateVal,
+      people,
+      message,
+    };
 
-    window.location.href = `mailto:hello@mehndibysimra.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-
-    // show in-page thank-you and hide the form
-    setSubmitted(true);
+    try {
+      const res = await fetch(`${FN_BASE}/send-contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const text = await res.text();
+      if (!res.ok) {
+        console.error("Email function error:", res.status, text);
+        throw new Error(text || "Email failed");
+      }
+      // show in-page thank-you and hide the form
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      alert("Sorry, something went wrong sending your message. Please try again.");
+    }
   }
 
   /* ----- UI bits ----- */
@@ -214,8 +225,8 @@ export default function Contact() {
                 className={styles.subtitle}
                 style={{ fontSize: "1rem", marginTop: 10, marginBottom: 16 }}
               >
-                Your request was sent. We’ll get back to you in{" "}
-                <strong>2–4 business days</strong>.
+                Hey {name || "there"}, we’ve received your request and will
+                reach back to you within <strong>2–3 business days</strong>.
               </p>
 
               <img
@@ -311,7 +322,7 @@ export default function Contact() {
                 <input
                   className={styles.input}
                   inputMode="numeric"
-                  pattern="^\d{3}-\d{3}-\d{4}$"
+                  pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
                   maxLength={12}
                   placeholder="647-555-1234"
                   value={phone}
