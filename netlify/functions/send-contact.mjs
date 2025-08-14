@@ -75,7 +75,7 @@ ${message ? `Message:\n${message}\n\n` : ""}Sent from Mehndi By Simra site`;
           ${logoUrl ? `<img src="${logoUrl}" alt="Mehndi By Simra" width="72" height="72" style="display:block;margin:0 auto 8px;border-radius:999px;" />` : ""}
           <div style="font-size:20px;line-height:1.2;color:#ffe174;font-weight:800;">New Contact Request</div>
           <div style="margin-top:6px;color:rgba(240,247,243,.75);font-size:12px;">
-            ${escapeHtml(new Date().toLocaleString("en-CA"))}
+            ${escapeHtml(new Date().toLocaleDateString("en-CA"))}
           </div>
         </td>
       </tr>
