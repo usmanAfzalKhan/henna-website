@@ -70,6 +70,17 @@ export default function ServiceSlug() {
           <p className={styles.lede}>{entry.lede}</p>
         </header>
 
+        {/* 👇 Added: render the two extra paragraphs if present */}
+        {Array.isArray(entry.extra) && entry.extra.length > 0 && (
+          <section className={styles.section}>
+            {entry.extra.map((para, i) => (
+              <p key={`extra-${i}`} className={styles.lede}>
+                {para}
+              </p>
+            ))}
+          </section>
+        )}
+
         <section className={styles.section}>
           <h2 className={styles.h2}>What’s included</h2>
           <ul className={styles.bullets}>
@@ -97,7 +108,7 @@ export default function ServiceSlug() {
           <h2 className={styles.h2}>Simple Pricing</h2>
           <p className={styles.note}>Pricing for this service is listed here.</p>
 
-          <div className={styles.tableWrap}>
+        <div className={styles.tableWrap}>
             <table className={styles.table} role="table">
               <thead>
                 <tr>

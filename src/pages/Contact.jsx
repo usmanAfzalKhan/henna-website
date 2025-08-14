@@ -75,7 +75,15 @@ export default function Contact() {
   const [city, setCity] = useState("");
   const [people, setPeople] = useState("");
   const [message, setMessage] = useState("");
-  const [service, setService] = useState(groups[0]);
+  const [service, setService] = useState(() => {
+    try {
+      const q = new URLSearchParams(window.location.search).get("service");
+      const s = (q || "").toLowerCase();
+      return groups.includes(s) ? s : groups[0];
+    } catch {
+      return groups[0];
+    }
+  });
 
   // calendar
   const [dateOpen, setDateOpen] = useState(false);

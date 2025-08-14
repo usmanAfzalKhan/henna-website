@@ -264,3 +264,18 @@
 .galleryBtnAlt:hover {
   transform: translateY(-1px);
 }
+
+/* Extra paragraphs inside section cards
+   (match the body style used in "What's included") */
+.section .lede {
+  color: var(--text-light);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0.25rem 0 0.9rem;
+  text-wrap: pretty;
+}
+
+.section .lede:last-child {
+  margin-bottom: 0;
+}
