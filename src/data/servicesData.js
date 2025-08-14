@@ -14,10 +14,15 @@ const serviceData = {
       "Optional name/date reveals, portraits, or fine-fill details",
     ],
     gallery: ["/images/services/services-bridal-hand.webp"], // single image
+    labelHeading: "Package",
+    priceHeading: "Price (starting from)",
+    // Matches the client photo: add coverage column + feet rows
     prices: [
-      { label: "Classic (Palms + Backs to Wrist)", amount: 249 },
-      { label: "Signature (Mid-Forearm Coverage)", amount: 399 },
-      { label: "Grand (Up to Elbow + Feet Highlights)", amount: 599 },
+      { label: "Classic",   coverage: "Palms + Backs to Wrist", amount: 99.99 },
+      { label: "Signature", coverage: "Mid-forearm",            amount: 179.99 },
+      { label: "Grand",     coverage: "Elbow",                  amount: 279.99 },
+      { label: "Feet add-on", coverage: "With any package",     amount: 19.99  },
+      { label: "Only Feet", coverage: "",                      amount: 39.99  },
     ],
   },
 
@@ -33,11 +38,15 @@ const serviceData = {
       "On-site setup for homes or event venues (by request)",
     ],
     gallery: ["/images/services/services-festival-hand.webp"], // single image
+    labelHeading: "Option",
+    priceHeading: "Price (starting from)",
     prices: [
-      { label: "Single Hand (Palm or Back)", amount: 35 },
-      { label: "Both Hands (Palms)", amount: 60 },
-      { label: "Quick Party Bundle (5 people, simple)", amount: 160 },
+      { label: "Single Hand", amount: 9.99 },
+      { label: "Both Hands",  amount: 19.99 },
+      { label: "Group Package", amount: 59.99, unitSuffix: "/hr" },
     ],
+    footnote:
+      "Hourly covers unlimited simple designs. Heavier designs incur an additional per-hand charge. Minimum booking for 2 hours.",
   },
 
   party: {
@@ -52,11 +61,15 @@ const serviceData = {
       "Volume pricing for larger headcounts",
     ],
     gallery: ["/images/services/services-party-hand.webp"], // single image
+    labelHeading: "Option",
+    priceHeading: "Price (starting from)",
     prices: [
-      { label: "Minimal Accent (per person)", amount: 20 },
-      { label: "Medium Design (per person)", amount: 35 },
-      { label: "Event Hourly (2-hour minimum)", amount: 120 },
+      { label: "Single Hand", amount: 9.99 },
+      { label: "Both Hands",  amount: 19.99 },
+      { label: "Group Package", amount: 59.99, unitSuffix: "/hr" },
     ],
+    footnote:
+      "Hourly covers unlimited simple designs. Heavier designs incur an additional per-hand charge. Minimum booking for 2 hours.",
   },
 };
 
