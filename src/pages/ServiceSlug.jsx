@@ -47,6 +47,12 @@ export default function ServiceSlug() {
 
   usePageSEO(pageTitle, pageDescription);
 
+  // --- compute "next service" for the footer button ---
+  const order = ["bridal", "festival", "party"];
+  const idx = Math.max(0, order.indexOf(slug));
+  const nextSlug = order[(idx + 1) % order.length];
+  const nextTitle = serviceData[nextSlug]?.title || nextSlug;
+
   const content = useMemo(() => {
     if (!entry) return null;
 
@@ -116,21 +122,17 @@ export default function ServiceSlug() {
 
           {/* Centered Book Now */}
           <div className={styles.ctaRow} style={{ display: "flex", justifyContent: "center" }}>
-            <a
+            <Link
               className={styles.bookBtn}
-              href={`mailto:hello@mehndibysimra.com?subject=${encodeURIComponent(
-                `Booking inquiry: ${entry.title}`
-              )}&body=${encodeURIComponent(
-                `Hi Simra,%0D%0A%0D%0AI'd like to book ${entry.title.toLowerCase()}.%0D%0AEvent date:%0D%0ALocation (City):%0D%0AGuests/Coverage:%0D%0AOther notes:%0D%0A%0D%0AThanks!`
-              )}`}
+              to={`/contact?service=${encodeURIComponent(slug)}`}
             >
               Book Now
-            </a>
+            </Link>
           </div>
         </section>
       </>
     );
-  }, [entry]);
+  }, [entry, slug]);
 
   return (
     <main className={styles.container}>
@@ -153,7 +155,9 @@ export default function ServiceSlug() {
 
       <nav className={styles.footerNav}>
         <Link to="/" className={styles.galleryBtn}>Back to Home</Link>
-        <Link to="/about" className={styles.galleryBtnAlt}>Go to About</Link>
+        <Link to={`/${nextSlug}`} className={styles.galleryBtnAlt}>
+          {nextTitle}
+        </Link>
       </nav>
     </main>
   );
