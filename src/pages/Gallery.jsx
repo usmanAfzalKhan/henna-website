@@ -1,63 +1,73 @@
-// src/pages/Gallery.jsx
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Gallery.module.css";
 import galleryData from "../data/galleryData";
 
-const CARDS = [
-  { key: "bridal", title: "Bridal" },
-  { key: "festival", title: "Festive" },
-  { key: "party", title: "Party" },
-];
-
 export default function Gallery() {
-  useEffect(() => {
-    document.title = "Gallery | Mehndi by Simra";
-  }, []);
+  const categories = Object.values(galleryData);
 
   return (
-    <main className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Gallery</h1>
-        <p className={styles.lede}>
-          Explore featured looks from our Bridal, Festival, and Party services.
-        </p>
-      </header>
+    <main className={styles.main}>
+      <div className={styles.wrapper}>
+        <header className={styles.header}>
+          <h1 className={styles.title}>Our Gallery</h1>
+          <p className={styles.subtitle}>
+            Explore three curated collections—Bridal, Festive, and Party. Each
+            gallery highlights clean, balanced designs that photograph beautifully
+            and wear comfortably for your event. Tap a collection to see close-ups,
+            full hands, and short video clips.
+          </p>
+          <p className={styles.tip}><em>Tap a collection to view designs.</em></p>
+        </header>
 
-      <section className={styles.grid} aria-label="Gallery categories">
-        {CARDS.map(({ key, title }) => {
-          const entry = galleryData[key];
-          const cover = entry?.cardThumb;
-          return (
-            <Link to={`/gallery/${key}`} className={styles.card} key={key}>
-              <div className={styles.cardMedia}>
-                {cover ? (
-                  <img src={cover} alt={`${title} cover`} />
+        <div className={styles.grid}>
+          {categories.map((cat, i) => (
+            <Link
+              to={`/gallery/${cat.slug}`}
+              key={cat.slug}
+              className={`${styles.card} ${styles.appear}`}
+              style={{ animationDelay: `${i * 0.08}s` }}
+            >
+              <div className={styles.thumbWrap}>
+                {cat.cardThumb ? (
+                  <>
+                    <img
+                      src={cat.cardThumb}
+                      alt={`${cat.title} thumbnail`}
+                      className={styles.thumb}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    {/* logo overlay bottom-right */}
+                    <img
+                      src="/images/logo.png"
+                      alt=""
+                      aria-hidden="true"
+                      className={styles.logoMark}
+                    />
+                  </>
                 ) : (
-                  // Fallback if no image yet
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      display: "grid",
-                      placeItems: "center",
-                      fontFamily: "Playfair Display, serif",
-                      color: "#ffe174",
-                      background:
-                        "linear-gradient(180deg, rgba(255,225,116,0.08), rgba(255,225,116,0.04))",
-                    }}
-                  >
-                    {title}
-                  </div>
+                  <div className={styles.thumbPlaceholder}>Coming soon</div>
                 )}
               </div>
               <div className={styles.cardBody}>
-                <h3 className={styles.cardTitle}>{title}</h3>
+                <h2 className={styles.cardTitle}>{cat.title}</h2>
+                <p className={styles.cardText}>
+                  {cat.items?.length ? `${cat.items.length} items` : "No items yet"}
+                </p>
               </div>
             </Link>
-          );
-        })}
-      </section>
+          ))}
+        </div>
+
+        {/* FAQ Call-to-Action */}
+        <div className={styles.faqCta}>
+          <p className={styles.faqText}>Got questions about our services?</p>
+          <Link to="/faq" className={styles.faqBtn}>
+            Visit Our FAQ →
+          </Link>
+        </div>
+      </div>
     </main>
   );
 }

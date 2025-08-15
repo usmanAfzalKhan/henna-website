@@ -1,36 +1,60 @@
 // src/data/galleryData.js
-// Add your real files later. Each item can be:
-// { type: "image", src: "/images/bridal/IMG_0001.jpg", alt: "Optional alt" }
-// { type: "video", src: "/videos/bridal/clip01.mp4", alt: "Optional alt" }
-
 const galleryData = {
   bridal: {
     title: "Bridal Gallery",
     slug: "bridal",
-    // Optional card cover (shown on the 3-card grid). Leave "" to use a text fallback.
-    cardThumb: "",
+    // WebP for thumbnail (fast). If you haven't made it yet, swap to b1.jpg.
+    cardThumb: "/images/gallery/bridal/b1.webp",
     items: [
-      // Example (uncomment and replace when ready):
-      // { type: "image", src: "/images/bridal/IMG_0001.jpg", alt: "Bridal mehndi" },
-      // { type: "video", src: "/videos/bridal/clip01.mp4", alt: "Bridal video" },
+      { type: "image", src: "/images/gallery/bridal/b1.jpg", alt: "Bridal design 1" },
+      { type: "image", src: "/images/gallery/bridal/b2.jpg", alt: "Bridal design 2" },
+      { type: "image", src: "/images/gallery/bridal/b3.jpg", alt: "Bridal design 3" },
+      { type: "image", src: "/images/gallery/bridal/b4.jpg", alt: "Bridal design 4" },
+      { type: "image", src: "/images/gallery/bridal/b5.jpg", alt: "Bridal design 5" },
+      { type: "image", src: "/images/gallery/bridal/b6.jpg", alt: "Bridal design 6" },
+      { type: "image", src: "/images/gallery/bridal/b7.jpg", alt: "Bridal design 7" },
+      { type: "image", src: "/images/gallery/bridal/b8.jpg", alt: "Bridal design 8" },
+      { type: "image", src: "/images/gallery/bridal/b9.jpg", alt: "Bridal design 9" },
+
+      // Bridal video(s)
+      { type: "video", src: "/videos/gallery/bridal/b10.mp4", alt: "Bridal video 1" },
     ],
   },
+
   festival: {
     title: "Festive Gallery",
     slug: "festival",
-    cardThumb: "",
+    // WebP for thumbnail (fast) - falls back to JPG in modal items
+    cardThumb: "/images/gallery/festive/f1.webp",
     items: [
-      // { type: "image", src: "/images/festival/pic01.png", alt: "Festival design" },
-      // { type: "video", src: "/videos/festival/fest01.mp4", alt: "Festival video" },
+      { type: "image", src: "/images/gallery/festive/f1.jpg", alt: "Festive design 1" },
+      { type: "image", src: "/images/gallery/festive/f2.jpg", alt: "Festive design 2" },
+      { type: "image", src: "/images/gallery/festive/f3.jpg", alt: "Festive design 3" },
+      { type: "image", src: "/images/gallery/festive/f4.jpg", alt: "Festive design 4" },
+      { type: "image", src: "/images/gallery/festive/f5.jpg", alt: "Festive design 5" },
+      { type: "image", src: "/images/gallery/festive/f6.jpg", alt: "Festive design 6" },
+      { type: "image", src: "/images/gallery/festive/f7.jpg", alt: "Festive design 7" },
+      { type: "image", src: "/images/gallery/festive/f8.jpg", alt: "Festive design 8" },
+      { type: "image", src: "/images/gallery/festive/f9.jpg", alt: "Festive design 9" },
+      { type: "video", src: "/videos/gallery/festive/f11.mp4", alt: "Festive video 1" },
+      { type: "video", src: "/videos/gallery/festive/f12.mp4", alt: "Festive video 2" },
     ],
   },
+
   party: {
     title: "Party Gallery",
     slug: "party",
-    cardThumb: "",
+    // Use a fast WebP thumb; swap to p1.jpg if you don't make the WebP yet.
+    cardThumb: "/images/gallery/party/p1.webp",
     items: [
-      // { type: "image", src: "/images/party/photo01.jpg", alt: "Party mehndi" },
-      // { type: "video", src: "/videos/party/party01.mov", alt: "Party video" },
+      { type: "image", src: "/images/gallery/party/p1.jpg", alt: "Party design 1" },
+      { type: "image", src: "/images/gallery/party/p2.jpg", alt: "Party design 2" },
+      { type: "image", src: "/images/gallery/party/p3.jpg", alt: "Party design 3" },
+      { type: "image", src: "/images/gallery/party/p4.jpg", alt: "Party design 4" },
+      { type: "image", src: "/images/gallery/party/p5.jpg", alt: "Party design 5" },
+      { type: "image", src: "/images/gallery/party/p6.jpg", alt: "Party design 6" },
+      // Add party videos later if you have them:
+      // { type: "video", src: "/videos/gallery/party/p10.mp4", alt: "Party video 1" },
     ],
   },
 };
