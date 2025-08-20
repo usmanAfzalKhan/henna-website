@@ -51,7 +51,7 @@ const serviceData = {
     ],
     footnote:
       "Hourly covers unlimited simple designs. Heavier designs incur an additional per-hand charge. Minimum booking for 2 hours.",
-    // ✨ Two extra paragraphs (optional to render)
+    
     extra: [
       "Festive sets are optimized for beautiful results in shorter sittings—perfect for families and friends rotating through. Designs stay neat and celebratory, with just enough detail to pop in photos while keeping lines crisp and drying time quick.",
       "We handle on-site flow with punctual setup, hygienic tools, and clear menus so guests know exactly what they’re getting. Transparent pricing and efficient pacing mean more happy hands in less time, without sacrificing quality or stain depth."
@@ -82,7 +82,7 @@ const serviceData = {
     // ✨ Two extra paragraphs (optional to render)
     extra: [
       "Party mehndi should feel effortless—quick to apply, clean in photos, and comfortable all night. Our modern patterns keep hands free of heavy fill so guests can mingle, eat, and post their looks right away.",
-      "We’re event-ready—reliable timing, scalable coverage for larger headcounts, and brand-friendly options for corporate activations. Expect tidy stations, sanitized tools, and chic designs that match your theme without slowing down the party."
+      "We’re event-ready with reliable timing, scalable coverage for larger headcounts, and brand-friendly options for corporate activations. Expect tidy stations, sanitized tools, and chic designs that match your theme without slowing down the party."
     ],
   },
 };
