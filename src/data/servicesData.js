@@ -11,7 +11,6 @@ const serviceData = {
       "Custom motifs inspired by your story, outfit, and jewelry",
       "Long-wear, rich stain using quality, fresh-cone paste",
       "Comfort-first scheduling and prep guidance for perfect results",
-      "Optional name/date reveals, portraits, or fine-fill details",
     ],
     gallery: ["/images/services/services-bridal-hand.webp"], // single image
     labelHeading: "Package",
@@ -27,7 +26,7 @@ const serviceData = {
     // ✨ Two extra paragraphs (optional to render)
     extra: [
       "Bridal mehndi is the most photographed detail of your day. We tailor motifs to your outfit, jewelry, and ceremony flow so every close-up looks intentional—no clutter, no guesswork. Our cones are mixed fresh for deep, even staining, and we pace sessions to keep you comfortable without rushing your timeline.",
-      "You’ll get calm, professional guidance, skin-safe natural paste, and photo-ready compositions that flatter your hands and posture. From trial sketches to aftercare and schedule management, we focus on a smooth, stress-free experience—and a stain that stays rich across your events."
+      "You’ll get calm, professional guidance, skin-safe natural paste, and photo-ready compositions that flatter your hands and posture. From sample designs to aftercare and schedule management, we focus on a smooth, stress-free experience—and a stain that stays rich across your events."
     ],
   },
 
@@ -40,7 +39,7 @@ const serviceData = {
       "Fast, tidy patterns ideal for group or family bookings",
       "Mix of florals, vines, and geometric accents",
       "Kid-friendly and delicate mini designs available",
-      "On-site setup for homes or event venues (by request)",
+      "On-site setup for homes or event venues (additional travel charge)",
     ],
     gallery: ["/images/services/services-festival-hand.webp"], // single image
     labelHeading: "Option",
