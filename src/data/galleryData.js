@@ -15,6 +15,9 @@ const galleryData = {
       { type: "image", src: "/images/gallery/bridal/b7.jpg", alt: "Bridal design 7" },
       { type: "image", src: "/images/gallery/bridal/b8.jpg", alt: "Bridal design 8" },
       { type: "image", src: "/images/gallery/bridal/b9.jpg", alt: "Bridal design 9" },
+      { type: "image", src: "/images/gallery/bridal/b12.jpeg", alt: "Bridal design 12" },
+      { type: "image", src: "/images/gallery/bridal/b13.jpeg", alt: "Bridal design 13" },
+      { type: "image", src: "/images/gallery/bridal/b14.jpeg", alt: "Bridal design 14" },
 
       // Bridal video(s)
       { type: "video", src: "/videos/gallery/bridal/b10.mp4", alt: "Bridal video 1" },
